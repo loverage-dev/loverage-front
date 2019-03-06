@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="t-wrapper">
+    <GlobalHeader />
+    <router-view></router-view>
+    <QuestionPostForm />
+    <GlobalFooter />
+    <DialogConfirm />
+    <DialogCancel/>
+    <!-- <Toast/> -->
+    <QuestionPostFormPopup />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GlobalHeader from "./components/organism/global-header.vue";
+import QuestionPostForm from "./components/organism/question-post-form.vue";
+import GlobalFooter from "./components/organism/global-footer.vue";
+import DialogConfirm from "./components/molecule/dialog-confirm.vue";
+import DialogCancel from "./components/molecule/dialog-cancel.vue";
+// import Toast from "./components/atom/toast.vue";
+import QuestionPostFormPopup from "./components/organism/question-post-form-popup.vue";
 
 export default {
-  name: 'app',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    GlobalHeader,
+    QuestionPostForm,
+    GlobalFooter,
+    DialogConfirm,
+    DialogCancel,
+    // Toast,
+    QuestionPostFormPopup
+  }}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
