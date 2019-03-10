@@ -55,11 +55,15 @@ export default new Router({
                 import("@/components/page/category-detail.vue")
         },
         {
-            path: '/article',
+            path: '/article/:id',
             name: 'article',
             component: () =>
                 import("@/components/page/article.vue")
-        }
+        },
+        {
+          path: '*',
+          redirect: '/'
+        },
     ],
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {

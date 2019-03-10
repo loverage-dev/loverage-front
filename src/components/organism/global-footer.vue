@@ -89,28 +89,28 @@
         <ul class="list">
           <li class="item item3">
             <router-link to="/category-list">
-              <a href>カテゴリ</a>
+              カテゴリ
             </router-link>
           </li>
           <li class="item item4">
             <router-link to="/ranking-view">
-              <a href>ランキング</a>
+              ランキング
             </router-link>
           </li>
           <!-- <li class="item item5"><a href="">まとめ</a></li> -->
           <li class="item item6">
             <router-link to="/about">
-              <a href>Loverageとは</a>
+              Loverageとは
             </router-link>
           </li>
           <li class="item item7">
             <router-link to="/terms">
-              <a href>利用規約</a>
+              利用規約
             </router-link>
           </li>
           <li class="item item8">
             <router-link to="/privacy-policy">
-              <a href>個人情報保護方針</a>
+              個人情報保護方針
             </router-link>
           </li>
         </ul>

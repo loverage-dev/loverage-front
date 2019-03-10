@@ -1,10 +1,10 @@
 <template>
-  <div class="m-sub-kv green">
+  <div class="m-sub-kv green" v-if="article">
     <div class="m-sub-kv__image">
       <div class="m-sub-kv__image-inner">
-        <a href>
+        <router-link :to="{ name: 'article', params: { id: article.id }}">
           <img src="@/images/thumbnail/dummy-sub-kv.png" alt>
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="m-sub-kv__text">
@@ -36,10 +36,16 @@
           </g>
         </g>
       </svg>
-      <a class="m-sub-kv__title" href>彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</a>
+      <router-link
+        class="m-sub-kv__title"
+        :to="{ name: 'article', params: { id: article.id }}"
+      >{{ article.content }}</router-link>
       <div class="m-card-info">
         <h6>
-          <a href class="a-label a-label--sex a-label--woman">
+          <router-link
+            class="a-label a-label--sex a-label--woman"
+            :to="{ name: 'article', params: { id: article.id }}"
+          >
             <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
               width="7px"
@@ -63,8 +69,9 @@
                   </g>
                 </g>
               </g>
-            </svg>20代前半
-          </a>
+            </svg>
+            {{ article.user_age|translate_to_jp_age }}
+          </router-link>
         </h6>
         <div class="a-counter">
           <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -96,9 +103,13 @@
                 ></path>
               </g>
             </g>
-          </svg>255 votes
+          </svg>
+          {{ article.votes_amount }} votes
         </div>
-        <a href class="a-link a-link--arrow a-link--green-arrow">
+        <router-link
+          :to="{ name: 'article', params: { id: article.id }}"
+          class="a-link a-link--arrow a-link--green-arrow"
+        >
           <!-- <?xml version="1.0" encoding="UTF-8"?> -->
           <svg
             width="5px"
@@ -144,7 +155,7 @@
               </g>
             </g>
           </svg>Read more
-        </a>
+        </router-link>
       </div>
     </div>
   </div>
@@ -153,7 +164,9 @@
 <script>
 export default {
   name: "PageIndexGiganticLayoutSP",
-  props: {},
+  props: {
+    article: null
+  },
   components: {}
 };
 </script>

@@ -1,15 +1,15 @@
 <template>
-  <div class="u-pc-d o-card-list o-card-list--split">
+  <div class="u-pc-d o-card-list o-card-list--split" v-if="article_for_women && article_for_men">
     <div class="o-card-list--split__inner">
       <ul class="list">
         <li class="item green">
           <div class="m-card m-card--column">
             <div class="m-card__image">
-              <a href>
+              <router-link :to="{ name: 'article', params: { id: article_for_women.id }}">
                 <div class="m-card__image-inner">
                   <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                 </div>
-              </a>
+              </router-link>
             </div>
             <div class="m-card__text">
               <div class="neon">
@@ -45,12 +45,13 @@
                   </g>
                 </svg>
               </div>
-              <a href>
-                <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-              </a>
+              <router-link :to="{ name: 'article', params: { id: article_for_women.id }}">
+                <h2 class="m-card__title">{{article_for_women.content}}</h2>
+              </router-link>
               <div class="m-card-info">
                 <h6>
-                  <a href class="a-label a-label--sex a-label--man">
+                  <router-link :to="{ name: 'article', params: { id: article_for_women.id }}"
+                   class="a-label a-label--sex a-label--man">
                     <!--?xml version="1.0" encoding="UTF-8"?-->
                     <svg
                       width="7px"
@@ -74,8 +75,9 @@
                           </g>
                         </g>
                       </g>
-                    </svg>30代前半
-                  </a>
+                    </svg>
+                    {{ article_for_women.user_age|translate_to_jp_age }}
+                  </router-link>
                 </h6>
                 <div class="a-counter a-counter--withouttitle">
                   <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -107,9 +109,11 @@
                         ></path>
                       </g>
                     </g>
-                  </svg>255 votes
+                  </svg>
+                  {{article_for_women.votes_amount}} votes
                 </div>
-                <a href class="a-link a-link--arrow">
+                <router-link :to="{ name: 'article', params: { id: article_for_women.id }}"
+                 class="a-link a-link--arrow">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                   <svg
                     width="5px"
@@ -155,7 +159,7 @@
                       </g>
                     </g>
                   </svg>Read more
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -163,11 +167,11 @@
         <li class="item pink">
           <div class="m-card m-card--column">
             <div class="m-card__image">
-              <a href>
+              <router-link :to="{ name: 'article', params: { id: article_for_men.id }}">
                 <div class="m-card__image-inner">
                   <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                 </div>
-              </a>
+              </router-link>
             </div>
             <div class="m-card__text">
               <div class="neon">
@@ -203,12 +207,13 @@
                   </g>
                 </svg>
               </div>
-              <a href>
-                <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-              </a>
+              <router-link :to="{ name: 'article', params: { id: article_for_men.id }}">
+                <h2 class="m-card__title">{{ article_for_men.content }}</h2>
+              </router-link>
               <div class="m-card-info">
                 <h6>
-                  <a href class="a-label a-label--sex a-label--man">
+                  <router-link :to="{ name: 'article', params: { id: article_for_men.id }}"
+                   class="a-label a-label--sex a-label--man">
                     <!--?xml version="1.0" encoding="UTF-8"?-->
                     <svg
                       width="7px"
@@ -232,8 +237,9 @@
                           </g>
                         </g>
                       </g>
-                    </svg>30代前半
-                  </a>
+                    </svg>
+                    {{article_for_men.user_age|translate_to_jp_age}}
+                  </router-link>
                 </h6>
                 <div class="a-counter a-counter--withouttitle">
                   <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -265,9 +271,11 @@
                         ></path>
                       </g>
                     </g>
-                  </svg>255 votes
+                  </svg>
+                  {{ article_for_men.votes_amount }} votes
                 </div>
-                <a href class="a-link a-link--arrow">
+                <router-link :to="{ name: 'article', params: { id: article_for_men.id }}"
+                 class="a-link a-link--arrow">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                   <svg
                     width="5px"
@@ -313,7 +321,7 @@
                       </g>
                     </g>
                   </svg>Read more
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -326,9 +334,11 @@
 <script>
 export default {
   name: "PageIndex2Block",
-  props: {},
-  components: {
-  }
+  props: {
+    article_for_women: null,
+    article_for_men: null
+  },
+  components: {}
 };
 </script>
 

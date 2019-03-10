@@ -1,5 +1,6 @@
 <template>
   <div class="t-wrapper">
+    <Loading/>
     <GlobalHeader />
     <router-view></router-view>
     <QuestionPostForm />
@@ -15,6 +16,7 @@
 import GlobalHeader from "./components/organism/global-header.vue";
 import QuestionPostForm from "./components/organism/question-post-form.vue";
 import GlobalFooter from "./components/organism/global-footer.vue";
+import Loading from "./components/molecule/loading.vue";
 import DialogConfirm from "./components/molecule/dialog-confirm.vue";
 import DialogCancel from "./components/molecule/dialog-cancel.vue";
 // import Toast from "./components/atom/toast.vue";
@@ -28,6 +30,7 @@ export default {
     GlobalFooter,
     DialogConfirm,
     DialogCancel,
+    Loading,
     // Toast,
     QuestionPostFormPopup
   }}

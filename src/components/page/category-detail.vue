@@ -1,10 +1,10 @@
 <template>
-  <div class="t-contents t-search-result">
-    <PageTitle pageTitle="女性10代前半 の検索結果" pageDescription/>
+  <div class="t-contents t-search-result" v-if="articles&&ranking_view&&latest&&hot_topic">
+    <PageTitle :pageTitle="title" pageDescription/>
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
-          <h2 class="a-heading">検索結果 35件</h2>
+          <h2 class="a-heading">検索結果 {{ this.articles.length }}件</h2>
           <form action class="m-question-post-form">
             <label>
               <div class="m-question-post-form__heading">相談者のカテゴリーで絞り込み</div>
@@ -35,24 +35,23 @@
           </form>
           <div class="o-card-list o-card-list--row">
             <ul class="list">
-              <li class="item">
+              <li class="item" v-for="article in articles" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
-                      <router-link to="/article">
-                        <a href>
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
                           <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                        </a>
                       </router-link>
                     </div>
                   </div>
                   <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <a href class="a-label a-label--sex a-label--man">
+                        <router-link class="a-label a-label--sex a-label--man"
+                         :to="{ name: 'article', params: { id: article.id }}">
                           <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                           <svg
                             width="7px"
@@ -86,8 +85,9 @@
                                 </g>
                               </g>
                             </g>
-                          </svg>30代前半
-                        </a>
+                          </svg>
+                          {{ article.user_age|translate_to_jp_age }}
+                        </router-link>
                       </h6>
                       <div class="a-counter a-counter--withouttitle">
                         <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -123,9 +123,10 @@
                               ></path>
                             </g>
                           </g>
-                        </svg>255 votes
+                        </svg>
+                        {{ article.votes_amount }} votes
                       </div>
-                      <a href class="a-link a-link--arrow">
+                      <router-link :to="{ name: 'article', params: { id: article.id }}" class="a-link a-link--arrow">
                         <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                         <svg
                           width="5px"
@@ -174,1292 +175,15 @@
                             </g>
                           </g>
                         </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--row">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                      <a href class="a-link a-link--arrow">
-                        <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg
-                          width="5px"
-                          height="9px"
-                          viewBox="0 0 5 9"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>icon/arrow</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs>
-                            <polygon
-                              id="path-1"
-                              points="0 1.3125 0.803571429 0.46875 4.82142857 4.6875 0.803571429 8.90625 0 8.0625 3.18917411 4.6875"
-                            ></polygon>
-                          </defs>
-                          <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="トップ" transform="translate(-241.000000, -433.000000)">
-                              <g id="icon/arrow" transform="translate(241.000000, 433.000000)">
-                                <mask id="mask-2" fill="white">
-                                  <use xlink:href="#path-1"></use>
-                                </mask>
-                                <use
-                                  id="ion-ios-arrow-forward---Ionicons-Copy"
-                                  fill="#FFFFFF"
-                                  fill-rule="evenodd"
-                                  xlink:href="#path-1"
-                                ></use>
-                                <g
-                                  class="variable-fill"
-                                  id="color/#FFA9C8"
-                                  mask="url(#mask-2)"
-                                  fill="#FFA9C8"
-                                  fill-rule="nonzero"
-                                >
-                                  <g
-                                    transform="translate(-30.000000, -31.500000)"
-                                    id="colo/#212121"
-                                  >
-                                    <rect x="0" y="0" width="71" height="75"></rect>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>Read more
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
-          <a href class="a-btn a-btn--large a-btn--more a-btn--green-arrow">SEE MORE
+          <router-link to="/ranking-view"
+           class="a-btn a-btn--large a-btn--more a-btn--green-arrow">SEE MORE
             <div class="arrow">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
               <svg
@@ -1512,7 +236,7 @@
                 </g>
               </svg>
             </div>
-          </a>
+          </router-link>
         </div>
         <div
           class="t-2column__side o-card-list o-card-list--row o-card-list--square o-card-list--black o-card-list--set"
@@ -1551,25 +275,25 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item">
+              <li class="item" v-for="(article,index) in ranking_view" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-number">
-                      <div class="m-card__image-number-inner">1</div>
+                      <div class="m-card__image-number-inner">{{ index + 1 }}</div>
                     </div>
                     <div class="m-card__image-inner">
-                      <a href>
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
                         <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                   <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <a href class="a-label a-label--sex a-label--man">
+                        <router-link :to="{ name: 'article', params: { id: article.id }}" class="a-label a-label--sex a-label--man">
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -1603,8 +327,9 @@
                                 </g>
                               </g>
                             </g>
-                          </svg>30代前半
-                        </a>
+                          </svg>
+                          {{ article.user_age|translate_to_jp_age }}
+                        </router-link>
                       </h6>
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -1640,204 +365,16 @@
                               ></path>
                             </g>
                           </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-number">
-                      <div class="m-card__image-number-inner">2</div>
-                    </div>
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-number">
-                      <div class="m-card__image-number-inner">3</div>
-                    </div>
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
+                        </svg>
+                        {{ article.votes_amount }} votes
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
             </ul>
-            <a href class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow">SEE MORE
+            <router-link to="/ranking-view" 
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow">SEE MORE
               <div class="arrow">
                 <!--?xml version="1.0" encoding="UTF-8"?-->
                 <svg
@@ -1869,7 +406,7 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
             <div class="m-list-heading green">
               <h2 class="m-list-heading__jp">最新の相談</h2>
               <div class="m-list-heading__en">
@@ -1903,22 +440,23 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item">
+              <li class="item" v-for="article in latest" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
-                      <a href>
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
                         <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                   <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <a href class="a-label a-label--sex a-label--man">
+                        <router-link :to="{ name: 'article', params: { id: article.id }}"
+                         class="a-label a-label--sex a-label--man">
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -1952,8 +490,9 @@
                                 </g>
                               </g>
                             </g>
-                          </svg>30代前半
-                        </a>
+                          </svg>
+                          {{ article.user_age|translate_to_jp_age }}
+                        </router-link>
                       </h6>
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -1989,191 +528,8 @@
                               ></path>
                             </g>
                           </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
+                        </svg>
+                        {{ article.votes_amount }} votes
                       </div>
                     </div>
                   </div>
@@ -2213,22 +569,23 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item">
+              <li class="item" v-for="article in hot_topic" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
-                      <a href>
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
                         <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                   <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <a href class="a-label a-label--sex a-label--man">
+                        <router-link :to="{ name: 'article', params: { id: article.id }}"
+                         class="a-label a-label--sex a-label--man">
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -2262,8 +619,9 @@
                                 </g>
                               </g>
                             </g>
-                          </svg>30代前半
-                        </a>
+                          </svg>
+                          {{ article.user_age|translate_to_jp_age }}
+                        </router-link>
                       </h6>
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -2299,191 +657,8 @@
                               ></path>
                             </g>
                           </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item">
-                <div class="m-card m-card--square">
-                  <div class="m-card__image">
-                    <div class="m-card__image-inner">
-                      <a href>
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="m-card__text">
-                    <a href>
-                      <h2 class="m-card__title">彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的...</h2>
-                    </a>
-                    <div class="m-card-info">
-                      <h6>
-                        <a href class="a-label a-label--sex a-label--man">
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>30代前半
-                        </a>
-                      </h6>
-                      <div class="a-counter a-counter--withouttitle">
-                        <!--?xml version="1.0" encoding="UTF-8"?-->
-                        <svg
-                          width="14px"
-                          height="14px"
-                          viewBox="0 0 14 14"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                        >
-                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                          <title>Combined Shape</title>
-                          <desc>Created with Sketch.</desc>
-                          <defs></defs>
-                          <g
-                            id="SP"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            opacity="0.900000036"
-                          >
-                            <g
-                              id="トップ"
-                              transform="translate(-142.000000, -429.000000)"
-                              fill="#AAAAAA"
-                            >
-                              <path
-                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
-                                id="Combined-Shape"
-                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>255 votes
+                        </svg>
+                        {{ article.votes_amount }} votes
                       </div>
                     </div>
                   </div>
@@ -2499,18 +674,128 @@
 
 <script>
 import PageTitle from "../organism/page-title.vue";
+import axios from "axios";
 
 export default {
   name: "PageCategoryDetail",
   props: {},
+  watch: {
+    '$route': function(to, from) {
+        this.fetchArticles()
+      }
+  },
+  data: function() {
+    return {
+      title: "",
+      articles: null,
+      ranking_view: null,
+      latest: null,
+      hot_topic: null
+    };
+  },
   components: {
     PageTitle
   },
-  mounted: function(){
-    global.$("body").addClass("p-category-detail")
+  created: function() {
+    this.fetchArticles();
   },
-  destroyed: function(){
-    global.$("body").removeClass("p-category-detail")
+  mounted: function() {
+    global.$("body").addClass("p-category-detail");
+    this.$store.commit("setLoading", true);
+  },
+  destroyed: function() {
+    global.$("body").removeClass("p-category-detail");
+  },
+  methods: {
+    fetchArticles: function() {
+      if (this.$route.query) {
+        let url = "http://localhost:4000/api/v1/articles?";
+        if (this.$route.query.sex) {
+          if (url.slice(-1) != "?") url += "&";
+          url += "sex=" + this.$route.query.sex;
+          this.title += `${this.to_jp_sex(this.$route.query.sex)}`;
+        }
+        if (this.$route.query.age) {
+          if (url.slice(-1) != "?") url += "&";
+          url += "age=" + this.$route.query.age;
+          this.title += `${this.to_jp_age(this.$route.query.age)}`;
+        }
+        if (this.$route.query.keyword) {
+          if (url.slice(-1) != "?") url += "&";
+          url += "keyword=" + this.$route.query.keyword;
+          this.title = `"${this.$route.query.keyword}"`;
+        }
+        if (this.$route.query.tag) {
+          if (url.slice(-1) != "?") url += "&";
+          url += "tag=" + this.$route.query.tag;
+          this.title = `タグ "#${this.$route.query.tag}"`;
+        }
+        this.title += " の検索結果";
+
+        axios.get(url).then(response => {
+          this.articles = response.data.articles;
+        });
+
+        axios
+          .get("http://localhost:4000/api/v1/ranking_view?limit=3")
+          .then(response => {
+            this.ranking_view = response.data.articles;
+          });
+        axios
+          .get("http://localhost:4000/api/v1/latest?limit=3")
+          .then(response => {
+            this.latest = response.data.articles;
+          });
+        axios
+          .get("http://localhost:4000/api/v1/hot_topics?limit=3")
+          .then(response => {
+            this.hot_topic = response.data.articles;
+            this.$store.commit("setLoading", false);
+          });
+      }
+    },
+    to_jp_age: function(value) {
+      switch (value) {
+        case "e_10s":
+          return "10代前半";
+        case "l_10s":
+          return "10代後半";
+        case "e_20s":
+          return "20代前半";
+        case "l_20s":
+          return "20代後半";
+        case "e_30s":
+          return "30代前半";
+        case "l_30s":
+          return "30代後半";
+        case "e_40s":
+          return "40代前半";
+        case "l_40s":
+          return "40代後半";
+        case "e_50s":
+          return "50代前半";
+        case "l_50s":
+          return "50代後半";
+        case "e_60s":
+          return "60代前半";
+        case "l_60s":
+          return "60代後半";
+        default:
+          return value;
+      }
+    },
+    to_jp_sex: function(value) {
+      switch (value) {
+        case "m":
+          return "男性";
+        case "f":
+          return "女性";
+        case "o":
+          return "どちらでもない";
+        default:
+          return value;
+      }
+    }
   }
 };
 </script>

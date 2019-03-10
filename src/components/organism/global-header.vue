@@ -19,10 +19,10 @@
         </button>
 
         <div class="o-global-header__sp-search-area m-search-area">
-          <form class="m-search-box" action>
+          <form class="m-search-box" action v-on:submit.prevent="onSubmit(sp_search_word)">
             <div class="m-search-box__inner">
               <div class="m-search-box__box">
-                <input type="search" class="m-search-box__input">
+                <input type="search" class="m-search-box__input" v-model="sp_search_word">
                 <a href class="m-search-box__delete">
                   <IconClose/>
                 </a>
@@ -57,8 +57,8 @@
           <div class="icon">
             <IconSearch width="15px" height="15px"/>
           </div>
-          <form class="form">
-            <input class="input" type="text" placeholder="みんなの相談から検索">
+          <form class="form" v-on:submit.prevent="onSubmit(pc_search_word)">
+            <input class="input" type="text" placeholder="みんなの相談から検索" v-model="pc_search_word">
             <input class="submit" type="submit" value="検索">
             <ul class="suggestion">
               <li class="suggestion__item">
@@ -89,6 +89,12 @@ import IconClose from "../icon/icon-close.vue";
 
 export default {
   name: "GlobalHeader",
+  data: function() {
+    return {
+      pc_search_word: "",
+      sp_search_word: ""
+    };
+  },
   props: {
     // msg: String
   },
@@ -97,6 +103,26 @@ export default {
     IconLoverageMini,
     IconSearch,
     IconClose
+  },
+  methods: {
+    onSubmit: function(word) {
+      let w = word.trim();
+      if (w.startsWith("#")) {
+        let tag = w.slice(1);
+        this.$router.push({
+          name: "category-detail",
+          query: { tag: tag }
+        });
+      } else {
+        this.$router.push({
+          name: "category-detail",
+          query: { keyword: w }
+        });
+      }
+      this.pc_search_word = ""
+      this.sp_search_word = ""
+      global.$(".m-search-box__cancel").click()
+    }
   },
   mounted: function() {
     // ----- scroll -------------
@@ -172,7 +198,8 @@ export default {
       });
 
       // .o-global-header__function内の.postをクリックしたら、.o-question-post-popupのdisplay: noneをはずす
-      global.$(".o-global-header__function")
+      global
+        .$(".o-global-header__function")
         .find(".post")
         .on("click", function(event) {
           event.preventDefault();
@@ -191,10 +218,12 @@ export default {
         return false;
       }
 
-      global.$(".o-question-post-popup")
+      global
+        .$(".o-question-post-popup")
         .find(".a-popup-header__close")
         .on("click", closeQuestionPostPopup);
-      global.$(".o-question-post-popup")
+      global
+        .$(".o-question-post-popup")
         .find(".a-popup-header__back")
         .on("click", closeQuestionPostPopup);
 

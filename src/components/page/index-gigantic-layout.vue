@@ -1,10 +1,10 @@
 <template>
-  <div class="m-kv pink">
+  <div class="m-kv pink" v-if="article">
     <div class="m-kv__image">
       <div class="m-kv__image-inner">
-        <a href>
+        <router-link :to="{ name: 'article', params: { id: article.id }}">
           <img src="@/images/thumbnail/dummy-kv.png" alt>
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="m-kv__text">
@@ -37,10 +37,12 @@
             </g>
           </g>
         </svg>
-        <a class="m-kv__title" href>彼氏のいびきがうるさくて眠れません。同居中の寝室で、比較的大きなベッドで...</a>
+        <router-link :to="{ name: 'article', params: { id: article.id }}"
+         class="m-kv__title" href>{{ article.content }}</router-link>
         <div class="m-card-info">
           <h6>
-            <a href class="a-label a-label--sex a-label--woman">
+            <router-link :to="{ name: 'article', params: { id: article.id }}"
+             class="a-label a-label--sex a-label--woman">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
               <svg
                 width="7px"
@@ -64,8 +66,8 @@
                     </g>
                   </g>
                 </g>
-              </svg>20代前半
-            </a>
+              </svg>{{ article.user_age|translate_to_jp_age }}
+            </router-link>
           </h6>
           <div class="a-counter">
             <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -103,9 +105,10 @@
                   ></path>
                 </g>
               </g>
-            </svg>255 votes
+            </svg>{{ article.votes_amount }} votes
           </div>
-          <a href class="a-link a-link--arrow">
+          <router-link :to="{ name: 'article', params: { id: article.id }}"
+           class="a-link a-link--arrow">
             <svg
               width="5px"
               height="9px"
@@ -150,18 +153,19 @@
                 </g>
               </g>
             </svg>Read more
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
-  <!------------------------------ 【END】Big-Featured ------------------------------>
 </template>
 
 <script>
 export default {
   name: "PageIndexGiganticLayout",
-  props: {},
+  props: {
+    article: null
+  },
   components: {}
 };
 </script>
