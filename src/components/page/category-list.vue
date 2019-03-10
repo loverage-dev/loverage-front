@@ -1949,15 +1949,15 @@ export default {
   },
   created: function() {
     axios
-      .get("http://localhost:4000/api/v1/ranking_view?limit=3")
+      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3")
       .then(response => {
         this.ranking_view = response.data.articles;
       });
-    axios.get("http://localhost:4000/api/v1/latest?limit=3").then(response => {
+    axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3").then(response => {
       this.latest = response.data.articles;
     });
     axios
-      .get("http://localhost:4000/api/v1/hot_topics?limit=3")
+      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
       .then(response => {
         this.hot_topic = response.data.articles;
       });

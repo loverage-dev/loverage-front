@@ -508,15 +508,15 @@ export default {
 
     this.$store.commit("setLoading", true);
     axios
-      .get("http://localhost:4000/api/v1/ranking_vote?limit=10")
+      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_vote?limit=10")
       .then(response => {
         this.ranking_vote = response.data.articles;
       });
-    axios.get("http://localhost:4000/api/v1/latest?limit=3").then(response => {
+    axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3").then(response => {
       this.latest = response.data.articles;
     });
     axios
-      .get("http://localhost:4000/api/v1/hot_topics?limit=3")
+      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
       .then(response => {
         this.hot_topic = response.data.articles;
         this.$store.commit("setLoading", false);

@@ -1123,19 +1123,19 @@ export default {
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
       if (this.$route.params) {
-        let url = "http://localhost:4000/api/v1/articles/";
+        let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
         url += this.$route.params.id;
         axios.get(url).then(response => {
           this.article = response.data.article;
         });
       }
       axios
-        .get("http://localhost:4000/api/v1/latest?limit=3")
+        .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3")
         .then(response => {
           this.latest = response.data.articles;
         });
       axios
-        .get("http://localhost:4000/api/v1/editors_picks?limit=6")
+        .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6")
         .then(response => {
           this.editors_pick = response.data.articles;
           this.$store.commit("setLoading", false);
@@ -1183,7 +1183,7 @@ export default {
     },
     vote_to: function() {
       let url =
-        "http://localhost:4000/api/v1/articles/" +
+        "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/" +
         this.$route.params.id +
         "/vote";
       axios

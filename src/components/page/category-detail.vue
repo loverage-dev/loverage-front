@@ -709,7 +709,7 @@ export default {
   methods: {
     fetchArticles: function() {
       if (this.$route.query) {
-        let url = "http://localhost:4000/api/v1/articles?";
+        let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles?";
         if (this.$route.query.sex) {
           if (url.slice(-1) != "?") url += "&";
           url += "sex=" + this.$route.query.sex;
@@ -737,17 +737,17 @@ export default {
         });
 
         axios
-          .get("http://localhost:4000/api/v1/ranking_view?limit=3")
+          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3")
           .then(response => {
             this.ranking_view = response.data.articles;
           });
         axios
-          .get("http://localhost:4000/api/v1/latest?limit=3")
+          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3")
           .then(response => {
             this.latest = response.data.articles;
           });
         axios
-          .get("http://localhost:4000/api/v1/hot_topics?limit=3")
+          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
           .then(response => {
             this.hot_topic = response.data.articles;
             this.$store.commit("setLoading", false);

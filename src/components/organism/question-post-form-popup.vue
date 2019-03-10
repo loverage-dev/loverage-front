@@ -286,7 +286,7 @@ export default {
   methods: {
     onSubmit: function() {
       axios
-        .post("http://localhost:4000/api/v1/articles", {
+        .post("https://whispering-anchorage-57506.herokuapp.com/api/v1/articles", {
           post: this.createPostData()
         })
         .then(response => {
