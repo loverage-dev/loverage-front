@@ -1096,7 +1096,7 @@ export default {
   watch: {
     $route: function(to, from) {
       global.$(".o-answering-form").css("display", "block");
-      this.fetchArticles()
+      this.fetchArticles();
     }
   },
   data: function() {
@@ -1111,10 +1111,11 @@ export default {
       latest: null
     };
   },
-  created: function() {},
+  created: function() {
+    this.fetchArticles();
+  },
   mounted: function() {
     global.$("body").addClass("p-article");
-    this.fetchArticles()
   },
   destroyed: function() {
     global.$("body").removeClass("p-article");
@@ -1125,21 +1126,23 @@ export default {
       if (this.$route.params) {
         let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
         url += this.$route.params.id;
-        axios.get(url).then(response => {
-          this.article = response.data.article;
-        });
+        axios
+          .all([
+            axios.get(url),
+            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"),
+            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6")
+          ])
+          .then(
+            axios.spread((api1Result, api2Result, api3Result) => {
+              this.articles = api1Result.data.articles;
+              this.latest = api2Result.data.articles;
+              this.editors_pick = api3Result.data.articles;
+            })
+          )
+          .finally(() => {
+            this.$store.commit("setLoading", false);
+          });
       }
-      axios
-        .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3")
-        .then(response => {
-          this.latest = response.data.articles;
-        });
-      axios
-        .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6")
-        .then(response => {
-          this.editors_pick = response.data.articles;
-          this.$store.commit("setLoading", false);
-        });
     },
     answer_opt: function(selected_opt, e) {
       this.vote.selected_opt = selected_opt;

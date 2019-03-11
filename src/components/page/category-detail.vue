@@ -40,7 +40,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                          <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                       </router-link>
                     </div>
                   </div>
@@ -50,8 +50,10 @@
                     </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <router-link class="a-label a-label--sex a-label--man"
-                         :to="{ name: 'article', params: { id: article.id }}">
+                        <router-link
+                          class="a-label a-label--sex a-label--man"
+                          :to="{ name: 'article', params: { id: article.id }}"
+                        >
                           <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                           <svg
                             width="7px"
@@ -126,7 +128,10 @@
                         </svg>
                         {{ article.votes_amount }} votes
                       </div>
-                      <router-link :to="{ name: 'article', params: { id: article.id }}" class="a-link a-link--arrow">
+                      <router-link
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        class="a-link a-link--arrow"
+                      >
                         <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                         <svg
                           width="5px"
@@ -182,8 +187,10 @@
               </li>
             </ul>
           </div>
-          <router-link to="/ranking-view"
-           class="a-btn a-btn--large a-btn--more a-btn--green-arrow">SEE MORE
+          <router-link
+            to="/ranking-view"
+            class="a-btn a-btn--large a-btn--more a-btn--green-arrow"
+          >SEE MORE
             <div class="arrow">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
               <svg
@@ -293,7 +300,10 @@
                     </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <router-link :to="{ name: 'article', params: { id: article.id }}" class="a-label a-label--sex a-label--man">
+                        <router-link
+                          :to="{ name: 'article', params: { id: article.id }}"
+                          class="a-label a-label--sex a-label--man"
+                        >
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -373,8 +383,10 @@
                 </div>
               </li>
             </ul>
-            <router-link to="/ranking-view" 
-              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow">SEE MORE
+            <router-link
+              to="/ranking-view"
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >SEE MORE
               <div class="arrow">
                 <!--?xml version="1.0" encoding="UTF-8"?-->
                 <svg
@@ -455,8 +467,10 @@
                     </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <router-link :to="{ name: 'article', params: { id: article.id }}"
-                         class="a-label a-label--sex a-label--man">
+                        <router-link
+                          :to="{ name: 'article', params: { id: article.id }}"
+                          class="a-label a-label--sex a-label--man"
+                        >
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -584,8 +598,10 @@
                     </router-link>
                     <div class="m-card-info">
                       <h6>
-                        <router-link :to="{ name: 'article', params: { id: article.id }}"
-                         class="a-label a-label--sex a-label--man">
+                        <router-link
+                          :to="{ name: 'article', params: { id: article.id }}"
+                          class="a-label a-label--sex a-label--man"
+                        >
                           <!--?xml version="1.0" encoding="UTF-8"?-->
                           <svg
                             width="7px"
@@ -680,9 +696,9 @@ export default {
   name: "PageCategoryDetail",
   props: {},
   watch: {
-    '$route': function(to, from) {
-        this.fetchArticles()
-      }
+    $route: function(to, from) {
+      this.fetchArticles();
+    }
   },
   data: function() {
     return {
@@ -701,7 +717,6 @@ export default {
   },
   mounted: function() {
     global.$("body").addClass("p-category-detail");
-    this.$store.commit("setLoading", true);
   },
   destroyed: function() {
     global.$("body").removeClass("p-category-detail");
@@ -732,24 +747,23 @@ export default {
         }
         this.title += " の検索結果";
 
-        axios.get(url).then(response => {
-          this.articles = response.data.articles;
-        });
-
+        this.$store.commit("setLoading", true);
         axios
-          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3")
-          .then(response => {
-            this.ranking_view = response.data.articles;
-          });
-        axios
-          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3")
-          .then(response => {
-            this.latest = response.data.articles;
-          });
-        axios
-          .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
-          .then(response => {
-            this.hot_topic = response.data.articles;
+          .all([
+            axios.get(url),
+            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"),
+            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"),
+            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
+          ])
+          .then(
+            axios.spread((api1Result, api2Result, api3Result, api4Result) => {
+              this.articles = api1Result.data.articles;
+              this.ranking_view = api2Result.data.articles;
+              this.latest = api3Result.data.articles;
+              this.hot_topic = api4Result.data.articles;
+            })
+          )
+          .finally(() => {
             this.$store.commit("setLoading", false);
           });
       }

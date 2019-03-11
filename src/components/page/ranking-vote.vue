@@ -502,28 +502,35 @@ export default {
       hot_topic: null
     };
   },
-  created: function() {},
+  created: function() {
+    this.fetchArticles();
+  },
   mounted: function() {
     global.$("body").addClass("p-ranking-vote");
-
-    this.$store.commit("setLoading", true);
-    axios
-      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_vote?limit=10")
-      .then(response => {
-        this.ranking_vote = response.data.articles;
-      });
-    axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3").then(response => {
-      this.latest = response.data.articles;
-    });
-    axios
-      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
-      .then(response => {
-        this.hot_topic = response.data.articles;
-        this.$store.commit("setLoading", false);
-      });
   },
   destroyed: function() {
     global.$("body").removeClass("p-ranking-vote");
+  },
+  methods: {
+    fetchArticles: function() {
+      this.$store.commit("setLoading", true);
+      axios
+        .all([
+          axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_vote?limit=10"),
+          axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"),
+          axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
+        ])
+        .then(
+          axios.spread((api1Result, api2Result, api3Result) => {
+            this.ranking_vote = api1Result.data.articles;
+            this.latest = api2Result.data.articles;
+            this.hot_topic = api3Result.data.articles;
+          })
+        )
+        .finally(() => {
+          this.$store.commit("setLoading", false);
+        });
+    }
   }
 };
 </script>
