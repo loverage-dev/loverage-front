@@ -1124,7 +1124,8 @@ export default {
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
       if (this.$route.params) {
-        let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
+        let url =
+          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
         url += this.$route.params.id;
         axios
           .all([
@@ -1170,9 +1171,16 @@ export default {
     calcVoteRate: function(opt2_amount, opt1_amount) {
       let op1 = opt1_amount;
       let op2 = opt2_amount;
-      if (this.vote.selected_opt == "opt1") op1 += 1;
-      if (this.vote.selected_opt == "opt2") op2 += 1;
-      return (op2 / op1) * 100;
+      if (this.vote.selected_opt == "opt1") {
+        op1 += 1;
+      }else{
+        op2 += 1;
+      }
+      if( op1==0 ){
+        return 0
+      }else{
+        return (op1 / op2) * 100;
+      }
     },
     calcOpt1Amount: function(opt1_amount) {
       let amount = opt1_amount;
