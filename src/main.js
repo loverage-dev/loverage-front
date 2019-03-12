@@ -81,6 +81,124 @@ Vue.filter('format_date', function (value) {
   }
 );
 
+  // ----- scroll -------------
+  const scrollHandler = (function() {
+    const targets = global.$(".t-wrapper");
+
+    // Get suit scroll event
+    const pcScrollEvent = (() => {
+      if ("onwheel" in document) return "wheel";
+      if ("onmousewheel" in document) return "mousewheel";
+      return "DOMMouseScroll";
+    })();
+
+    const preventDefault = event => {
+      event.preventDefault();
+      return false;
+    };
+
+    // スクロールを無効化した時点でのスクロール位置を保持したい。
+    // 有効化するときに必要になる。
+    let scrollTop = 0;
+
+    // スクロールを無効化
+    const freeze = () => {
+      scrollTop = global.$(window).scrollTop();
+      targets.css({ position: "fixed" });
+    };
+
+    // ページ全体のスクロールを無効化する
+    const freezeAll = () => {
+      [pcScrollEvent, "touchmove"].forEach(event => {
+        document.addEventListener(event, preventDefault, { passive: false });
+      });
+    };
+
+    // スクロールを有効化
+    const allow = () => {
+      targets.css({ position: "" });
+      global.$("html,body").scrollTop(scrollTop);
+    };
+
+    // ページ全体のスクロールを有効化
+    const allowAll = () => {
+      [pcScrollEvent, "touchmove"].forEach(event => {
+        document.removeEventListener(event, preventDefault);
+      });
+    };
+
+    return {
+      freeze,
+      freezeAll,
+      allow,
+      allowAll
+    };
+  })();
+
+  // scrollの処理入れる？
+  global.$(function() {
+    /***********************************
+     * 全ページ共通
+     ***********************************/
+
+    // 25px以上スクロールされたら
+    //   →.o-global-header に .is-scrolled を付与
+    // 一番上までもどってきたら
+    //   →.o-global-header から .is-scrolled を削除
+    global.$(window).on("scroll", () => {
+      const currentPageYOffset = window.pageYOffset;
+      if (currentPageYOffset >= 25)
+        global.$(".o-global-header").addClass("is-scrolled");
+      if (currentPageYOffset <= 0)
+        global.$(".o-global-header").removeClass("is-scrolled");
+    });
+
+    // .o-global-header__function内の.postをクリックしたら、.o-question-post-popupのdisplay: noneをはずす
+    global
+      .$(".o-global-header__function")
+      .find(".post")
+      .on("click", function(event) {
+        event.preventDefault();
+        global.$(".o-question-post-popup").css("display", "block");
+        scrollHandler.freeze();
+        return false;
+      });
+
+    // 下記をクリックしたとき .o-question-post-popup をdisplay: none; にする
+    //    .o-question-post-popup > .a-popup-header__close
+    //    .o-question-post-popup > .a-popup-header__back
+    function closeQuestionPostPopup(event) {
+      event.preventDefault();
+      global.$(".o-question-post-popup").css("display", "none");
+      scrollHandler.allow();
+      return false;
+    }
+
+    global
+      .$(".o-question-post-popup")
+      .find(".a-popup-header__close")
+      .on("click", closeQuestionPostPopup);
+    global
+      .$(".o-question-post-popup")
+      .find(".a-popup-header__back")
+      .on("click", closeQuestionPostPopup);
+
+    // .search-btn をクリックしたら.o-global-header__sp-search-areaのdisplay: none;を取る
+    global.$(".search-btn").on("click", function(event) {
+      event.preventDefault();
+      global.$(".o-global-header__sp-search-area").css("display", "block");
+      scrollHandler.freezeAll();
+      return false;
+    });
+
+    // .m-search-box__cancelをクリックしたら.o-global-header__sp-search-areaをdisplay: none;
+    global.$(".m-search-box__cancel").on("click", function(event) {
+      event.preventDefault();
+      global.$(".o-global-header__sp-search-area").css("display", "none");
+      scrollHandler.allowAll();
+      return false;
+    });
+  });
 
 // -----  Vue -------------
 Vue.config.productionTip = false
