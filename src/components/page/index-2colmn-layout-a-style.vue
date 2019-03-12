@@ -291,10 +291,10 @@
                 </li>
               </ul>
               <router-link
-                to="/ranking_view"
+                to="/ranking"
                 class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
               >SEE MORE
-                <router-link to="/ranking-view">
+                <router-link to="/ranking">
                   <div class="arrow">
                     <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                     <svg

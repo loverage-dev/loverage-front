@@ -93,7 +93,7 @@
             </router-link>
           </li>
           <li class="item item4">
-            <router-link to="/ranking-view">
+            <router-link to="/ranking">
               ランキング
             </router-link>
           </li>

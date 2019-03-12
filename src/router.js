@@ -19,16 +19,10 @@ export default new Router({
                 import("@/components/page/about.vue")
         },
         {
-            path: '/ranking-view',
-            name: 'ranking-view',
+            path: '/ranking',
+            name: 'ranking',
             component: () =>
-                import("@/components/page/ranking-view.vue")
-        },
-        {
-            path: '/ranking-vote',
-            name: 'ranking-vote',
-            component: () =>
-                import("@/components/page/ranking-vote.vue")
+                import("@/components/page/ranking.vue")
         },
         {
             path: '/privacy-policy',

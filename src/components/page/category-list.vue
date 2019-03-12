@@ -1632,7 +1632,9 @@
                 </div>
               </li>
             </ul>
-            <router-link to="/ranking-view" class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow">SEE MORE
+            <router-link
+              to="/ranking"
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow">SEE MORE
               <div class="arrow">
                 <!--?xml version="1.0" encoding="UTF-8"?-->
                 <svg
