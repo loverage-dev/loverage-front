@@ -4,41 +4,43 @@
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
-          <h2 class="a-heading">検索結果 {{ this.articles.length }}件</h2>
+          <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
-            <label>
+            <label v-if="canGrep == true">
               <div class="m-question-post-form__heading">相談者のカテゴリーで絞り込み</div>
               <div class="selectbox-wrapper gender">
-                <select class="a-selectbox" name="gender">
-                  <option value="woman">女性</option>
-                  <option value="man">男性</option>
-                  <option value="other">どちらでもない</option>
+                <select class="a-selectbox" name="gender" @change="onGrep()" v-model="grepSexValue">
+                  <option value="">性別</option>
+                  <option value="f">女性</option>
+                  <option value="m">男性</option>
+                  <option value="o">どちらでもない</option>
                 </select>
               </div>
               <div class="selectbox-wrapper selectbox-wrapper--green age">
-                <select class="a-selectbox" name="age">
-                  <option value="early10">10代前半</option>
-                  <option value="late10">10代後半</option>
-                  <option value="early20">20代前半</option>
-                  <option value="late20">20代後半</option>
-                  <option value="early30">30代前半</option>
-                  <option value="late30">30代後半</option>
-                  <option value="early40">40代前半</option>
-                  <option value="late40">40代後半</option>
-                  <option value="early50">50代前半</option>
-                  <option value="late50">50代後半</option>
-                  <option value="early60">60代前半</option>
-                  <option value="late60">60代後半</option>
+                <select class="a-selectbox" name="age" @change="onGrep()" v-model="grepAgeValue">
+                  <option value="">年代</option>
+                  <option value="e_10s">10代前半</option>
+                  <option value="l_10s">10代後半</option>
+                  <option value="e_20s">20代前半</option>
+                  <option value="l_20s">20代後半</option>
+                  <option value="e_30s">30代前半</option>
+                  <option value="l_30s">30代後半</option>
+                  <option value="e_40s">40代前半</option>
+                  <option value="l_40s">40代後半</option>
+                  <option value="e_50s">50代前半</option>
+                  <option value="l_50s">50代後半</option>
+                  <option value="e_60s">60代前半</option>
+                  <option value="l_60s">60代後半</option>
                 </select>
               </div>
             </label>
           </form>
           <div class="o-card-list o-card-list--row">
             <ul class="list">
-              <li class="item" v-for="article in articles" v-bind:key="article.id">
+              <li class="item"  v-for="article in articleShown" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
-                    <div class="m-card__image-inner">
+                    <div class="m-card__image-inner">F
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
                         <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                       </router-link>
@@ -67,8 +69,8 @@
                             <title>icon/woman copy</title>
                             <desc>Created with Sketch.</desc>
                             <defs></defs>
-                            <g
-                              id="SP"
+<g
+                                                          id="SP"
                               stroke="none"
                               stroke-width="1"
                               fill="none"
@@ -187,9 +189,10 @@
               </li>
             </ul>
           </div>
-          <router-link
-            to="/ranking-view"
+          <a 
+            v-if="articleShown.length < articlesCount"
             class="a-btn a-btn--large a-btn--more a-btn--green-arrow"
+            v-on:click="ShowMoreArticles"
           >SEE MORE
             <div class="arrow">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -243,7 +246,7 @@
                 </g>
               </svg>
             </div>
-          </router-link>
+          </a>
         </div>
         <div
           class="t-2column__side o-card-list o-card-list--row o-card-list--square o-card-list--black o-card-list--set"
@@ -706,8 +709,28 @@ export default {
       articles: null,
       ranking_view: null,
       latest: null,
-      hot_topic: null
+      hot_topic: null,
+      canGrep: false,
+      pageNum: 1,
+      articlesGrepped: null,
+      grepAgeValue: "",
+      grepSexValue: ""
     };
+  },
+  computed: {
+    articleShown: function(){
+      if(this.articles){
+        return ((this.articlesGrepped.length > this.pageNum*6)? this.articlesGrepped.slice(0, this.pageNum*6 - 1) : this.articlesGrepped)
+      }else{
+        return null
+      }
+    },
+    maxPages: function(){
+      return this.pageNum * 6
+    },
+    articlesCount: function(){
+      return this.articlesGrepped.length
+    }
   },
   components: {
     PageTitle
@@ -722,6 +745,32 @@ export default {
     global.$("body").removeClass("p-category-detail");
   },
   methods: {
+    onGrep: function(){
+      let result = null
+
+      if(this.grepAgeValue !== "" && this.grepSexValue === ""){
+        result = this.articles.filter((article)=>{
+          return article.user_age === this.grepAgeValue
+        })
+      }
+      if(this.grepAgeValue === "" && this.grepSexValue !== ""){
+        result = this.articles.filter((article)=>{
+          return article.user_sex === this.grepSexValue
+        })
+      }
+      if(this.grepAgeValue !== "" && this.grepSexValue !== ""){
+        result = this.articles.filter((article)=>{
+          return (article.user_sex === this.grepSexValue) && (article.user_age === this.grepAgeValue)
+        })
+      }
+      if(this.grepAgeValue === "" && this.grepSexValue === ""){
+        result = this.articles
+      }
+        this.articlesGrepped = result
+    },
+    ShowMoreArticles: function(){
+      this.pageNum += 1;
+    },
     fetchArticles: function() {
       if (this.$route.query) {
         let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles?";
@@ -729,21 +778,25 @@ export default {
           if (url.slice(-1) != "?") url += "&";
           url += "sex=" + this.$route.query.sex;
           this.title += `${this.to_jp_sex(this.$route.query.sex)}`;
+          this.canGrep = false;
         }
         if (this.$route.query.age) {
           if (url.slice(-1) != "?") url += "&";
           url += "age=" + this.$route.query.age;
           this.title += `${this.to_jp_age(this.$route.query.age)}`;
+          this.canGrep = false;
         }
         if (this.$route.query.keyword) {
           if (url.slice(-1) != "?") url += "&";
           url += "keyword=" + this.$route.query.keyword;
           this.title = `"${this.$route.query.keyword}"`;
+          this.canGrep = true;
         }
         if (this.$route.query.tag) {
           if (url.slice(-1) != "?") url += "&";
           url += "tag=" + this.$route.query.tag;
           this.title = `タグ "#${this.$route.query.tag}"`;
+          this.canGrep = true;
         }
         this.title += " の検索結果";
 
@@ -758,6 +811,7 @@ export default {
           .then(
             axios.spread((api1Result, api2Result, api3Result, api4Result) => {
               this.articles = api1Result.data.articles;
+              this.articlesGrepped = this.articles
               this.ranking_view = api2Result.data.articles;
               this.latest = api3Result.data.articles;
               this.hot_topic = api4Result.data.articles;
