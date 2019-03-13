@@ -767,6 +767,7 @@ export default {
         result = this.articles
       }
         this.articlesGrepped = result
+        this.pageNum = 1
     },
     ShowMoreArticles: function(){
       this.pageNum += 1;
