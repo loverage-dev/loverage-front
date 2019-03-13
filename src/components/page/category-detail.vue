@@ -40,7 +40,7 @@
               <li class="item"  v-for="article in articleShown" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
-                    <div class="m-card__image-inner">F
+                    <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
                         <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                       </router-link>
