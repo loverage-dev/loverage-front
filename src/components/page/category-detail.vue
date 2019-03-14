@@ -6,7 +6,7 @@
         <div class="t-contents__inner t-2column__main">
           <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
-            <label v-if="canGrep == true">
+            <div v-if="canGrep == true">
               <div class="m-question-post-form__heading">相談者のカテゴリーで絞り込み</div>
               <div class="selectbox-wrapper gender">
                 <select class="a-selectbox" name="gender" @change="onGrep()" v-model="grepSexValue">
@@ -33,7 +33,7 @@
                   <option value="l_60s">60代後半</option>
                 </select>
               </div>
-            </label>
+            </div>
           </form>
           <div class="o-card-list o-card-list--row">
             <ul class="list">
