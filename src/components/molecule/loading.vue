@@ -53,7 +53,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-
+  border-radius: 4px;
   -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
   animation: sk-cubemove 1.8s infinite ease-in-out;
 }
