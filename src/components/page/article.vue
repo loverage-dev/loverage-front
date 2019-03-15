@@ -9,7 +9,9 @@
       />
       <div class="p-article-sentences">
         <div class="a-avatar a-avatar--woman">
-          <div class="a-avatar__inner">&#x1f469;</div>
+          <div class="a-avatar__inner" v-if="article.post.user_sex === 'f'">&#x1f469;</div>
+          <div class="a-avatar__inner" v-if="article.post.user_sex === 'm'">👨</div>
+          <div class="a-avatar__inner" v-if="article.post.user_sex === 'o'">😶</div>
           <div class="a-avatar__info">
             <div class="gender">{{ article.post.user_sex|translate_to_jp_sex }}</div>
             <div class="age">{{ article.post.user_age|translate_to_jp_age }}</div>
@@ -1096,7 +1098,6 @@ export default {
   watch: {
     $route: function(to, from) {
       global.$(".o-answering-form").css("display", "block");
-      this.fetchArticles();
     }
   },
   data: function() {
@@ -1137,13 +1138,11 @@ export default {
               this.article = api1Result.data.article;
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
-              console.log(this.article)
-              console.log(this.latest)
-              console.log(this.editors_pick)
             })
           )
           .finally(() => {
             this.$store.commit("setLoading", false);
+            this.format_answering_area()
           });
       }
     },
@@ -1169,6 +1168,7 @@ export default {
         .$(target)
         .parents(".o-answering-form")
         .css("display", "none");
+      this.format_answering_area()
     },
     calcVoteRate: function(opt2_amount, opt1_amount) {
       let op1 = opt1_amount;
