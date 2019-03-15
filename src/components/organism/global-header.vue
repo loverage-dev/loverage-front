@@ -55,7 +55,7 @@
 
         <div class="o-global-header__pc-search-area">
           <div class="icon">
-            <IconSearch width="15px" height="15px"/>
+            <IconSearch width="15px" height="15px" color="#343434"/>
           </div>
           <form class="form" v-on:submit.prevent="onSubmit(pc_search_word)">
             <input class="input" type="text" placeholder="みんなの相談から検索" v-model="pc_search_word">
