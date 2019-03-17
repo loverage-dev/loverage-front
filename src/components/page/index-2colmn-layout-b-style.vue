@@ -1,10 +1,10 @@
 <template>
-  <div class="t-2column t-2column--2" v-if="articles && articles_hot">
+  <div class="t-2column t-2column--2" v-if="$store.state.others_2 && $store.state.hot_topic">
     <div class="t-2column__inner">
       <div class="t-2column__main">
         <div class="o-card-list o-card-list--row">
           <ul class="list">
-            <li class="item" v-for="article in articles" v-bind:key="article.id">
+            <li class="item" v-for="article in $store.state.others_2" v-bind:key="article.id">
               <div class="m-card m-card--row">
                 <div class="m-card__image">
                   <div class="m-card__image-inner">
@@ -178,7 +178,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="article in articles_hot" v-bind:key="article.id">
+              <li class="item" v-for="article in $store.state.hot_topic" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -282,10 +282,7 @@
 <script>
 export default {
   name: "PageIndex2ColmnLayoutBStyle",
-  props: {
-    articles:null,
-    articles_hot:null
-  },
+  props: {},
   components: {}
 };
 </script>

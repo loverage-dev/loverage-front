@@ -153,35 +153,35 @@ Vue.filter('format_date', function (value) {
         global.$(".o-global-header").removeClass("is-scrolled");
     });
 
-    // .o-global-header__function内の.postをクリックしたら、.o-question-post-popupのdisplay: noneをはずす
-    global
-      .$(".o-global-header__function")
-      .find(".post")
-      .on("click", function(event) {
-        event.preventDefault();
-        global.$(".o-question-post-popup").css("display", "block");
-        scrollHandler.freeze();
-        return false;
-      });
+    // // .o-global-header__function内の.postをクリックしたら、.o-question-post-popupのdisplay: noneをはずす
+    // global
+    //   .$(".o-global-header__function")
+    //   .find(".post")
+    //   .on("click", function(event) {
+    //     event.preventDefault();
+    //     global.$(".o-question-post-popup").css("display", "block");
+    //     scrollHandler.freeze();
+    //     return false;
+    //   });
 
-    // 下記をクリックしたとき .o-question-post-popup をdisplay: none; にする
-    //    .o-question-post-popup > .a-popup-header__close
-    //    .o-question-post-popup > .a-popup-header__back
-    function closeQuestionPostPopup(event) {
-      event.preventDefault();
-      global.$(".o-question-post-popup").css("display", "none");
-      scrollHandler.allow();
-      return false;
-    }
+    // // 下記をクリックしたとき .o-question-post-popup をdisplay: none; にする
+    // //    .o-question-post-popup > .a-popup-header__close
+    // //    .o-question-post-popup > .a-popup-header__back
+    // function closeQuestionPostPopup(event) {
+    //   event.preventDefault();
+    //   global.$(".o-question-post-popup").css("display", "none");
+    //   scrollHandler.allow();
+    //   return false;
+    // }
 
-    global
-      .$(".o-question-post-popup")
-      .find(".a-popup-header__close")
-      .on("click", closeQuestionPostPopup);
-    global
-      .$(".o-question-post-popup")
-      .find(".a-popup-header__back")
-      .on("click", closeQuestionPostPopup);
+    // global
+    //   .$(".o-question-post-popup")
+    //   .find(".a-popup-header__close")
+    //   .on("click", closeQuestionPostPopup);
+    // global
+    //   .$(".o-question-post-popup")
+    //   .find(".a-popup-header__back")
+    //   .on("click", closeQuestionPostPopup);
 
     // .search-btn をクリックしたら.o-global-header__sp-search-areaのdisplay: none;を取る
     global.$(".search-btn").on("click", function(event) {

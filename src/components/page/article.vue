@@ -1098,6 +1098,7 @@ export default {
   watch: {
     $route: function(to, from) {
       global.$(".o-answering-form").css("display", "block");
+      this.fetchArticles();
     }
   },
   data: function() {

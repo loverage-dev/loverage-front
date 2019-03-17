@@ -1,8 +1,8 @@
 <template>
-  <div class="m-kv pink" v-if="article">
+  <div class="m-kv pink" v-if="$store.state.top_feature_special">
     <div class="m-kv__image">
       <div class="m-kv__image-inner">
-        <router-link :to="{ name: 'article', params: { id: article.id }}">
+        <router-link :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}">
           <img src="@/images/thumbnail/dummy-kv.png" alt>
         </router-link>
       </div>
@@ -37,11 +37,11 @@
             </g>
           </g>
         </svg>
-        <router-link :to="{ name: 'article', params: { id: article.id }}"
-         class="m-kv__title" href>{{ article.content }}</router-link>
+        <router-link :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}"
+         class="m-kv__title" href>{{ $store.state.top_feature_special.content }}</router-link>
         <div class="m-card-info">
           <h6>
-            <router-link :to="{ name: 'article', params: { id: article.id }}"
+            <router-link :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}"
              class="a-label a-label--sex a-label--woman">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
               <svg
@@ -66,7 +66,7 @@
                     </g>
                   </g>
                 </g>
-              </svg>{{ article.user_age|translate_to_jp_age }}
+              </svg>{{ $store.state.top_feature_special.user_age|translate_to_jp_age }}
             </router-link>
           </h6>
           <div class="a-counter">
@@ -105,9 +105,9 @@
                   ></path>
                 </g>
               </g>
-            </svg>{{ article.votes_amount }} votes
+            </svg>{{ $store.state.top_feature_special.votes_amount }} votes
           </div>
-          <router-link :to="{ name: 'article', params: { id: article.id }}"
+          <router-link :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}"
            class="a-link a-link--arrow">
             <svg
               width="5px"
@@ -163,9 +163,7 @@
 <script>
 export default {
   name: "PageIndexGiganticLayout",
-  props: {
-    article: null
-  },
+  props: {},
   components: {}
 };
 </script>

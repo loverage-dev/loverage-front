@@ -1,8 +1,8 @@
 <template>
-  <div class="m-sub-kv green" v-if="article">
+  <div class="m-sub-kv green" v-if="$store.state.featured_sp">
     <div class="m-sub-kv__image">
       <div class="m-sub-kv__image-inner">
-        <router-link :to="{ name: 'article', params: { id: article.id }}">
+        <router-link :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}">
           <img src="@/images/thumbnail/dummy-sub-kv.png" alt>
         </router-link>
       </div>
@@ -38,13 +38,13 @@
       </svg>
       <router-link
         class="m-sub-kv__title"
-        :to="{ name: 'article', params: { id: article.id }}"
-      >{{ article.content }}</router-link>
+        :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}"
+      >{{ $store.state.featured_sp.content }}</router-link>
       <div class="m-card-info">
         <h6>
           <router-link
             class="a-label a-label--sex a-label--woman"
-            :to="{ name: 'article', params: { id: article.id }}"
+            :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}"
           >
             <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
@@ -70,7 +70,7 @@
                 </g>
               </g>
             </svg>
-            {{ article.user_age|translate_to_jp_age }}
+            {{ $store.state.featured_sp.user_age|translate_to_jp_age }}
           </router-link>
         </h6>
         <div class="a-counter">
@@ -104,10 +104,10 @@
               </g>
             </g>
           </svg>
-          {{ article.votes_amount }} votes
+          {{ $store.state.featured_sp.votes_amount }} votes
         </div>
         <router-link
-          :to="{ name: 'article', params: { id: article.id }}"
+          :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}"
           class="a-link a-link--arrow a-link--green-arrow"
         >
           <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -164,9 +164,7 @@
 <script>
 export default {
   name: "PageIndexGiganticLayoutSP",
-  props: {
-    article: null
-  },
+  props: {},
   components: {}
 };
 </script>

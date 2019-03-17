@@ -1,10 +1,10 @@
 <template>
-  <div class="t-2column" v-if="articles  && articles_ranking_view && articles_latest">
+  <div class="t-2column" v-if="$store.state.others_1  && $store.state.ranking_view && $store.state.latest">
     <div class="t-2column__inner">
       <div class="t-2column__main">
         <div class="o-card-list o-card-list--row">
           <ul class="list">
-            <li class="item" v-for="article in articles" v-bind:key="article.id">
+            <li class="item" v-for="article in $store.state.others_1" v-bind:key="article.id">
               <div class="m-card m-card--row">
                 <div class="m-card__image">
                   <div class="m-card__image-inner">
@@ -187,7 +187,7 @@
               <ul class="list">
                 <li
                   class="item"
-                  v-for="(article, index) in articles_ranking_view"
+                  v-for="(article, index) in $store.state.ranking_view"
                   v-bind:key="article.id"
                 >
                   <div class="m-card m-card--square">
@@ -358,7 +358,7 @@
                 </div>
               </div>
               <ul class="list">
-                <li class="item" v-for="article in articles_latest" v-bind:key="article.id">
+                <li class="item" v-for="article in $store.state.latest" v-bind:key="article.id">
                   <div class="m-card m-card--square">
                     <div class="m-card__image">
                       <div class="m-card__image-inner">
@@ -467,11 +467,7 @@
 <script>
 export default {
   name: "PageIndex2ColmnLayoutAStyle",
-  props: {
-    articles: null,
-    articles_ranking_view: null,
-    articles_latest: null
-  },
+  props: {},
   components: {}
 };
 </script>

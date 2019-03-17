@@ -1,11 +1,11 @@
 <template>
-  <div class="u-pc-d o-card-list o-card-list--split" v-if="article_for_women && article_for_men">
+  <div class="u-pc-d o-card-list o-card-list--split" v-if="$store.state.womens_topic && $store.state.mens_topic">
     <div class="o-card-list--split__inner">
       <ul class="list">
         <li class="item green">
           <div class="m-card m-card--column">
             <div class="m-card__image">
-              <router-link :to="{ name: 'article', params: { id: article_for_women.id }}">
+              <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}">
                 <div class="m-card__image-inner">
                   <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                 </div>
@@ -45,12 +45,12 @@
                   </g>
                 </svg>
               </div>
-              <router-link :to="{ name: 'article', params: { id: article_for_women.id }}">
-                <h2 class="m-card__title">{{article_for_women.content}}</h2>
+              <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}">
+                <h2 class="m-card__title">{{$store.state.womens_topic.content}}</h2>
               </router-link>
               <div class="m-card-info">
                 <h6>
-                  <router-link :to="{ name: 'article', params: { id: article_for_women.id }}"
+                  <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}"
                    class="a-label a-label--sex a-label--man">
                     <!--?xml version="1.0" encoding="UTF-8"?-->
                     <svg
@@ -76,7 +76,7 @@
                         </g>
                       </g>
                     </svg>
-                    {{ article_for_women.user_age|translate_to_jp_age }}
+                    {{ $store.state.womens_topic.user_age|translate_to_jp_age }}
                   </router-link>
                 </h6>
                 <div class="a-counter a-counter--withouttitle">
@@ -110,9 +110,9 @@
                       </g>
                     </g>
                   </svg>
-                  {{article_for_women.votes_amount}} votes
+                  {{$store.state.womens_topic.votes_amount}} votes
                 </div>
-                <router-link :to="{ name: 'article', params: { id: article_for_women.id }}"
+                <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}"
                  class="a-link a-link--arrow">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                   <svg
@@ -167,7 +167,7 @@
         <li class="item pink">
           <div class="m-card m-card--column">
             <div class="m-card__image">
-              <router-link :to="{ name: 'article', params: { id: article_for_men.id }}">
+              <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}">
                 <div class="m-card__image-inner">
                   <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
                 </div>
@@ -207,12 +207,12 @@
                   </g>
                 </svg>
               </div>
-              <router-link :to="{ name: 'article', params: { id: article_for_men.id }}">
-                <h2 class="m-card__title">{{ article_for_men.content }}</h2>
+              <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}">
+                <h2 class="m-card__title">{{ $store.state.mens_topic.content }}</h2>
               </router-link>
               <div class="m-card-info">
                 <h6>
-                  <router-link :to="{ name: 'article', params: { id: article_for_men.id }}"
+                  <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}"
                    class="a-label a-label--sex a-label--man">
                     <!--?xml version="1.0" encoding="UTF-8"?-->
                     <svg
@@ -238,7 +238,7 @@
                         </g>
                       </g>
                     </svg>
-                    {{article_for_men.user_age|translate_to_jp_age}}
+                    {{$store.state.mens_topic.user_age|translate_to_jp_age}}
                   </router-link>
                 </h6>
                 <div class="a-counter a-counter--withouttitle">
@@ -272,9 +272,9 @@
                       </g>
                     </g>
                   </svg>
-                  {{ article_for_men.votes_amount }} votes
+                  {{ $store.state.mens_topic.votes_amount }} votes
                 </div>
-                <router-link :to="{ name: 'article', params: { id: article_for_men.id }}"
+                <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}"
                  class="a-link a-link--arrow">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                   <svg
@@ -334,10 +334,7 @@
 <script>
 export default {
   name: "PageIndex2Block",
-  props: {
-    article_for_women: null,
-    article_for_men: null
-  },
+  props: {},
   components: {}
 };
 </script>

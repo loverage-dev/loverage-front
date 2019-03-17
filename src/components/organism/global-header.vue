@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="o-global-header__function">
-        <a href class="post">相談する</a>
+        <a class="post" @click="openForm">相談する</a>
         <button class="search-btn">
           <IconSearch/>
         </button>
@@ -122,6 +122,9 @@ export default {
       this.pc_search_word = ""
       this.sp_search_word = ""
       global.$(".m-search-box__cancel").click()
+    },
+    openForm: function(){
+      this.$store.commit("setPosting", true);
     }
   },
   mounted: function() {

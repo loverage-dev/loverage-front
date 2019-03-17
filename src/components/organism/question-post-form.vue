@@ -12,7 +12,7 @@
           <div class="m-contents-textarea">
             <div class="textarea-wrapper">
               <textarea
-                v-model="val_content"
+                v-model="$store.state.post_input.content"
                 class="a-textarea"
                 name="contents"
                 placeholder="質問内容を入力してください"
@@ -20,7 +20,7 @@
               <input class="image-post" type="file" name="image">
             </div>
             <input
-              v-model="val_tag_list"
+              v-model="$store.state.post_input.tag_list"
               class="a-input"
               type="text"
               name="hashtag"
@@ -32,7 +32,7 @@
         <div class="m-question-post-form__block">
           <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
           <input
-            v-model="val_opt1"
+            v-model="$store.state.post_input.opt1"
             class="a-input option1"
             type="text"
             name="option1"
@@ -40,7 +40,7 @@
             autocomplete="on"
           >
           <input
-            v-model="val_opt2"
+            v-model="$store.state.post_input.opt2"
             class="a-input option2"
             type="text"
             name="option2"
@@ -49,14 +49,14 @@
           >
           <div class="m-question-post-form__heading">あなたの性別・年代</div>
           <div class="selectbox-wrapper gender">
-            <select class="a-selectbox" name="gender" v-model="val_sex">
+            <select class="a-selectbox" name="gender" v-model="$store.state.post_input.sex">
               <option value="f">女性</option>
               <option value="m">男性</option>
               <option value="o">どちらでもない</option>
             </select>
           </div>
           <div class="selectbox-wrapper selectbox-wrapper--green age">
-            <select class="a-selectbox" name="age" v-model="val_age">
+            <select class="a-selectbox" name="age" v-model="$store.state.post_input.age">
               <option value="e_10s">10代前半</option>
               <option value="l_10s">10代後半</option>
               <option value="e_20s">20代前半</option>
@@ -86,51 +86,30 @@ import axios from "axios";
 
 export default {
   name: "QuestionPostForm",
-  data: function(){
-    return {
-      val_age: "",
-      val_sex: "",
-      val_content: "",
-      val_opt1: "",
-      val_opt2: "",
-      val_tag_list: "",
-      val_img_base64: ""
-    }
-  },
   props: {},
   components: {},
   methods: {
     onSubmit: function(){
-      axios.post("https://whispering-anchorage-57506.herokuapp.com/api/v1/articles", {
-          post: this.createPostData()
-        }
-      ).then(response =>{
-        // console.log(response.data)
-      }).catch(error => {
-        // console.log(error)
-      })
+      // varidation
+
+      // postData作成
+      this.$store.commit("setPostData");
+      // ダイアログ表示
+      this.$store.commit("setPostConfirming", true);
     },
-    splitTags: function(){
-      let tags = this.val_tag_list.split(" ")
-      let arrTag = []
-      tags.forEach(tag => {
-        let t = tag.trim()
-        if (t.startsWith('#')){
-          t = t.slice(1)
-          arrTag.push(t) 
-        }
-      });
-      return arrTag
-    },
-    createPostData: function(){
-      let jsonObj = new Object();
-      if(this.val_age != "") jsonObj.age = this.val_age;
-      if(this.val_sex != "") jsonObj.sex = this.val_sex;
-      if(this.val_content != "") jsonObj.content = this.val_content;
-      if(this.val_opt1 != "") jsonObj.opt1 = this.val_opt1;
-      if(this.val_opt2 != "") jsonObj.opt2 = this.val_opt2;
-      if(this.val_tag_list != "") jsonObj.tag_list = this.splitTags()
-      return jsonObj
+    validate: function(){
+      if(
+        this.$store.state.post_input.age === "" &&
+        this.$store.state.post_input.sex === "" &&
+        this.$store.state.post_input.content === "" &&
+        this.$store.state.post_input.opt1 === "" &&
+        this.$store.state.post_input.opt2 === "" &&
+        this.$store.state.post_input.tag_list === ""
+      ){
+        this.$store.commit("setDeleteConfirming", false)
+      }else{
+        this.$store.commit("setDeleteConfirming", true)
+      }
     }
   }
 };

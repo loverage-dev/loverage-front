@@ -1,8 +1,8 @@
 <template>
-  <div class="o-card-list--kv u-pc-d" v-if="articles">
+  <div class="o-card-list--kv u-pc-d" v-if="$store.state.top_feature_normal">
     <div class="o-card-list--kv__inner">
       <ul class="list">
-        <li class="item" v-for="article in articles" v-bind:key="article.id">
+        <li class="item" v-for="article in $store.state.top_feature_normal" v-bind:key="article.id">
           <div class="m-card m-card--square">
             <div class="m-card__image">
               <div class="m-card__image-inner">
@@ -89,11 +89,8 @@
 <script>
 export default {
   name: "PageIndex1RowLayout",
-  props: {
-    articles: null
-  },
-  components: {
-  }
+  props: {},
+  components: {}
 };
 </script>
 

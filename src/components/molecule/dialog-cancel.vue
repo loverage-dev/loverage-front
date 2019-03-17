@@ -1,10 +1,10 @@
 <template>
-  <div class="m-dialog">
+  <div class="m-dialog" v-bind:class="{ show: $store.state.deleting }">
     <div class="m-dialog__inner">
       <div class="m-dialog__heading">この投稿を破棄しますか？</div>
       <div class="m-dialog__btn-area">
-        <a href class="m-dialog__btn m-dialog__btn--dont">キャンセル</a>
-        <a href class="m-dialog__btn m-dialog__btn--do">破棄する</a>
+        <a class="m-dialog__btn m-dialog__btn--dont" @click="cancel">キャンセル</a>
+        <a class="m-dialog__btn m-dialog__btn--do" @click="del">破棄する</a>
       </div>
     </div>
   </div>
@@ -15,9 +15,23 @@
 export default {
   name: "DialogCancel",
   props: {},
-  components: {}
+  components: {},
+  methods: {
+    cancel: function(){
+      this.$store.commit("setDeleteConfirming", false);
+    },
+    del: function(){
+      this.$store.commit("setDeleteConfirming", false);
+      this.$store.commit("resetPostData")
+      this.$store.commit("setPosting", false);
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+  .show{
+    display: block;
+  }
+  </style>

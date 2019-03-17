@@ -1,5 +1,5 @@
 <template>
-  <div class="o-card-list o-card-list--slide o-card-list--black green" v-if="articles">
+  <div class="o-card-list o-card-list--slide o-card-list--black green" v-if="$store.state.editors_pick">
     <div class="slide-inner">
       <div class="m-list-heading">
         <h2 class="m-list-heading__jp">おすすめの相談</h2>
@@ -35,7 +35,7 @@
       </div>
       <div class="slide-wrapper">
         <ul class="list">
-          <li class="item" v-for="article in articles" v-bind:key="article.id">
+          <li class="item" v-for="article in $store.state.editors_pick" v-bind:key="article.id">
             <div class="m-card m-card--column">
               <div class="m-card__image">
                 <div class="m-card__image-inner">
@@ -175,9 +175,7 @@
 <script>
 export default {
   name: "PageIndexShowcaseLayout",
-  props: {
-    articles: null
-  },
+  props: {},
   components: {}
 };
 </script>

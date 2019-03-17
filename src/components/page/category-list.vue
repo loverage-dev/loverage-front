@@ -1533,7 +1533,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="(article,index) in ranking_view" v-bind:key="article.id">
+              <li class="item" v-for="(article,index) in $store.state.ranking_view" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-number">
@@ -1700,7 +1700,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="article in latest" v-bind:key="article.id">
+              <li class="item" v-for="article in $store.state.latest" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -1829,7 +1829,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="article in hot_topic" v-bind:key="article.id">
+              <li class="item" v-for="article in $store.state.hot_topic" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -1942,26 +1942,23 @@ export default {
   components: {
     PageTitle
   },
-  data: function() {
-    return {
-      ranking_view: null,
-      latest: null,
-      hot_topic: null
-    };
-  },
   created: function() {
+    this.$store.commit("setLoading", true);
     axios
-      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3")
-      .then(response => {
-        this.ranking_view = response.data.articles;
-      });
-    axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3").then(response => {
-      this.latest = response.data.articles;
-    });
-    axios
-      .get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
-      .then(response => {
-        this.hot_topic = response.data.articles;
+      .all([
+        axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"),
+        axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"),
+        axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
+      ])
+      .then(
+        axios.spread((api1Result, api2Result, api3Result) => {
+          this.$store.commit("setRankingView", api1Result.data.articles)
+          this.$store.commit("setLatest", api2Result.data.articles)
+          this.$store.commit("setHotTopic", api3Result.data.articles)
+        })
+      )
+      .finally(() => {
+        this.$store.commit("setLoading", false);
       });
   },
   mounted: function() {

@@ -15,7 +15,7 @@
             </ul>
             <div class="o-card-list o-card-list--row" v-if="mode === 'view'">
               <ul class="list">
-                <li class="item" v-for="(article,index) in ranking_view" v-bind:key="article.id">
+                <li class="item" v-for="(article,index) in $store.state.rankings_view" v-bind:key="article.id">
                   <div class="m-card m-card--row">
                     <div class="m-card__image">
                       <div
@@ -181,7 +181,7 @@
             </div>
             <div class="o-card-list o-card-list--row" v-else>
             <ul class="list">
-              <li class="item" v-for="(article, index) in ranking_vote" v-bind:key="article.id">
+              <li class="item" v-for="(article, index) in $store.state.rankings_vote" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
                     <div
@@ -457,7 +457,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="article in latest" v-bind:key="article.id">
+              <li class="item" v-for="article in $store.state.latest" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -588,7 +588,7 @@
               </div>
             </div>
             <ul class="list">
-              <li class="item" v-for="article in hot_topic" v-bind:key="article.id">
+              <li class="item" v-for="article in $store.state.hot_topic" v-bind:key="article.id">
                 <div class="m-card m-card--square">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -705,11 +705,7 @@ export default {
   },
   data: function() {
     return {
-      mode: "view",
-      ranking_view: null,
-      ranking_vote: null,
-      latest: null,
-      hot_topic: null
+      mode: "view"
     };
   },
   created: function() {
@@ -737,10 +733,10 @@ export default {
         ])
         .then(
           axios.spread((api1Result, api2Result, api3Result, api4Result) => {
-            this.ranking_view = api1Result.data.articles;
-            this.ranking_vote = api2Result.data.articles;
-            this.latest = api3Result.data.articles;
-            this.hot_topic = api4Result.data.articles;
+            this.$store.commit("setRankingsView", api1Result.data.articles)
+            this.$store.commit("setRankingsVote", api2Result.data.articles)
+            this.$store.commit("setLatest", api3Result.data.articles)
+            this.$store.commit("setHotTopic", api4Result.data.articles)
           })
         )
         .finally(() => {
