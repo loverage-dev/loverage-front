@@ -1,5 +1,5 @@
 <template>
-  <div class="o-question-post-popup" v-bind:class="{ show: $store.state.posting }">
+  <div class="o-question-post-popup show" v-if = "$store.state.posting">
     <div class="o-question-post-popup-content">
       <div class="a-popup-header">
         <div class="a-popup-header__inner">

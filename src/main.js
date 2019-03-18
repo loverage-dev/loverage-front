@@ -183,21 +183,21 @@ Vue.filter('format_date', function (value) {
     //   .find(".a-popup-header__back")
     //   .on("click", closeQuestionPostPopup);
 
-    // .search-btn をクリックしたら.o-global-header__sp-search-areaのdisplay: none;を取る
-    global.$(".search-btn").on("click", function(event) {
-      event.preventDefault();
-      global.$(".o-global-header__sp-search-area").css("display", "block");
-      scrollHandler.freezeAll();
-      return false;
-    });
+    // // .search-btn をクリックしたら.o-global-header__sp-search-areaのdisplay: none;を取る
+    // global.$(".search-btn").on("click", function(event) {
+    //   event.preventDefault();
+    //   global.$(".o-global-header__sp-search-area").css("display", "block");
+    //   scrollHandler.freezeAll();
+    //   return false;
+    // });
 
-    // .m-search-box__cancelをクリックしたら.o-global-header__sp-search-areaをdisplay: none;
-    global.$(".m-search-box__cancel").on("click", function(event) {
-      event.preventDefault();
-      global.$(".o-global-header__sp-search-area").css("display", "none");
-      scrollHandler.allowAll();
-      return false;
-    });
+    // // .m-search-box__cancelをクリックしたら.o-global-header__sp-search-areaをdisplay: none;
+    // global.$(".m-search-box__cancel").on("click", function(event) {
+    //   event.preventDefault();
+    //   global.$(".o-global-header__sp-search-area").css("display", "none");
+    //   scrollHandler.allowAll();
+    //   return false;
+    // });
   });
 
 // -----  Vue -------------

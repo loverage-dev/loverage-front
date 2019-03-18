@@ -14,11 +14,10 @@
       </div>
       <div class="o-global-header__function">
         <a class="post" @click="openForm">相談する</a>
-        <button class="search-btn">
+        <button class="search-btn" @click="toggleSearchArea">
           <IconSearch/>
         </button>
-
-        <div class="o-global-header__sp-search-area m-search-area">
+        <div class="o-global-header__sp-search-area m-search-area show" v-if="isSearch">
           <form class="m-search-box" action v-on:submit.prevent="onSubmit(sp_search_word)">
             <div class="m-search-box__inner">
               <div class="m-search-box__box">
@@ -31,7 +30,7 @@
                 </a>
               </div>
               <div class="m-search-box__cancel">
-                <a href>キャンセル</a>
+                <a @click="toggleSearchArea">キャンセル</a>
               </div>
             </div>
             <div class="m-search-box__suggest">
@@ -92,7 +91,8 @@ export default {
   data: function() {
     return {
       pc_search_word: "",
-      sp_search_word: ""
+      sp_search_word: "",
+      isSearch: false
     };
   },
   props: {
@@ -125,6 +125,13 @@ export default {
     },
     openForm: function(){
       this.$store.commit("setPosting", true);
+    },
+    toggleSearchArea: function(){
+      if(this.isSearch == true){
+        this.isSearch = false
+      }else{
+        this.isSearch = true
+      }
     }
   },
   mounted: function() {
@@ -134,4 +141,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.show{
+  display: block;
+}
+</style>
