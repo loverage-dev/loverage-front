@@ -83,7 +83,7 @@
             </svg>
           </a>
           <h3 class="a-popup-header__heading">相談する</h3>
-          <a class="a-popup-header__back" href>
+          <a class="a-popup-header__back"  @click="close">
             <!-- <?xml version="1.0" encoding="utf-8"?> -->
             <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg
@@ -229,7 +229,7 @@
               </select>
             </div>
             <p class="m-question-post-form__terms">
-              <a href>利用規約</a>に同意して
+              <a @click="toTerms">利用規約</a>に同意して
             </p>
             <input class="submit" type="submit" value="投稿する">
           </div>
@@ -287,6 +287,10 @@ export default {
       }else{
         this.$store.commit("changeInputState", true)
       }
+    },
+    toTerms: function(){
+      this.$router.push({name: "terms"});
+      this.$store.commit("setPosting", false);
     }
   },
   destroyed: function(){
