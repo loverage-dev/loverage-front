@@ -1,6 +1,6 @@
 <template>
   <div class="o-question-post-popup show" v-if = "$store.state.posting">
-    <div class="o-question-post-popup-content">
+    <div class="o-question-post-popup-content" v-cloak>
       <div class="a-popup-header">
         <div class="a-popup-header__inner">
           <a class="a-popup-header__logo" href>
@@ -309,5 +309,8 @@ export default {
 }
 .show{
   display: block;
+}
+.fade-enter-active .fade-leave-active{
+  transition: opacity 5s;
 }
 </style>
