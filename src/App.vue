@@ -1,6 +1,7 @@
 <template>
   <div class="t-wrapper">
     <Loading/>
+    <QuestionPostFormPopup />
     <GlobalHeader />
     <router-view></router-view>
     <QuestionPostForm />
@@ -8,7 +9,6 @@
     <DialogConfirm />
     <DialogCancel/>
     <!-- <Toast/> -->
-    <QuestionPostFormPopup />
   </div>
 </template>
 
