@@ -10,7 +10,7 @@
               <div class="m-question-post-form__heading">相談者のカテゴリーで絞り込み</div>
               <div class="selectbox-wrapper gender">
                 <select class="a-selectbox" name="gender" @change="onGrep()" v-model="grepSexValue">
-                  <option value="">性別</option>
+                  <option value>性別</option>
                   <option value="f">女性</option>
                   <option value="m">男性</option>
                   <option value="o">どちらでもない</option>
@@ -18,7 +18,7 @@
               </div>
               <div class="selectbox-wrapper selectbox-wrapper--green age">
                 <select class="a-selectbox" name="age" @change="onGrep()" v-model="grepAgeValue">
-                  <option value="">年代</option>
+                  <option value>年代</option>
                   <option value="e_10s">10代前半</option>
                   <option value="l_10s">10代後半</option>
                   <option value="e_20s">20代前半</option>
@@ -37,7 +37,7 @@
           </form>
           <div class="o-card-list o-card-list--row">
             <ul class="list">
-              <li class="item"  v-for="article in articleShown" v-bind:key="article.id">
+              <li class="item" v-for="article in articleShown" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
@@ -51,48 +51,11 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <h6>
-                        <router-link
-                          class="a-label a-label--sex a-label--man"
-                          :to="{ name: 'article', params: { id: article.id }}"
-                        >
-                          <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-<g
-                                                          id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>
-                          {{ article.user_age|translate_to_jp_age }}
-                        </router-link>
-                      </h6>
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
                       <div class="a-counter a-counter--withouttitle">
                         <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                         <svg
@@ -189,7 +152,7 @@
               </li>
             </ul>
           </div>
-          <a 
+          <a
             v-if="articleShown.length < articlesCount"
             class="a-btn a-btn--large a-btn--more a-btn--green-arrow"
             v-on:click="ShowMoreArticles"
@@ -302,48 +265,11 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <h6>
-                        <router-link
-                          :to="{ name: 'article', params: { id: article.id }}"
-                          class="a-label a-label--sex a-label--man"
-                        >
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>
-                          {{ article.user_age|translate_to_jp_age }}
-                        </router-link>
-                      </h6>
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
                         <svg
@@ -469,48 +395,11 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <h6>
-                        <router-link
-                          :to="{ name: 'article', params: { id: article.id }}"
-                          class="a-label a-label--sex a-label--man"
-                        >
-                          <!--?xml version="1.0" encoding="UTF-8"?-->
-                          <svg
-                            width="7px"
-                            height="13px"
-                            viewBox="0 0 5 11"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                          >
-                            <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                            <title>icon/woman copy</title>
-                            <desc>Created with Sketch.</desc>
-                            <defs></defs>
-                            <g
-                              id="SP"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="トップ"
-                                transform="translate(-194.000000, -567.000000)"
-                                fill="#343434"
-                              >
-                                <g id="icon/man" transform="translate(194.000000, 567.000000)">
-                                  <path
-                                    d="M2.71875,1.71875 C2.46874875,1.71875 2.26171957,1.63472306 2.09765625,1.46666667 C1.93359293,1.29861027 1.8515625,1.09236233 1.8515625,0.847916667 C1.8515625,0.603471 1.93359293,0.401042469 2.09765625,0.240625 C2.26171957,0.0802075312 2.46874875,0 2.71875,0 C2.96875125,0 3.17578043,0.0802075312 3.33984375,0.240625 C3.50390707,0.401042469 3.5859375,0.603471 3.5859375,0.847916667 C3.5859375,1.09236233 3.50390707,1.29861027 3.33984375,1.46666667 C3.17578043,1.63472306 2.96875125,1.71875 2.71875,1.71875 Z M3.5859375,1.90208333 C3.89843906,1.90208333 4.1601552,2.01284611 4.37109375,2.234375 C4.5820323,2.45590389 4.6875,2.7118041 4.6875,3.00208333 L4.6875,5.61458333 C4.6875,5.76736187 4.62500062,5.87812466 4.5,5.946875 C4.37499938,6.01562534 4.25000062,6.01562534 4.125,5.946875 C3.99999938,5.87812466 3.9375,5.76736187 3.9375,5.61458333 L3.9375,3.20833333 L3.8203125,3.20833333 L3.8203125,9.7625 C3.8203125,9.9611121 3.73828207,10.1062495 3.57421875,10.1979167 C3.41015543,10.2895838 3.24609457,10.2972226 3.08203125,10.2208333 C2.91796793,10.1444441 2.82812508,9.99166781 2.8125,9.7625 L2.8125,5.98125 L2.625,5.98125 L2.625,9.7625 C2.625,9.97638996 2.53906336,10.1253468 2.3671875,10.209375 C2.19531164,10.2934032 2.02734457,10.2934032 1.86328125,10.209375 C1.69921793,10.1253468 1.6171875,9.97638996 1.6171875,9.7625 L1.6171875,3.20833333 L1.4765625,3.20833333 L1.4765625,5.61458333 C1.4765625,5.76736187 1.41796934,5.87812466 1.30078125,5.946875 C1.18359316,6.01562534 1.06250062,6.01562534 0.9375,5.946875 C0.812499375,5.87812466 0.75,5.76736187 0.75,5.61458333 L0.75,3.00208333 C0.75,2.7118041 0.855467695,2.45590389 1.06640625,2.234375 C1.2773448,2.01284611 1.53906094,1.90208333 1.8515625,1.90208333 L3.5859375,1.90208333 Z"
-                                    id="ion-man---Ionicons"
-                                  ></path>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>
-                          {{ article.user_age|translate_to_jp_age }}
-                        </router-link>
-                      </h6>
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
                         <svg
@@ -692,6 +581,7 @@
 </template>
 
 <script>
+import IconSex from "../icon/icon-sex.vue";
 import PageTitle from "../organism/page-title.vue";
 import axios from "axios";
 
@@ -718,22 +608,25 @@ export default {
     };
   },
   computed: {
-    articleShown: function(){
-      if(this.articles){
-        return ((this.articlesGrepped.length > this.pageNum*6)? this.articlesGrepped.slice(0, this.pageNum*6 - 1) : this.articlesGrepped)
-      }else{
-        return null
+    articleShown: function() {
+      if (this.articles) {
+        return this.articlesGrepped.length > this.pageNum * 6
+          ? this.articlesGrepped.slice(0, this.pageNum * 6 - 1)
+          : this.articlesGrepped;
+      } else {
+        return null;
       }
     },
-    maxPages: function(){
-      return this.pageNum * 6
+    maxPages: function() {
+      return this.pageNum * 6;
     },
-    articlesCount: function(){
-      return this.articlesGrepped.length
+    articlesCount: function() {
+      return this.articlesGrepped.length;
     }
   },
   components: {
-    PageTitle
+    PageTitle,
+    IconSex
   },
   created: function() {
     this.fetchArticles();
@@ -745,36 +638,40 @@ export default {
     global.$("body").removeClass("p-category-detail");
   },
   methods: {
-    onGrep: function(){
-      let result = null
+    onGrep: function() {
+      let result = null;
 
-      if(this.grepAgeValue !== "" && this.grepSexValue === ""){
-        result = this.articles.filter((article)=>{
-          return article.user_age === this.grepAgeValue
-        })
+      if (this.grepAgeValue !== "" && this.grepSexValue === "") {
+        result = this.articles.filter(article => {
+          return article.user_age === this.grepAgeValue;
+        });
       }
-      if(this.grepAgeValue === "" && this.grepSexValue !== ""){
-        result = this.articles.filter((article)=>{
-          return article.user_sex === this.grepSexValue
-        })
+      if (this.grepAgeValue === "" && this.grepSexValue !== "") {
+        result = this.articles.filter(article => {
+          return article.user_sex === this.grepSexValue;
+        });
       }
-      if(this.grepAgeValue !== "" && this.grepSexValue !== ""){
-        result = this.articles.filter((article)=>{
-          return (article.user_sex === this.grepSexValue) && (article.user_age === this.grepAgeValue)
-        })
+      if (this.grepAgeValue !== "" && this.grepSexValue !== "") {
+        result = this.articles.filter(article => {
+          return (
+            article.user_sex === this.grepSexValue &&
+            article.user_age === this.grepAgeValue
+          );
+        });
       }
-      if(this.grepAgeValue === "" && this.grepSexValue === ""){
-        result = this.articles
+      if (this.grepAgeValue === "" && this.grepSexValue === "") {
+        result = this.articles;
       }
-        this.articlesGrepped = result
-        this.pageNum = 1
+      this.articlesGrepped = result;
+      this.pageNum = 1;
     },
-    ShowMoreArticles: function(){
+    ShowMoreArticles: function() {
       this.pageNum += 1;
     },
     fetchArticles: function() {
       if (this.$route.query) {
-        let url = "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles?";
+        let url =
+          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles?";
         if (this.$route.query.sex) {
           if (url.slice(-1) != "?") url += "&";
           url += "sex=" + this.$route.query.sex;
@@ -805,14 +702,20 @@ export default {
         axios
           .all([
             axios.get(url),
-            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"),
-            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"),
-            axios.get("https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3")
+            axios.get(
+              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
+            ),
+            axios.get(
+              "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+            ),
+            axios.get(
+              "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+            )
           ])
           .then(
             axios.spread((api1Result, api2Result, api3Result, api4Result) => {
               this.articles = api1Result.data.articles;
-              this.articlesGrepped = this.articles
+              this.articlesGrepped = this.articles;
               this.ranking_view = api2Result.data.articles;
               this.latest = api3Result.data.articles;
               this.hot_topic = api4Result.data.articles;
