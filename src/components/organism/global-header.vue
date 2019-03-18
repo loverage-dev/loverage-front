@@ -21,7 +21,7 @@
           <form class="m-search-box" action v-on:submit.prevent="onSubmit(sp_search_word)">
             <div class="m-search-box__inner">
               <div class="m-search-box__box">
-                <input type="search" class="m-search-box__input" v-model="sp_search_word">
+                <input type="search" class="m-search-box__input" v-model="sp_search_word" ref="txtSearch">
                 <a href class="m-search-box__delete">
                   <IconClose/>
                 </a>
@@ -131,6 +131,7 @@ export default {
         this.isSearch = false
       }else{
         this.isSearch = true
+        this.$nextTick(() => this.$refs.txtSearch.focus())
       }
     }
   },
