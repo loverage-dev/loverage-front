@@ -6,7 +6,7 @@
           <div class="m-card__image">
             <div class="m-card__image-inner">
               <router-link :to="{ name: 'article', params: { id: $store.state.featured[0].id }}">
-                <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                <IconEyeCatching :age="$store.state.featured[0].user_age" :sex="$store.state.featured[0].user_sex" />
               </router-link>
             </div>
           </div>
@@ -142,7 +142,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[1].id }}">
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.featured[1].user_age" :sex="$store.state.featured[1].user_sex" />
                 </router-link>
               </div>
             </div>
@@ -247,7 +247,7 @@
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[2].id }}">
                   >
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.featured[2].user_age" :sex="$store.state.featured[2].user_sex" />
                 </router-link>
               </div>
             </div>
@@ -353,7 +353,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[3].id }}">
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.featured[3].user_age" :sex="$store.state.featured[3].user_sex" />
                 </router-link>
               </div>
             </div>
@@ -457,7 +457,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[4].id }}">
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.featured[4].user_age" :sex="$store.state.featured[4].user_sex" />
                 </router-link>
               </div>
             </div>
@@ -565,11 +565,14 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconEyeCatching from "../icon/icon-eye-catching.vue";
+
 export default {
   name: "PageIndexCardListLayout",
   props: {},
   components: {
-    IconSex
+    IconSex,
+    IconEyeCatching
   }
 };
 </script>

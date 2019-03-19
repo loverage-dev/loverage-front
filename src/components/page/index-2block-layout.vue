@@ -7,7 +7,7 @@
             <div class="m-card__image">
               <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}">
                 <div class="m-card__image-inner">
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.womens_topic.user_age" :sex="$store.state.womens_topic.user_sex" />
                 </div>
               </router-link>
             </div>
@@ -144,7 +144,7 @@
             <div class="m-card__image">
               <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}">
                 <div class="m-card__image-inner">
-                  <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                  <IconEyeCatching :age="$store.state.mens_topic.user_age" :sex="$store.state.mens_topic.user_sex" />
                 </div>
               </router-link>
             </div>
@@ -283,12 +283,14 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconEyeCatching from "../icon/icon-eye-catching.vue";
 
 export default {
   name: "PageIndex2Block",
   props: {},
   components: {
-    IconSex
+    IconSex,
+    IconEyeCatching
   }
 };
 </script>

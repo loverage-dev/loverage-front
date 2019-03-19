@@ -30,7 +30,7 @@
                       </div>
                       <div class="m-card__image-inner">
                         <router-link :to="{ name: 'article', params: { id: article.id }}">
-                          <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
                         </router-link>
                       </div>
                     </div>
@@ -163,7 +163,7 @@
                       </div>
                       <div class="m-card__image-inner">
                         <router-link :to="{ name: 'article', params: { id: article.id }}">
-                          <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
                         </router-link>
                       </div>
                     </div>
@@ -403,7 +403,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
                       </router-link>
                     </div>
                   </div>
@@ -497,7 +497,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <img src="@/images/thumbnail/dummy-thumbnail16_9.png" alt>
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
                       </router-link>
                     </div>
                   </div>
@@ -562,6 +562,7 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconEyeCatching from "../icon/icon-eye-catching.vue";
 import PageTitle from "../organism/page-title.vue";
 import axios from "axios";
 
@@ -570,7 +571,8 @@ export default {
   props: {},
   components: {
     PageTitle,
-    IconSex
+    IconSex,
+    IconEyeCatching
   },
   data: function() {
     return {
