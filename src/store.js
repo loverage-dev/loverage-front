@@ -119,6 +119,17 @@ export default new Vuex.Store({
     },
     changeInputState(state, payload){
       state.post_input.isChanged = payload;
+    },
+    setInputValue(state, payload){
+      Vue.set(state.post_input, payload.key, payload.value)
+    }
+  },
+  getters: {
+    inputValues(state) { return state.post_input }
+  },
+  actions: {
+    doUpdateInputValue({commit}, payload) {
+      commit('setInputValue', payload)
     }
   }
 });

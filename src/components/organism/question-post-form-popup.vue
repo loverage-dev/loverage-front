@@ -83,7 +83,7 @@
             </svg>
           </a>
           <h3 class="a-popup-header__heading">相談する</h3>
-          <a class="a-popup-header__back"  @click="close">
+          <a class="a-popup-header__back" @click="close">
             <!-- <?xml version="1.0" encoding="utf-8"?> -->
             <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg
@@ -164,56 +164,77 @@
         <p class="o-question-post-popup__desc">2択で回答可能な
           <br class="u-sp-tablet-d">恋愛に関する相談を投稿してみましょう。
         </p>
-        <form action class="m-question-post-form" v-on:submit.prevent="onSubmit" v-on:change="validate">
+        <form
+          action
+          class="m-question-post-form"
+          v-on:submit.prevent="onSubmit"
+          v-on:change="validate"
+        >
           <div class="m-question-post-form__block">
             <div class="m-contents-textarea">
               <div class="textarea-wrapper">
                 <textarea
-                  v-model="$store.state.post_input.content"
                   class="a-textarea"
                   name="contents"
                   placeholder="質問内容を入力してください"
+                  v-bind:value="$store.getters.inputValues.content"
+                  v-on:input="updateInputValue($event, 'content')"
+                  v-bind:class="{ has_error: hasError_content}"
                 ></textarea>
                 <input class="image-post" type="file" name="image">
               </div>
-              <input
+              <!-- <input
                 v-model="$store.state.post_input.tag_list"
                 class="a-input"
                 type="text"
                 name="hashtag"
                 placeholder="#ハッシュタグ"
                 autocomplete="on"
-              >
+              >-->
             </div>
           </div>
           <div class="m-question-post-form__block">
             <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
             <input
-              v-model="$store.state.post_input.opt1"
               class="a-input option1"
               type="text"
               name="option1"
               placeholder="選択肢1"
               autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt1"
+              v-on:input="updateInputValue($event, 'opt1')"
             >
             <input
-              v-model="$store.state.post_input.opt2"
               class="a-input option2"
               type="text"
               name="option2"
               placeholder="選択肢2"
               autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt2"
+              v-on:input="updateInputValue($event, 'opt2')"
             >
             <div class="m-question-post-form__heading">あなたの性別・年代</div>
             <div class="selectbox-wrapper gender">
-              <select class="a-selectbox" name="gender" v-model="$store.state.post_input.sex">
+              <select 
+                class="a-selectbox" 
+                name="gender"
+                v-bind:value="$store.getters.inputValues.sex"
+                v-on:input="updateInputValue($event, 'sex')"
+                v-bind:class="{ has_error: hasError_sex}"
+                >
                 <option value="f">女性</option>
                 <option value="m">男性</option>
                 <option value="o">どちらでもない</option>
               </select>
             </div>
             <div class="selectbox-wrapper selectbox-wrapper--green age">
-              <select class="a-selectbox" name="age" v-model="$store.state.post_input.age">
+              <select 
+                class="a-selectbox" 
+                name="age" 
+                v-bind:value="$store.getters.inputValues.age"
+                v-on:input="updateInputValue($event, 'age')"
+                v-bind:class="{ has_error: hasError_age}"
+                >
                 <option value="e_10s">10代前半</option>
                 <option value="l_10s">10代後半</option>
                 <option value="e_20s">20代前半</option>
@@ -231,70 +252,127 @@
             <p class="m-question-post-form__terms">
               <a @click="toTerms">利用規約</a>に同意して
             </p>
-            <input class="submit" type="submit" value="投稿する">
+            <input
+              class="submit"
+              type="submit"
+              value="投稿する"
+              v-bind:disabled="!canPost"
+              v-bind:class="{ disable_btn: !canPost}">
           </div>
         </form>
+        <br class="u-sp-tablet-d">
+        <div
+          class="message_error"
+          v-for="(error_message,index) in error_messages()"
+          v-bind:key="index"
+        >{{ error_message }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "QuestionPostFormPopup",
-  data: function() {
-    return {
-      val_age: "",
-      val_sex: "",
-      val_content: "",
-      val_opt1: "",
-      val_opt2: "",
-      val_tag_list: "",
-      val_img_base64: "",
-      isChanged: false
-    };
+  computed: {
+    hasError_content: function(){
+      if(this.$store.state.post_input.content == ""){
+        return true
+      }else{
+        return false
+      }
+    },
+    hasError_sex: function(){
+      if(this.$store.state.post_input.sex == ""){
+        return true
+      }else{
+        return false
+      }
+    },
+    hasError_age: function(){
+      if(this.$store.state.post_input.age == ""){
+        return true
+      }else{
+        return false
+      }
+    },
+    canPost: function(){
+      if (
+          this.$store.state.post_input.content != "" &&
+          this.$store.state.post_input.age != "" &&
+          this.$store.state.post_input.sex != ""
+        ){
+          return true
+        }else{
+          return false
+        }
+    }
   },
   props: {},
   components: {},
   methods: {
+    updateInputValue(event, item_key) {
+      this.$store.dispatch('doUpdateInputValue', { key: item_key, value: event.target.value })
+    },
     onSubmit: function() {
-      // varidation
-
       // postData作成
       this.$store.commit("setPostData");
       // ダイアログ表示
       this.$store.commit("setPostConfirming", true);
     },
-    close: function(){
-      if(this.$store.state.post_input.isChanged == true){
+    close: function() {
+      if (this.$store.state.post_input.isChanged == true) {
         this.$store.commit("setDeleteConfirming", true);
-        }else{
+      } else {
         this.$store.commit("setPosting", false);
       }
     },
-    validate: function(){
-      if(
+    validate: function() {
+      if (
         this.$store.state.post_input.age === "" &&
         this.$store.state.post_input.sex === "" &&
         this.$store.state.post_input.content === "" &&
         this.$store.state.post_input.opt1 === "" &&
         this.$store.state.post_input.opt2 === "" &&
         this.$store.state.post_input.tag_list === ""
-      ){
-        this.$store.commit("changeInputState", false)
-      }else{
-        this.$store.commit("changeInputState", true)
+      ) {
+        this.$store.commit("changeInputState", false);
+      } else {
+        this.$store.commit("changeInputState", true);
       }
     },
-    toTerms: function(){
-      this.$router.push({name: "terms"});
+    toTerms: function() {
+      this.$router.push({ name: "terms" });
       this.$store.commit("setPosting", false);
+    },
+    error_messages: function() {
+      let err_list = [];
+
+      if (this.$store.state.post_input.isChanged) {
+        if (this.$store.state.post_input.content == "") {
+          err_list.push("×質問内容を入力してください。");
+        }
+        if (
+          this.$store.state.post_input.sex == "" &&
+          this.$store.state.post_input.age != ""
+        ) {
+          err_list.push("×性別を選択してください。");
+        }
+        if (
+          this.$store.state.post_input.sex != "" &&
+          this.$store.state.post_input.age == ""
+        ) {
+          err_list.push("×年代を選択してください。");
+        }
+        if (
+          this.$store.state.post_input.sex == "" &&
+          this.$store.state.post_input.age == ""
+        ) {
+          err_list.push("×性別・年代を選択してください。");
+        }
+      }
+      return err_list;
     }
-  },
-  destroyed: function(){
-    this.resetForm()
   }
 };
 </script>
@@ -307,7 +385,18 @@ export default {
 .close0 {
   fill: #777777;
 }
-.show{
+.show {
   display: block;
+}
+.message_error {
+  text-align: center;
+  color:red;
+}
+.has_error {
+  background-color: rgb(255, 80, 80, 0.1)
+}
+input.disable_btn{
+  background-color: rgba(0, 0, 0, 0.308);
+  /* color: rgba(0, 0, 0, 0.315); */
 }
 </style>
