@@ -413,18 +413,23 @@
           </div>
           <div class="m-chart-area">
             <ul class="m-chart">
-              <li class="m-chart__bar is-full">
-                <div
-                  class="m-chart__number"
-                >{{ this.calcOpt1Amount(article.votes.opt1_selected.amount) }}</div>
-              </li>
               <li
                 class="m-chart__bar"
-                v-bind:style="{ height: 'calc(' + this.calcVoteRate(article.votes.opt2_selected.amount,article.votes.opt1_selected.amount) + '%)' }"
+                v-bind:style="[(isFullOpt1 == false)?{ 'height': 'calc(' + voteRate + '%)' }:{ '': ''}]"
+                v-bind:class="{ 'is-full': (isFullOpt1 == true) }"
+                >
+                <div
+                  class="m-chart__number"
+                >{{ this.calcOpt1Amount() }}</div>
+              </li>
+              <li
+                class="m-chart__bar" 
+                v-bind:style="[(isFullOpt1 == true)?{ 'height': 'calc(' + voteRate + '%)' }:{ '': ''}]"
+                v-bind:class="{ 'is-full': (isFullOpt1 == false) }" 
               >
                 <div
                   class="m-chart__number"
-                >{{ this.calcOpt2Amount(article.votes.opt2_selected.amount) }}</div>
+                >{{ this.calcOpt2Amount() }}</div>
               </li>
             </ul>
             <div class="m-chart-title">
@@ -1003,6 +1008,15 @@ export default {
       this.fetchArticles();
     }
   },
+  computed: {
+    isFullOpt1: function(){
+      if(this.calcOpt1Amount() >= this.calcOpt2Amount()){
+        return true
+      }else{
+        return false
+      }
+    }
+  },
   data: function() {
     return {
       article: null,
@@ -1012,7 +1026,8 @@ export default {
         selected_opt: ""
       },
       editors_pick: null,
-      latest: null
+      latest: null,
+      voteRate: 0
     };
   },
   created: function() {
@@ -1025,6 +1040,24 @@ export default {
     global.$("body").removeClass("p-article");
   },
   methods: {
+    opt1_amount: function(){
+      let amount = 0;
+      if(this.vote.selected_opt == "opt1"){
+        amount = this.article.votes.opt1_selected.amount + 1
+      }else{
+        amount = this.article.votes.opt1_selected.amount
+      }
+      return amount
+    },
+    opt2_amount: function(){
+      let amount = 0;
+      if(this.vote.selected_opt == "opt2"){
+        amount = this.article.votes.opt1_selected.amount + 1
+      }else{
+        amount = this.article.votes.opt1_selected.amount
+      }
+      return amount
+    },
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
       if (this.$route.params) {
@@ -1044,6 +1077,7 @@ export default {
           .then(
             axios.spread((api1Result, api2Result, api3Result) => {
               this.article = api1Result.data.article;
+              console.log(this.article)
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
             })
@@ -1070,6 +1104,7 @@ export default {
       this.vote.age = selected + this.vote.age;
       this.toNext(e.currentTarget);
       this.vote_to();
+      this.voteRate = this.calcVoteRate(this.article.votes.opt2_selected.amount,this.article.votes.opt1_selected.amount);
     },
     toNext: function(target) {
       global
@@ -1083,15 +1118,19 @@ export default {
       let op2 = opt2_amount;
       if (this.vote.selected_opt == "opt1") op1 += 1;
       if (this.vote.selected_opt == "opt2") op2 += 1;
-      return (op2 / op1) * 100;
+      if(op2 < op1){
+        return (op2 / op1) * 100;
+      }else{
+        return (op1 / op2) * 100;
+      }
     },
-    calcOpt1Amount: function(opt1_amount) {
-      let amount = opt1_amount;
+    calcOpt1Amount: function() {
+      let amount = this.article.votes.opt1_selected.amount;
       if (this.vote.selected_opt == "opt1") amount += 1;
       return amount;
     },
-    calcOpt2Amount: function(opt2_amount) {
-      let amount = opt2_amount;
+    calcOpt2Amount: function() {
+      let amount = this.article.votes.opt2_selected.amount;
       if (this.vote.selected_opt == "opt2") amount += 1;
       return amount;
     },
