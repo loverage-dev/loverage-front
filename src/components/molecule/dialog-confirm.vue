@@ -35,6 +35,7 @@ export default {
           this.$router.push({ name: 'article', params: { id: response.data.id }})
           this.$store.commit("setPostConfirming", false)
           this.$store.commit("setPosting", false)
+          this.$store.commit("resetPostData")
         })
         .catch(error => {
           // console.log(error);
