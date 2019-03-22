@@ -121,7 +121,7 @@ export default {
       }
       this.pc_search_word = ""
       this.sp_search_word = ""
-      global.$(".m-search-box__cancel").click()
+      this.isSearch = false
     },
     openForm: function(){
       this.$store.commit("setPosting", true);
