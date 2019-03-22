@@ -1055,7 +1055,6 @@ export default {
           .then(
             axios.spread((api1Result, api2Result, api3Result) => {
               this.article = api1Result.data.article;
-              console.log(this.article);
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
             })
