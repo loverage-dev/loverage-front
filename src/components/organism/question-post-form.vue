@@ -98,7 +98,7 @@
             <router-link to="/terms">利用規約</router-link>に同意して
           </p>
           <input
-            class="submit"
+            class="submit change-pointer"
             type="submit"
             value="投稿する"
               v-bind:disabled="!canPost"
@@ -222,5 +222,9 @@ export default {
 input.disable_btn{
   background-color: rgba(0, 0, 0, 0.308);
   /* color: rgba(0, 0, 0, 0.315); */
+}
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
 }
 </style>

@@ -6,10 +6,10 @@
         <div class="t-contents__inner t-2column__main">
           <div class="t-contents__inner__block">
             <ul class="a-tab">
-              <li class="a-tab__item" v-bind:class="{ 'a-tab__item--on': mode === 'view' }">
+              <li class="a-tab__item change-pointer" v-bind:class="{ 'a-tab__item--on': mode === 'view' }">
                 <a @click="changeMode('view')">閲覧数</a>
               </li>
-              <li class="a-tab__item" v-bind:class="{ 'a-tab__item--on': mode === 'vote' }">
+              <li class="a-tab__item change-pointer" v-bind:class="{ 'a-tab__item--on': mode === 'vote' }">
                 <a @click="changeMode('vote')">回答数</a>
               </li>
             </ul>
@@ -283,7 +283,7 @@
             <a
               @click="changeMode('vote')"
               to="/ranking-vote"
-              class="a-btn a-btn--large a-btn--more a-btn--green-arrow"
+              class="a-btn a-btn--large a-btn--more a-btn--green-arrow change-pointer"
               v-if="mode === 'view'"
             >回答数ランキングを見る
               <div class="arrow">
@@ -322,7 +322,7 @@
             </a>
             <a
               @click="changeMode('view')"
-              class="a-btn a-btn--large a-btn--more a-btn--green-arrow"
+              class="a-btn a-btn--large a-btn--more a-btn--green-arrow change-pointer"
               v-else
             >閲覧数ランキングを見る
               <div class="arrow">
@@ -627,4 +627,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
+}
+</style>

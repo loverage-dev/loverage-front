@@ -3,8 +3,8 @@
     <div class="m-dialog__inner">
       <div class="m-dialog__heading">この投稿を破棄しますか？</div>
       <div class="m-dialog__btn-area">
-        <a class="m-dialog__btn m-dialog__btn--dont" @click="cancel">キャンセル</a>
-        <a class="m-dialog__btn m-dialog__btn--do" @click="del">破棄する</a>
+        <a class="m-dialog__btn m-dialog__btn--dont change-pointer" @click="cancel">キャンセル</a>
+        <a class="m-dialog__btn m-dialog__btn--do change-pointer" @click="del">破棄する</a>
       </div>
     </div>
   </div>
@@ -34,4 +34,9 @@ export default {
   .show{
     display: block;
   }
+ 
+.change-pointer {
+  cursor: hand;
+  cursor: pointer;
+}
   </style>

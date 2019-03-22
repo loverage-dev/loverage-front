@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="o-global-header__function">
-        <a class="post" @click="openForm">相談する</a>
+        <a class="post change-pointer" @click="openForm">相談する</a>
         <button class="search-btn" @click="toggleSearchArea">
           <IconSearch/>
         </button>
@@ -58,7 +58,7 @@
           </div>
           <form class="form" v-on:submit.prevent="onSubmit(pc_search_word)">
             <input class="input" type="text" placeholder="みんなの相談から検索" v-model="pc_search_word">
-            <input class="submit" type="submit" value="検索">
+            <input class="submit change-pointer" type="submit" value="検索">
             <ul class="suggestion">
               <li class="suggestion__item">
                 <a href>彼氏 浮気</a>
@@ -145,5 +145,9 @@ export default {
 <style scoped>
 .show{
   display: block;
+}
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
 }
 </style>

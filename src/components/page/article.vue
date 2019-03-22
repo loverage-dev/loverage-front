@@ -11,7 +11,7 @@
             <div class="gender">{{ article.post.user_sex|translate_to_jp_sex }}</div>
             <div class="age">{{ article.post.user_age|translate_to_jp_age }}</div>
           </div>
-          <a class="a-avatar__toanswer" @click="scrollToAns">
+          <a class="a-avatar__toanswer change-pointer" @click="scrollToAns">
             <span>回答</span>
             <span class="arrow">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -250,13 +250,13 @@
                 </div>
                 <ul class="o-answering-form-btn-list">
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age_ealry_or_late('e_', $event)"
                   >
                     <span href class="a-btn-round">前半</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age_ealry_or_late('l_', $event)"
                   >
                     <span href class="a-btn-round">後半</span>
@@ -289,37 +289,37 @@
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('10s', $event)"
                   >
                     <span href class="a-btn-round">10代</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('20s', $event)"
                   >
                     <span href class="a-btn-round">20代</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('30s', $event)"
                   >
                     <span href class="a-btn-round">30代</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('40s', $event)"
                   >
                     <span href class="a-btn-round">40代</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('50s', $event)"
                   >
                     <span href class="a-btn-round">50代</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_age('60s', $event)"
                   >
                     <span href class="a-btn-round">60代</span>
@@ -352,13 +352,13 @@
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
-                    <span class="a-btn-round">女性</span>
+                    <span class="a-btn-round change-pointer">女性</span>
                   </li>
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('m', $event)">
-                    <span class="a-btn-round">男性</span>
+                    <span class="a-btn-round change-pointer">男性</span>
                   </li>
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('o', $event)">
-                    <span class="a-btn-round">その他</span>
+                    <span class="a-btn-round change-pointer">その他</span>
                   </li>
                 </ul>
               </div>
@@ -388,13 +388,13 @@
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_opt('opt1', $event)"
                   >
                     <span class="a-btn-round">{{ article.post.opt1 }}</span>
                   </li>
                   <li
-                    class="o-answering-form-btn-list__item"
+                    class="o-answering-form-btn-list__item change-pointer"
                     v-on:click="answer_opt('opt2', $event)"
                   >
                     <span href class="a-btn-round">{{ article.post.opt2 }}</span>
@@ -422,8 +422,8 @@
             </ul>
             <div class="m-chart-title">
               <ul class="m-chart-title-list">
-                <li class="m-chart-title-list__item">{{ article.post.opt1 }}</li>
-                <li class="m-chart-title-list__item">{{ article.post.opt2 }}</li>
+                <li class="m-chart-title-list__item change-pointer">{{ article.post.opt1 }}</li>
+                <li class="m-chart-title-list__item change-pointer">{{ article.post.opt2 }}</li>
               </ul>
             </div>
           </div>
@@ -1176,4 +1176,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
+}
+</style>

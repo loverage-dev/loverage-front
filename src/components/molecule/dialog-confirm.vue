@@ -3,16 +3,18 @@
     <div class="m-dialog__inner">
       <div class="m-dialog__heading">投稿を完了しますか？</div>
       <div class="m-dialog__text--small">以下のことに注意するとより回答してもらいやすくなります。</div>
-      <div class="m-dialog__text">・あいまいな表現は避け具体的な内容になっているか
+      <div class="m-dialog__text">
+        ・あいまいな表現は避け具体的な内容になっているか
         <br>・冒頭で主題を提示しているか
         <br>・2択のどちらかで回答可能な内容になっているか
       </div>
-      <div class="m-dialog__supp">投稿後の画面のURLは控えておきましょう。
+      <div class="m-dialog__supp">
+        投稿後の画面のURLは控えておきましょう。
         <br>URLがわからなくなった場合は投稿内容で検索してみてください。
       </div>
       <div class="m-dialog__btn-area">
-        <a class="m-dialog__btn m-dialog__btn--dont" @click="cancel">キャンセル</a>
-        <a class="m-dialog__btn m-dialog__btn--do" @click="post">投稿する</a>
+        <a class="m-dialog__btn m-dialog__btn--dont change-pointer" @click="cancel">キャンセル</a>
+        <a class="m-dialog__btn m-dialog__btn--do change-pointer" @click="post">投稿する</a>
       </div>
     </div>
   </div>
@@ -25,23 +27,29 @@ export default {
   name: "DialogConfirm",
   props: {},
   components: {},
-  methods:{
-    post: function(){
+  methods: {
+    post: function() {
       axios
-        .post("https://whispering-anchorage-57506.herokuapp.com/api/v1/articles", {
-          post: this.$store.state.post_data
-        })
+        .post(
+          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles",
+          {
+            post: this.$store.state.post_data
+          }
+        )
         .then(response => {
-          this.$router.push({ name: 'article', params: { id: response.data.id }})
-          this.$store.commit("setPostConfirming", false)
-          this.$store.commit("setPosting", false)
-          this.$store.commit("resetPostData")
+          this.$router.push({
+            name: "article",
+            params: { id: response.data.id }
+          });
+          this.$store.commit("setPostConfirming", false);
+          this.$store.commit("setPosting", false);
+          this.$store.commit("resetPostData");
         })
         .catch(error => {
           // console.log(error);
         });
     },
-    cancel: function(){
+    cancel: function() {
       this.$store.commit("setPostConfirming", false);
     }
   }
@@ -50,7 +58,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .show{
-    display: block;
-  }
+.show {
+  display: block;
+}
+.change-pointer {
+  cursor: hand;
+  cursor: pointer;
+}
 </style>

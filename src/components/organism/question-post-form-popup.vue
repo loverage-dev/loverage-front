@@ -122,7 +122,7 @@
               </g>
             </svg>
           </a>
-          <a class="a-popup-header__close" @click="close">
+          <a class="a-popup-header__close change-pointer" @click="close">
             <span>閉じる</span>
             <!-- <?xml version="1.0" encoding="utf-8"?> -->
             <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -254,10 +254,10 @@
               </select>
             </div>
             <p class="m-question-post-form__terms">
-              <a @click="toTerms">利用規約</a>に同意して
+              <a @click="toTerms" class="change-pointer">利用規約</a>に同意して
             </p>
             <input
-              class="submit"
+              class="submit change-pointer"
               type="submit"
               value="投稿する"
               v-bind:disabled="!canPost"
@@ -402,5 +402,9 @@ export default {
 input.disable_btn{
   background-color: rgba(0, 0, 0, 0.308);
   /* color: rgba(0, 0, 0, 0.315); */
+}
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
 }
 </style>
