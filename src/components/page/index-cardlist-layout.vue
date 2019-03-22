@@ -6,7 +6,7 @@
           <div class="m-card__image">
             <div class="m-card__image-inner">
               <router-link :to="{ name: 'article', params: { id: $store.state.featured[0].id }}">
-                <IconEyeCatching :age="$store.state.featured[0].user_age" :sex="$store.state.featured[0].user_sex" />
+                <IconEyeCatching :age="$store.state.featured[0].user_age" :sex="$store.state.featured[0].user_sex" :tag="$store.state.featured[0].img_tag"/>
               </router-link>
             </div>
           </div>
@@ -142,7 +142,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[1].id }}">
-                  <IconEyeCatching :age="$store.state.featured[1].user_age" :sex="$store.state.featured[1].user_sex" />
+                  <IconEyeCatching :age="$store.state.featured[1].user_age" :sex="$store.state.featured[1].user_sex"  :tag="$store.state.featured[1].img_tag"/>
                 </router-link>
               </div>
             </div>
@@ -247,7 +247,7 @@
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[2].id }}">
                   >
-                  <IconEyeCatching :age="$store.state.featured[2].user_age" :sex="$store.state.featured[2].user_sex" />
+                  <IconEyeCatching :age="$store.state.featured[2].user_age" :sex="$store.state.featured[2].user_sex"  :tag="$store.state.featured[2].img_tag"/>
                 </router-link>
               </div>
             </div>
@@ -353,7 +353,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[3].id }}">
-                  <IconEyeCatching :age="$store.state.featured[3].user_age" :sex="$store.state.featured[3].user_sex" />
+                  <IconEyeCatching :age="$store.state.featured[3].user_age" :sex="$store.state.featured[3].user_sex"  :tag="$store.state.featured[3].img_tag"/>
                 </router-link>
               </div>
             </div>
@@ -457,7 +457,7 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: $store.state.featured[4].id }}">
-                  <IconEyeCatching :age="$store.state.featured[4].user_age" :sex="$store.state.featured[4].user_sex" />
+                  <IconEyeCatching :age="$store.state.featured[4].user_age" :sex="$store.state.featured[4].user_sex"  :tag="$store.state.featured[4].img_tag"/>
                 </router-link>
               </div>
             </div>

@@ -42,6 +42,7 @@ export default {
     this.$store.commit("setLoading", true);
     axios.get('https://whispering-anchorage-57506.herokuapp.com/api/v1/overview')
       .then(response => {
+        console.log(response.data.top_featured.articles)
         this.$store.commit("setTopFeatureSpecial", response.data.top_featured.articles[0])
         this.$store.commit("setTopFeatureNormal", response.data.top_featured.articles.slice(1))
         this.$store.commit("setWomensTopic", response.data.big_futured_for_f)

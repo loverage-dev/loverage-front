@@ -203,7 +203,7 @@
         </div> -->
         <p class="a-paragraph">{{ article.post.content }}</p>
         <div class="p-article-sentences__image">
-          <img src="@/images/thumbnail/dummy-post-image.png" alt>
+          <IconEyeCatching :age="article.post.user_age" :sex="article.post.user_sex"  :tag="article.post.img_tag"/>
         </div>
         <ul class="m-hashtag-list">
           <li
@@ -615,7 +615,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
                       </router-link>
                     </div>
                   </div>
@@ -761,7 +761,7 @@
               <div class="m-card__image">
                 <div class="m-card__image-inner">
                   <router-link :to="{ name: 'article', params: { id: article.id }}">
-                    <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
+                    <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
                   </router-link>
                 </div>
               </div>
@@ -854,7 +854,7 @@
                 <div class="m-card__image">
                   <div class="m-card__image-inner">
                     <router-link :to="{ name: 'article', params: { id: article.id }}">
-                      <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
+                      <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
                     </router-link>
                   </div>
                 </div>
