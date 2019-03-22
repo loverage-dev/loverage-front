@@ -62,6 +62,7 @@
               v-bind:value="$store.getters.inputValues.sex"
               v-on:input="updateInputValue($event, 'sex')"
               v-bind:class="{ has_error: hasError_sex}"
+              style="max-height:42.33px;min-height:42.33px;"
               >
               <option value=""></option>
               <option value="f">女性</option>
@@ -76,6 +77,7 @@
               v-bind:value="$store.getters.inputValues.age"
               v-on:input="updateInputValue($event, 'age')"
               v-bind:class="{ has_error: hasError_age}"
+              style="max-height:42.33px;min-height:42.33px;"
               >
               <option value=""></option>
               <option value="e_10s">10代前半</option>
