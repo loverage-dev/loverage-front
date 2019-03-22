@@ -30,7 +30,7 @@
                       </div>
                       <div class="m-card__image-inner">
                         <router-link :to="{ name: 'article', params: { id: article.id }}">
-                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
                         </router-link>
                       </div>
                     </div>
@@ -163,7 +163,7 @@
                       </div>
                       <div class="m-card__image-inner">
                         <router-link :to="{ name: 'article', params: { id: article.id }}">
-                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                          <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
                         </router-link>
                       </div>
                     </div>
@@ -403,7 +403,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
                       </router-link>
                     </div>
                   </div>
@@ -497,7 +497,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
                       </router-link>
                     </div>
                   </div>
