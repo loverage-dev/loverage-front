@@ -87,7 +87,7 @@
           </h5>
           <ul class="m-share-btn-list">
             <li class="m-share-btn-list__item">
-              <a href class="a-share-btn">
+              <a v-bind:href="getTwitterShareUrl()" target="_blank" class="a-share-btn">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
@@ -120,7 +120,7 @@
               </a>
             </li>
             <li class="m-share-btn-list__item">
-              <a href class="a-share-btn">
+              <a  v-bind:href="getFBShareUrl()" target="_blank" class="a-share-btn">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
@@ -153,7 +153,7 @@
               </a>
             </li>
             <li class="m-share-btn-list__item">
-              <a href class="a-share-btn">
+              <a v-bind:href="getLineShareUrl()" target="_blank" class="a-share-btn">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
@@ -1170,6 +1170,15 @@ export default {
       global.$(".m-chart-area").each(function() {
         global.$(this).height(maxHeight);
       });
+    },
+    getTwitterShareUrl: function(){
+      return `https://twitter.com/share?text=${this.article.post.title}&url=${location.href}`
+    },
+    getFBShareUrl: function(){
+      return `http://www.facebook.com/share.php?u=${location.href}`
+    },
+    getLineShareUrl: function(){
+      return `https://line.me/R/msg/text/?${this.article.post.title+location.href}`
     }
   }
 };
