@@ -119,7 +119,7 @@
         <div class="follow">Follow us on</div>
         <ul class="list">
           <li class="item item1">
-            <a href>
+            <a href="https://twitter.com/intent/follow?screen_name=Loverage_jp">
               <svg
                 width="43px"
                 height="43px"
