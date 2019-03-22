@@ -222,6 +222,7 @@
                 v-on:input="updateInputValue($event, 'sex')"
                 v-bind:class="{ has_error: hasError_sex}"
                 >
+                <option value=""></option>
                 <option value="f">女性</option>
                 <option value="m">男性</option>
                 <option value="o">どちらでもない</option>
@@ -235,6 +236,7 @@
                 v-on:input="updateInputValue($event, 'age')"
                 v-bind:class="{ has_error: hasError_age}"
                 >
+                <option value=""></option>
                 <option value="e_10s">10代前半</option>
                 <option value="l_10s">10代後半</option>
                 <option value="e_20s">20代前半</option>
