@@ -1,9 +1,7 @@
 <template>
   <div class="t-contents">
     <article v-if="article">
-      <PageTitleArticle
-        :article="article"
-      />
+      <PageTitleArticle :article="article"/>
       <div class="p-article-sentences">
         <div class="a-avatar a-avatar--woman">
           <div class="a-avatar__inner" v-if="article.post.user_sex === 'f'">&#x1f469;</div>
@@ -13,7 +11,7 @@
             <div class="gender">{{ article.post.user_sex|translate_to_jp_sex }}</div>
             <div class="age">{{ article.post.user_age|translate_to_jp_age }}</div>
           </div>
-          <a href class="a-avatar__toanswer">
+          <a class="a-avatar__toanswer" @click="scrollToAns">
             <span>回答</span>
             <span class="arrow">
               <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -58,9 +56,8 @@
             </span>
           </a>
         </div>
-        <div class="u-pc-d m-share-btn-area">
+        <!-- <div class="u-pc-d m-share-btn-area">
           <h5 class="m-share-btn-area__heading">
-            <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
               width="61px"
               height="28px"
@@ -69,7 +66,6 @@
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
             >
-              <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
               <title>Share Copy</title>
               <desc>Created with Sketch.</desc>
               <defs></defs>
@@ -88,7 +84,6 @@
           <ul class="m-share-btn-list">
             <li class="m-share-btn-list__item">
               <a v-bind:href="getTwitterShareUrl()" target="_blank" class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="12px"
@@ -98,7 +93,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-social-twitter - Ionicons</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -120,8 +114,7 @@
               </a>
             </li>
             <li class="m-share-btn-list__item">
-              <a  v-bind:href="getFBShareUrl()" target="_blank" class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+              <a v-bind:href="getFBShareUrl()" target="_blank" class="a-share-btn">
                 <svg
                   class="svg"
                   width="7px"
@@ -131,7 +124,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-social-facebook - Ionicons</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -154,7 +146,6 @@
             </li>
             <li class="m-share-btn-list__item">
               <a v-bind:href="getLineShareUrl()" target="_blank" class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="13px"
@@ -164,7 +155,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>Shape Copy</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -183,7 +173,6 @@
             </li>
             <li class="m-share-btn-list__item">
               <a href class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="14px"
@@ -193,7 +182,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-link - Ionicons Copy</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -212,7 +200,7 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div> -->
         <p class="a-paragraph">{{ article.post.content }}</p>
         <div class="p-article-sentences__image">
           <img src="@/images/thumbnail/dummy-post-image.png" alt>
@@ -251,7 +239,8 @@
               </ul>
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
-                <p class="o-answering-form__desc">質問に答えることで
+                <p class="o-answering-form__desc">
+                  質問に答えることで
                   <br class="u-sp-d">みんなの回答を見ることができます。
                 </p>
                 <div class="o-answering-form__label">
@@ -294,7 +283,8 @@
               </ul>
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
-                <p class="o-answering-form__desc">質問に答えることで
+                <p class="o-answering-form__desc">
+                  質問に答えることで
                   <br class="u-sp-d">みんなの回答を見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
@@ -356,7 +346,8 @@
               </ul>
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
-                <p class="o-answering-form__desc">質問に答えることで
+                <p class="o-answering-form__desc">
+                  質問に答えることで
                   <br class="u-sp-d">みんなの回答を見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
@@ -391,7 +382,8 @@
               </ul>
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
-                <p class="o-answering-form__desc">質問に答えることで
+                <p class="o-answering-form__desc">
+                  質問に答えることで
                   <br class="u-sp-d">みんなの回答を見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
@@ -417,19 +409,15 @@
                 class="m-chart__bar"
                 v-bind:style="[(isFullOpt1 == false)?{ 'height': 'calc(' + voteRate + '%)' }:{ '': ''}]"
                 v-bind:class="{ 'is-full': (isFullOpt1 == true) }"
-                >
-                <div
-                  class="m-chart__number"
-                >{{ this.calcOpt1Amount() }}</div>
+              >
+                <div class="m-chart__number">{{ this.calcOpt1Amount() }}</div>
               </li>
               <li
-                class="m-chart__bar" 
+                class="m-chart__bar"
                 v-bind:style="[(isFullOpt1 == true)?{ 'height': 'calc(' + voteRate + '%)' }:{ '': ''}]"
-                v-bind:class="{ 'is-full': (isFullOpt1 == false) }" 
+                v-bind:class="{ 'is-full': (isFullOpt1 == false) }"
               >
-                <div
-                  class="m-chart__number"
-                >{{ this.calcOpt2Amount() }}</div>
+                <div class="m-chart__number">{{ this.calcOpt2Amount() }}</div>
               </li>
             </ul>
             <div class="m-chart-title">
@@ -440,9 +428,8 @@
             </div>
           </div>
         </div>
-        <div class="u-sp-tablet-d m-share-btn-area">
+        <!-- <div class="u-sp-tablet-d m-share-btn-area">
           <h5 class="m-share-btn-area__heading">
-            <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
               width="61px"
               height="28px"
@@ -451,7 +438,6 @@
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
             >
-              <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
               <title>Share Copy</title>
               <desc>Created with Sketch.</desc>
               <defs></defs>
@@ -470,7 +456,6 @@
           <ul class="m-share-btn-list">
             <li class="m-share-btn-list__item">
               <a href class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="12px"
@@ -480,7 +465,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-social-twitter - Ionicons</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -503,7 +487,6 @@
             </li>
             <li class="m-share-btn-list__item">
               <a href class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="7px"
@@ -513,7 +496,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-social-facebook - Ionicons</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -536,7 +518,6 @@
             </li>
             <li class="m-share-btn-list__item">
               <a href class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="13px"
@@ -546,7 +527,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>Shape Copy</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -565,7 +545,6 @@
             </li>
             <li class="m-share-btn-list__item">
               <a href class="a-share-btn">
-                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
                   class="svg"
                   width="14px"
@@ -575,7 +554,6 @@
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
                   <title>ion-link - Ionicons Copy</title>
                   <desc>Created with Sketch.</desc>
                   <defs></defs>
@@ -594,7 +572,7 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
       <div class="o-card-list o-card-list--slide o-card-list--black green">
         <div class="slide-inner">
@@ -637,7 +615,7 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
                       </router-link>
                     </div>
                   </div>
@@ -783,7 +761,7 @@
               <div class="m-card__image">
                 <div class="m-card__image-inner">
                   <router-link :to="{ name: 'article', params: { id: article.id }}">
-                    <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                    <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
                   </router-link>
                 </div>
               </div>
@@ -876,7 +854,7 @@
                 <div class="m-card__image">
                   <div class="m-card__image-inner">
                     <router-link :to="{ name: 'article', params: { id: article.id }}">
-                      <IconEyeCatching :age="article.user_age" :sex="article.user_sex" />
+                      <IconEyeCatching :age="article.user_age" :sex="article.user_sex"/>
                     </router-link>
                   </div>
                 </div>
@@ -1009,11 +987,11 @@ export default {
     }
   },
   computed: {
-    isFullOpt1: function(){
-      if(this.calcOpt1Amount() >= this.calcOpt2Amount()){
-        return true
-      }else{
-        return false
+    isFullOpt1: function() {
+      if (this.calcOpt1Amount() >= this.calcOpt2Amount()) {
+        return true;
+      } else {
+        return false;
       }
     }
   },
@@ -1040,23 +1018,23 @@ export default {
     global.$("body").removeClass("p-article");
   },
   methods: {
-    opt1_amount: function(){
+    opt1_amount: function() {
       let amount = 0;
-      if(this.vote.selected_opt == "opt1"){
-        amount = this.article.votes.opt1_selected.amount + 1
-      }else{
-        amount = this.article.votes.opt1_selected.amount
+      if (this.vote.selected_opt == "opt1") {
+        amount = this.article.votes.opt1_selected.amount + 1;
+      } else {
+        amount = this.article.votes.opt1_selected.amount;
       }
-      return amount
+      return amount;
     },
-    opt2_amount: function(){
+    opt2_amount: function() {
       let amount = 0;
-      if(this.vote.selected_opt == "opt2"){
-        amount = this.article.votes.opt1_selected.amount + 1
-      }else{
-        amount = this.article.votes.opt1_selected.amount
+      if (this.vote.selected_opt == "opt2") {
+        amount = this.article.votes.opt1_selected.amount + 1;
+      } else {
+        amount = this.article.votes.opt1_selected.amount;
       }
-      return amount
+      return amount;
     },
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
@@ -1077,7 +1055,7 @@ export default {
           .then(
             axios.spread((api1Result, api2Result, api3Result) => {
               this.article = api1Result.data.article;
-              console.log(this.article)
+              console.log(this.article);
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
             })
@@ -1104,7 +1082,10 @@ export default {
       this.vote.age = selected + this.vote.age;
       this.toNext(e.currentTarget);
       this.vote_to();
-      this.voteRate = this.calcVoteRate(this.article.votes.opt2_selected.amount,this.article.votes.opt1_selected.amount);
+      this.voteRate = this.calcVoteRate(
+        this.article.votes.opt2_selected.amount,
+        this.article.votes.opt1_selected.amount
+      );
     },
     toNext: function(target) {
       global
@@ -1118,9 +1099,9 @@ export default {
       let op2 = opt2_amount;
       if (this.vote.selected_opt == "opt1") op1 += 1;
       if (this.vote.selected_opt == "opt2") op2 += 1;
-      if(op2 < op1){
+      if (op2 < op1) {
         return (op2 / op1) * 100;
-      }else{
+      } else {
         return (op1 / op2) * 100;
       }
     },
@@ -1171,14 +1152,25 @@ export default {
         global.$(this).height(maxHeight);
       });
     },
-    getTwitterShareUrl: function(){
-      return `https://twitter.com/share?text=${this.article.post.title}&url=${location.href}`
+    getTwitterShareUrl: function() {
+      return `https://twitter.com/share?text=${this.article.post.title}&url=${
+        location.href
+      }`;
     },
-    getFBShareUrl: function(){
-      return `http://www.facebook.com/share.php?u=${location.href}`
+    getFBShareUrl: function() {
+      return `http://www.facebook.com/share.php?u=${location.href}`;
     },
-    getLineShareUrl: function(){
-      return `https://line.me/R/msg/text/?${this.article.post.title+location.href}`
+    getLineShareUrl: function() {
+      return `https://line.me/R/msg/text/?${this.article.post.title +
+        location.href}`;
+    },
+    scrollToAns: function(){
+      let position = $("div.p-article-answer").offset().top;
+      $("html,body").animate({
+        scrollTop : position // さっき変数に入れた位置まで
+      }, {
+        queue : false　// どれくらい経過してから、アニメーションを始めるか。キュー[待ち行列]。falseを指定すると、キューに追加されずに即座にアニメーションを実行。
+      });
     }
   }
 };
