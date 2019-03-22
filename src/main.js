@@ -4,6 +4,12 @@ import jQuery from 'jquery'
 import router from "./router";
 import moment from 'moment';
 import store from "./store";
+import VueHead from 'vue-head'
+
+// -----  VueHead ------------
+Vue.use(VueHead, {
+  separator: ' | '
+})
 
 // -----  jQuery -------------
 global.jquery = jQuery

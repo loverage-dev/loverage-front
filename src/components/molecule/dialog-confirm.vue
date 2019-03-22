@@ -29,6 +29,7 @@ export default {
   components: {},
   methods: {
     post: function() {
+      this.$store.commit("setLoading", true);
       axios
         .post(
           "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles",
@@ -47,6 +48,9 @@ export default {
         })
         .catch(error => {
           // console.log(error);
+        })
+        .finally(()=>{
+          this.$store.commit("setLoading", false);
         });
     },
     cancel: function() {

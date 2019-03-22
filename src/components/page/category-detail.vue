@@ -635,6 +635,7 @@ export default {
   },
   mounted: function() {
     global.$("body").addClass("p-category-detail");
+    this.$emit('updateHead');
   },
   destroyed: function() {
     global.$("body").removeClass("p-category-detail");
@@ -769,6 +770,23 @@ export default {
         default:
           return value;
       }
+    }
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "検索結果",
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function(){
+     return [
+        { name: 'description', content: '' },
+        { property: 'og:title', content: '検索結果|Loverage' },
+        { property: 'og:description', content: '' },
+        { property: 'og:type', content: 'website' }
+      ]
     }
   }
 };

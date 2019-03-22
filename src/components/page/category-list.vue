@@ -1873,9 +1873,25 @@ export default {
   },
   mounted: function() {
     global.$("body").addClass("p-category-list");
+    this.$emit('updateHead');
   },
   destroyed: function() {
     global.$("body").removeClass("p-category-list");
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "カデゴリー",
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function(){[
+      { name: 'description', content: '投稿者のカテゴリーから相談を検索することができます。カテゴリーは次の組み合わせを指定できます。性別（男性・女性・どちらでもない）/ 年代（１０代前半・１０代後半・２０代前半・２０代後半・３０代前半・３０代後半・４０代前半・４０代後半・５０代前半・５０代後半・６０代前半・６０代後半）' },
+      { property: 'og:title', content: 'カデゴリー|Loverage' },
+      { property: 'og:description', content: '投稿者のカテゴリーから相談を検索することができます。カテゴリーは次の組み合わせを指定できます。性別（男性・女性・どちらでもない）/ 年代（１０代前半・１０代後半・２０代前半・２０代後半・３０代前半・３０代後半・４０代前半・４０代後半・５０代前半・５０代後半・６０代前半・６０代後半）' },
+      { property: 'og:type', content: 'website' }
+    ]}
   }
 };
 </script>

@@ -584,6 +584,7 @@ export default {
   },
   mounted: function() {
     global.$("body").addClass("p-ranking-view");
+    this.$emit('updateHead');
   },
   destroyed: function() {
     global.$("body").removeClass("p-ranking-view");
@@ -622,6 +623,21 @@ export default {
           this.$store.commit("setLoading", false);
         });
     }
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "ランキング",
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function(){[
+      { name: 'description', content: 'これまで投稿された相談について、閲覧数・回答数のランキングのTop10を見ることができます。' },
+      { property: 'og:title', content: 'ランキング|Loverage' },
+      { property: 'og:description', content: 'これまで投稿された相談について、閲覧数・回答数のランキングのTop10を見ることができます。' },
+      { property: 'og:type', content: 'website' }
+    ]}
   }
 };
 </script>

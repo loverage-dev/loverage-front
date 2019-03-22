@@ -138,9 +138,27 @@ export default {
   },
   mounted: function(){
     global.$("body").addClass("p-privacy-policy")
+    this.$emit('updateHead');
   },
   destroyed: function(){
     global.$("body").removeClass("p-privacy-policy")
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "個人情報保護方針",
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function(){
+     return [
+        { name: 'description', content: '総則1. WEBサービスである「Loverage」（以下「本サービス」といいます。）を運営するLoverage運営事務局（以下「当事務局」といいます。）は、本サ-ビスの利用者（本サービスに登録する事業者を含むものとし、以下「ユーザー」といいます。）のプライバシーを尊重し、ユーザーの個人情報の管理に細心の注意を払います。2. 当事務局は、個人情報保護法に定める個人情報取扱事業者として、個人情報保護に関する法令およびその他の規範を遵守してユーザーから収集した個人情報を適切に取り扱うものとします。3. 当事務局は、ユーザーから収集した個人情報を適切に保護、取り扱いをするための方針を以下のとおり定め、個人情報保護のための体制の構築、従業者への教育等につき継続的かつ恒久的に取り組みます。' },
+        { property: 'og:title', content: '個人情報保護方針|Loverage' },
+        { property: 'og:description', content: '総則1. WEBサービスである「Loverage」（以下「本サービス」といいます。）を運営するLoverage運営事務局（以下「当事務局」といいます。）は、本サ-ビスの利用者（本サービスに登録する事業者を含むものとし、以下「ユーザー」といいます。）のプライバシーを尊重し、ユーザーの個人情報の管理に細心の注意を払います。2. 当事務局は、個人情報保護法に定める個人情報取扱事業者として、個人情報保護に関する法令およびその他の規範を遵守してユーザーから収集した個人情報を適切に取り扱うものとします。3. 当事務局は、ユーザーから収集した個人情報を適切に保護、取り扱いをするための方針を以下のとおり定め、個人情報保護のための体制の構築、従業者への教育等につき継続的かつ恒久的に取り組みます。' },
+        { property: 'og:type', content: 'website' }
+      ]
+    }
   }
 };
 </script>

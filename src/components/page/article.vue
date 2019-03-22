@@ -200,10 +200,14 @@
               </a>
             </li>
           </ul>
-        </div> -->
+        </div>-->
         <p class="a-paragraph">{{ article.post.content }}</p>
         <div class="p-article-sentences__image">
-          <IconEyeCatching :age="article.post.user_age" :sex="article.post.user_sex"  :tag="article.post.img_tag"/>
+          <IconEyeCatching
+            :age="article.post.user_age"
+            :sex="article.post.user_sex"
+            :tag="article.post.img_tag"
+          />
         </div>
         <ul class="m-hashtag-list">
           <li
@@ -615,7 +619,11 @@
                   <div class="m-card__image">
                     <div class="m-card__image-inner">
                       <router-link :to="{ name: 'article', params: { id: article.id }}">
-                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
+                        <IconEyeCatching
+                          :age="article.user_age"
+                          :sex="article.user_sex"
+                          :tag="article.img_tag"
+                        />
                       </router-link>
                     </div>
                   </div>
@@ -761,7 +769,11 @@
               <div class="m-card__image">
                 <div class="m-card__image-inner">
                   <router-link :to="{ name: 'article', params: { id: article.id }}">
-                    <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
+                    <IconEyeCatching
+                      :age="article.user_age"
+                      :sex="article.user_sex"
+                      :tag="article.img_tag"
+                    />
                   </router-link>
                 </div>
               </div>
@@ -854,7 +866,11 @@
                 <div class="m-card__image">
                   <div class="m-card__image-inner">
                     <router-link :to="{ name: 'article', params: { id: article.id }}">
-                      <IconEyeCatching :age="article.user_age" :sex="article.user_sex"  :tag="article.img_tag"/>
+                      <IconEyeCatching
+                        :age="article.user_age"
+                        :sex="article.user_sex"
+                        :tag="article.img_tag"
+                      />
                     </router-link>
                   </div>
                 </div>
@@ -1005,7 +1021,9 @@ export default {
       },
       editors_pick: null,
       latest: null,
-      voteRate: 0
+      voteRate: 0,
+      title: null,
+      description: null
     };
   },
   created: function() {
@@ -1057,11 +1075,13 @@ export default {
               this.article = api1Result.data.article;
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
+              this.setMetaTag(api1Result.data.article.post)
             })
           )
           .finally(() => {
             this.$store.commit("setLoading", false);
             this.format_answering_area();
+            this.$emit("updateHead");
           });
       }
     },
@@ -1163,13 +1183,31 @@ export default {
       return `https://line.me/R/msg/text/?${this.article.post.title +
         location.href}`;
     },
-    scrollToAns: function(){
+    scrollToAns: function() {
       let position = $("div.p-article-answer").offset().top;
-      $("html,body").animate({
-        scrollTop : position // さっき変数に入れた位置まで
-      }, {
-        queue : false　// どれくらい経過してから、アニメーションを始めるか。キュー[待ち行列]。falseを指定すると、キューに追加されずに即座にアニメーションを実行。
-      });
+      $("html,body").animate({ scrollTop: position }, { queue: false });
+    },
+    setMetaTag: function(post){
+      this.title = post.title
+      this.description = post.content
+    }
+  },
+  head: {
+    title: function() {
+      return {
+        inner: this.title,
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function() {
+      return [
+        { property: "og:title", content: this.title + " |Loverage" },
+        { property: 'og:description', content: this.description },
+        { name: 'description', content: this.description },
+        // { name: 'keywords', content: this.article.post.content },
+        // ...
+      ];
     }
   }
 };
@@ -1177,8 +1215,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.change-pointer{
+.change-pointer {
   cursor: hand;
-  cursor:pointer;
+  cursor: pointer;
 }
 </style>
