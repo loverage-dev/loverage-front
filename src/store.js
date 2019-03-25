@@ -9,6 +9,8 @@ export default new Vuex.Store({
     confirming: false,
     deleting: false,
     posting:false,
+    toasting: false,
+    showToast: false,
     post_input: {
       isChanged: false,
       age: "",
@@ -47,6 +49,12 @@ export default new Vuex.Store({
     },
     setPosting(state, payload) {
       state.posting = payload;
+    },
+    setToasting(state, payload) {
+      state.toasting = payload;
+    },
+    setShowToast(state, payload) {
+      state.showToast = payload;
     },
     setTopFeatureSpecial(state, payload){
       state.top_feature_special = payload;
@@ -128,7 +136,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    inputValues(state) { return state.post_input }
+    inputValues(state) { return state.post_input },
+    toasting(state) { return state.toasting }
   },
   actions: {
     doUpdateInputValue({commit}, payload) {

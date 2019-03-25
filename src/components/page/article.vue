@@ -1074,7 +1074,6 @@ export default {
           .then(
             axios.spread((api1Result, api2Result, api3Result) => {
               this.article = api1Result.data.article;
-              console.log(this.article)
               this.latest = api2Result.data.articles;
               this.editors_pick = api3Result.data.articles;
               this.setMetaTag(api1Result.data.article.post)
@@ -1149,11 +1148,11 @@ export default {
             selected_opt: this.vote.selected_opt
           }
         })
+        // eslint-disable-next-line
         .then(response => {
-          // console.log(response.data);
         })
+        // eslint-disable-next-line
         .catch(error => {
-          // console.log(error);
         });
     },
     format_answering_area: function() {

@@ -8,7 +8,7 @@
     <GlobalFooter />
     <DialogConfirm />
     <DialogCancel/>
-    <!-- <Toast/> -->
+    <Toast/>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import GlobalFooter from "./components/organism/global-footer.vue";
 import Loading from "./components/molecule/loading.vue";
 import DialogConfirm from "./components/molecule/dialog-confirm.vue";
 import DialogCancel from "./components/molecule/dialog-cancel.vue";
-// import Toast from "./components/atom/toast.vue";
+import Toast from "./components/atom/toast.vue";
 import QuestionPostFormPopup from "./components/organism/question-post-form-popup.vue";
 
 export default {
@@ -31,8 +31,21 @@ export default {
     DialogConfirm,
     DialogCancel,
     Loading,
-    // Toast,
+    Toast,
     QuestionPostFormPopup
+  },
+  watch: {
+    "$store.state.showToast": function(showToast) {
+      if (showToast) {
+        this.$store.commit("setShowToast", false);
+        setTimeout(()=>{
+          this.$store.commit("setToasting", true);
+          setTimeout(() => {
+            this.$store.commit("setToasting", false);
+          }, 3000);
+        }, 800)
+      }
+    }
   }}
 </script>
 
