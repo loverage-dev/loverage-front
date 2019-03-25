@@ -30,7 +30,8 @@ export default {
   methods: {
     post: function() {
       this.$store.commit("setLoading", true);
-      console.log(this.$store.state.post_data)
+      this.$store.commit("setPostConfirming", false);
+      this.$store.commit("setPosting", false);
       axios
         .post(
           "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles",
@@ -43,15 +44,13 @@ export default {
             name: "article",
             params: { id: response.data.id }
           });
-          this.$store.commit("setPostConfirming", false);
-          this.$store.commit("setPosting", false);
           this.$store.commit("resetPostData");
         })
         .catch(error => {
           // console.log(error);
+          this.$store.commit("setLoading", false);
         })
         .finally(()=>{
-          this.$store.commit("setLoading", false);
         });
     },
     cancel: function() {
