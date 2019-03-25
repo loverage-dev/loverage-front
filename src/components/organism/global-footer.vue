@@ -119,7 +119,7 @@
         <div class="follow">Follow us on</div>
         <ul class="list">
           <li class="item item1">
-            <a href="https://twitter.com/intent/follow?screen_name=Loverage_jp">
+            <a href="https://twitter.com/intent/follow?screen_name=Loverage_jp" target="_blank">
               <svg
                 width="43px"
                 height="43px"
@@ -162,7 +162,7 @@
             </a>
           </li>
           <li class="item item2">
-            <a href>
+            <a href="https://www.instagram.com/loverage?ref=badge" target="_blank">
               <svg
                 width="43px"
                 height="43px"
@@ -204,7 +204,7 @@
               </svg>
             </a>
           </li>
-          <li class="item item3">
+          <li class="item item3 change-pointer">
             <a href>
               <svg
                 width="43px"

@@ -181,7 +181,13 @@
                   v-on:input="updateInputValue($event, 'content')"
                   v-bind:class="{ has_error: hasError_content}"
                 ></textarea>
-                <input class="image-post" type="file" name="image">
+                <!-- <input class="image-post" type="file" name="image">
+                 --> 
+                <ResizableImageInput
+                  class="image-post"
+                  name="image"
+                  :draw-image-args="drawImageArgs"
+                  @resized="uploadProfileImage" />
               </div>
               <!-- <input
                 v-model="$store.state.post_input.tag_list"
@@ -232,7 +238,7 @@
             <div class="selectbox-wrapper selectbox-wrapper--green age">
               <select 
                 class="a-selectbox" 
-                name="age" 
+              name="age" 
                 v-bind:value="$store.getters.inputValues.age"
                 v-on:input="updateInputValue($event, 'age')"
                 v-bind:class="{ has_error: hasError_age}"
@@ -276,8 +282,13 @@
 </template>
 
 <script>
+import ResizableImageInput from "../molecule/resizable-image-input.vue";
+
 export default {
   name: "QuestionPostFormPopup",
+  components: {
+    ResizableImageInput
+  },
   computed: {
     hasError_content: function(){
       if(this.$store.state.post_input.content == ""){
@@ -313,8 +324,29 @@ export default {
     }
   },
   props: {},
-  components: {},
   methods: {
+    async uploadProfileImage ({ base64 }) {
+      this.$store.state.post_input.img_base64 = base64
+    },
+    drawImageArgs (image) {
+      const maxSize = 330
+      let sx = 0
+      let sy = 0
+      let imageWidth = image.width
+      let imageHeight = image.height
+      let dstWidth = imageWidth
+      let dstHeight = imageHeight
+
+      if(imageWidth > maxSize){
+        dstWidth = maxSize
+        dstHeight = imageHeight * (maxSize / imageWidth)
+      }
+      if(imageHeight > maxSize){
+        dstWidth = imageWidth * (maxSize / imageHeight)
+        dstHeight = maxSize
+      }
+      return [image, sx, sy, imageWidth, imageHeight, 0, 0, dstWidth, dstHeight]
+    },
     updateInputValue(event, item_key) {
       this.$store.dispatch('doUpdateInputValue', { key: item_key, value: event.target.value })
     },
@@ -338,7 +370,8 @@ export default {
         this.$store.state.post_input.content === "" &&
         this.$store.state.post_input.opt1 === "" &&
         this.$store.state.post_input.opt2 === "" &&
-        this.$store.state.post_input.tag_list === ""
+        this.$store.state.post_input.tag_list === ""&&
+        this.$store.state.post_input.img_base64 === ""
       ) {
         this.$store.commit("changeInputState", false);
       } else {

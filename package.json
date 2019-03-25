@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "b64-to-blob": "^1.2.19",
     "express": "^4.16.4",
     "install": "^0.12.2",
     "jquery": "^3.2.1",

@@ -16,7 +16,8 @@ export default new Vuex.Store({
       content: "",
       opt1: "",
       opt2: "",
-      tag_list: ""
+      tag_list: "",
+      img_base64: ""
     },
     post_data: null,
     top_feature_special: null,
@@ -96,6 +97,7 @@ export default new Vuex.Store({
       if (state.post_input.content != "") jsonObj.content = state.post_input.content;
       if (state.post_input.opt1 != "") jsonObj.opt1 = state.post_input.opt1;
       if (state.post_input.opt2 != "") jsonObj.opt2 = state.post_input.opt2;
+      if (state.post_input.img_base64 != "") jsonObj.img_base64 = state.post_input.img_base64;
       let tags = this.state.post_input.tag_list.split(" ");
       let arrTag = [];
       tags.forEach(tag => {
@@ -115,6 +117,7 @@ export default new Vuex.Store({
       state.post_input.opt1 = ""
       state.post_input.opt2 = ""
       state.post_input.tag_list = ""
+      state.post_input.img_base64 = ""
       state.post_input.isChanged = false
     },
     changeInputState(state, payload){

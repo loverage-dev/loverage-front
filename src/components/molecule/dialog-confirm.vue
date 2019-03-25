@@ -30,6 +30,7 @@ export default {
   methods: {
     post: function() {
       this.$store.commit("setLoading", true);
+      console.log(this.$store.state.post_data)
       axios
         .post(
           "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles",
