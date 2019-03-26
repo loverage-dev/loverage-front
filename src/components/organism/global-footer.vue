@@ -15,7 +15,7 @@
               xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-              <title>logo</title>
+              <title>Loverage</title>
               <desc>Created with Sketch.</desc>
               <defs></defs>
               <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -129,7 +129,7 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                <title>Group</title>
+                <title>Twitter</title>
                 <desc>Created with Sketch.</desc>
                 <defs></defs>
                 <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -172,7 +172,7 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                <title>Group 3</title>
+                <title>Instagram</title>
                 <desc>Created with Sketch.</desc>
                 <defs></defs>
                 <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -215,7 +215,7 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-                <title>Group 2</title>
+                <title>Facebook</title>
                 <desc>Created with Sketch.</desc>
                 <defs></defs>
                 <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
