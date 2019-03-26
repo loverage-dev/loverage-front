@@ -702,31 +702,45 @@ export default {
         this.title += " の検索結果";
 
         this.$store.commit("setLoading", true);
-        axios
-          .all([
-            axios.get(url),
-            axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
-            ),
-            axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
-            ),
-            axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
-            )
-          ])
-          .then(
-            axios.spread((api1Result, api2Result, api3Result, api4Result) => {
-              this.articles = api1Result.data.articles;
-              this.articlesGrepped = this.articles;
-              this.ranking_view = api2Result.data.articles;
-              this.latest = api3Result.data.articles;
-              this.hot_topic = api4Result.data.articles;
-            })
-          )
-          .finally(() => {
+        if(this.$store.state.ranking_view && this.$store.state.latest && this.$store.state.hot_topic){
+          this.ranking_view = this.$store.state.ranking_view
+          this.latest = this.$store.state.latest
+          this.hot_topic = this.$store.state.hot_topic
+          axios
+          .get(url)
+          .then((result)=>{
+            this.articles = result.data.articles
+            this.articlesGrepped = this.articles;
+          }).finally(() => {
             this.$store.commit("setLoading", false);
           });
+        }else{
+          axios
+            .all([
+              axios.get(url),
+              axios.get(
+                "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
+              ),
+              axios.get(
+                "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+              ),
+              axios.get(
+                "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+              )
+            ])
+            .then(
+              axios.spread((api1Result, api2Result, api3Result, api4Result) => {
+                this.articles = api1Result.data.articles;
+                this.articlesGrepped = this.articles;
+                this.ranking_view = api2Result.data.articles;
+                this.latest = api3Result.data.articles;
+                this.hot_topic = api4Result.data.articles;
+              })
+            )
+            .finally(() => {
+              this.$store.commit("setLoading", false);
+            });
+        }
       }
     },
     to_jp_age: function(value) {

@@ -1847,29 +1847,31 @@ export default {
     IconEyeCatching
   },
   created: function() {
-    this.$store.commit("setLoading", true);
-    axios
-      .all([
-        axios.get(
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
-        ),
-        axios.get(
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
-        ),
-        axios.get(
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+    if(!this.$store.state.latest && !this.$store.state.hot_topic && !this.$store.state.ranking_view){
+      this.$store.commit("setLoading", true);
+      axios
+        .all([
+          axios.get(
+            "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
+          ),
+          axios.get(
+            "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+          ),
+          axios.get(
+            "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+          )
+        ])
+        .then(
+          axios.spread((api1Result, api2Result, api3Result) => {
+            this.$store.commit("setRankingView", api1Result.data.articles);
+            this.$store.commit("setLatest", api2Result.data.articles);
+            this.$store.commit("setHotTopic", api3Result.data.articles);
+          })
         )
-      ])
-      .then(
-        axios.spread((api1Result, api2Result, api3Result) => {
-          this.$store.commit("setRankingView", api1Result.data.articles);
-          this.$store.commit("setLatest", api2Result.data.articles);
-          this.$store.commit("setHotTopic", api3Result.data.articles);
-        })
-      )
-      .finally(() => {
-        this.$store.commit("setLoading", false);
-      });
+        .finally(() => {
+          this.$store.commit("setLoading", false);
+        });
+    }
   },
   mounted: function() {
     global.$("body").addClass("p-category-list");

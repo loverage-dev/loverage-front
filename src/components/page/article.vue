@@ -1061,29 +1061,45 @@ export default {
         let url =
           "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
         url += this.$route.params.id;
-        axios
-          .all([
-            axios.get(url),
-            axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
-            ),
-            axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6"
-            )
-          ])
-          .then(
-            axios.spread((api1Result, api2Result, api3Result) => {
-              this.article = api1Result.data.article;
-              this.latest = api2Result.data.articles;
-              this.editors_pick = api3Result.data.articles;
-              this.setMetaTag(api1Result.data.article.post)
-            })
-          )
+        if(this.$store.state.latest && this.$store.state.editors_pick){
+          this.latest = this.$store.state.latest
+          this.editors_pick = this.$store.state.editors_pick
+          axios
+          .get(url)
+          .then((result) =>{
+            this.article = result.data.article;
+            this.setMetaTag(result.data.article.post)
+          })
           .finally(() => {
             this.$store.commit("setLoading", false);
             this.format_answering_area();
             this.$emit("updateHead");
           });
+        }else{
+          axios
+            .all([
+              axios.get(url),
+              axios.get(
+                "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+              ),
+              axios.get(
+                "https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6"
+              )
+            ])
+            .then(
+              axios.spread((api1Result, api2Result, api3Result) => {
+                this.article = api1Result.data.article;
+                this.latest = api2Result.data.articles;
+                this.editors_pick = api3Result.data.articles;
+                this.setMetaTag(api1Result.data.article.post)
+              })
+            )
+            .finally(() => {
+              this.$store.commit("setLoading", false);
+              this.format_answering_area();
+              this.$emit("updateHead");
+            });
+        }
       }
     },
     answer_opt: function(selected_opt, e) {
