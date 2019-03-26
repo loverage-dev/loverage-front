@@ -1,5 +1,5 @@
 <template>
-  <div class="t-contents">
+  <div class="t-contents" v-if="!$store.getters.loading">
     <article v-if="article">
       <PageTitleArticle :article="article"/>
       <div class="p-article-sentences">

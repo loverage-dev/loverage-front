@@ -1,5 +1,5 @@
 <template>
-  <footer class="o-global-footer">
+  <footer class="o-global-footer" v-show="!$store.getters.loading">
     <div class="o-global-footer__inner">
       <div class="o-global-footer__id">
         <router-link to="/">

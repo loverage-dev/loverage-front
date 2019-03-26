@@ -1,5 +1,5 @@
 <template>
-  <div class="t-contents">
+  <div class="t-contents" v-if="!$store.getters.loading">
     <PageIndexGiganticLayout/>
     <PageIndex1RowLayout/>
     <PageIndex2BlockLayout/>

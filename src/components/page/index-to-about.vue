@@ -1,5 +1,5 @@
 <template>
-  <div class="p-index-about">
+  <div class="p-index-about" v-show="!$store.getters.loading">
     <div class="p-index-about__inner">
       <div class="p-index-about__contents">
         <h6 class="p-index-about__heading">

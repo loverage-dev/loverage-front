@@ -137,7 +137,8 @@ export default new Vuex.Store({
   },
   getters: {
     inputValues(state) { return state.post_input },
-    toasting(state) { return state.toasting }
+    toasting(state) { return state.toasting },
+    loading(state) { return state.loading }
   },
   actions: {
     doUpdateInputValue({commit}, payload) {

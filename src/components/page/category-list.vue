@@ -1,5 +1,5 @@
 <template>
-  <div class="t-contents">
+  <div class="t-contents" v-if="!$store.getters.loading">
     <PageTitle pageTitle="カテゴリー一覧" pageDescription="投稿者のカテゴリーから相談を探す"/>
     <div class="t-2column">
       <div class="t-2column__inner">

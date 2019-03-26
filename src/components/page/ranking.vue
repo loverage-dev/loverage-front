@@ -1,5 +1,5 @@
 <template>
-  <div class="t-contents t-ranking">
+  <div class="t-contents t-ranking" v-if="!$store.getters.loading">
     <PageTitle pageTitle="ランキング" pageDescription="閲覧数と回答数のトップ10をチェック"/>
     <div class="t-2column">
       <div class="t-2column__inner">

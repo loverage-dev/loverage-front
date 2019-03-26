@@ -1,5 +1,5 @@
 <template>
-  <div class="o-question-post-bottom-area">
+  <div class="o-question-post-bottom-area" v-show="!$store.getters.loading">
     <div class="o-question-post-bottom-area__inner">
       <h3 class="o-question-post-bottom-area__heading">
         <span>相談してみる</span>
