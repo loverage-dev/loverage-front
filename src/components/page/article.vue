@@ -1003,6 +1003,9 @@ export default {
       this.fetchArticles();
     }
   },
+  created: function(){
+    this.fetchArticles();
+  },
   computed: {
     isFullOpt1: function() {
       if (this.calcOpt1Amount() >= this.calcOpt2Amount()) {
@@ -1026,9 +1029,6 @@ export default {
       title: null,
       description: null
     };
-  },
-  created: function() {
-    this.fetchArticles();
   },
   mounted: function() {
     global.$("body").addClass("p-article");
@@ -1071,9 +1071,9 @@ export default {
             this.setMetaTag(result.data.article.post)
           })
           .finally(() => {
-            this.$store.commit("setLoading", false);
-            this.format_answering_area();
             this.$emit("updateHead");
+            this.$store.commit("setLoading", false);
+            this.$nextTick(() => this.format_answering_area())
           });
         }else{
           axios
@@ -1095,9 +1095,9 @@ export default {
               })
             )
             .finally(() => {
-              this.$store.commit("setLoading", false);
-              this.format_answering_area();
               this.$emit("updateHead");
+              this.$store.commit("setLoading", false);
+              this.$nextTick(() => this.format_answering_area())
             });
         }
       }
