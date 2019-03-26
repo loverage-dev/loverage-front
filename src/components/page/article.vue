@@ -1003,7 +1003,7 @@ export default {
       this.fetchArticles();
     }
   },
-  created: function(){
+  created: function() {
     this.fetchArticles();
   },
   computed: {
@@ -1061,21 +1061,21 @@ export default {
         let url =
           "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
         url += this.$route.params.id;
-        if(this.$store.state.latest && this.$store.state.editors_pick){
-          this.latest = this.$store.state.latest
-          this.editors_pick = this.$store.state.editors_pick
+        if (this.$store.state.latest && this.$store.state.editors_pick) {
+          this.latest = this.$store.state.latest;
+          this.editors_pick = this.$store.state.editors_pick;
           axios
-          .get(url)
-          .then((result) =>{
-            this.article = result.data.article;
-            this.setMetaTag(result.data.article.post)
-          })
-          .finally(() => {
-            this.$emit("updateHead");
-            this.$store.commit("setLoading", false);
-            this.$nextTick(() => this.format_answering_area())
-          });
-        }else{
+            .get(url)
+            .then(result => {
+              this.article = result.data.article;
+              this.setMetaTag(result.data.article.post);
+            })
+            .finally(() => {
+              this.$emit("updateHead");
+              this.$store.commit("setLoading", false);
+              this.$nextTick(() => this.format_answering_area());
+            });
+        } else {
           axios
             .all([
               axios.get(url),
@@ -1091,13 +1091,13 @@ export default {
                 this.article = api1Result.data.article;
                 this.latest = api2Result.data.articles;
                 this.editors_pick = api3Result.data.articles;
-                this.setMetaTag(api1Result.data.article.post)
+                this.setMetaTag(api1Result.data.article.post);
               })
             )
             .finally(() => {
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
-              this.$nextTick(() => this.format_answering_area())
+              this.$nextTick(() => this.format_answering_area());
             });
         }
       }
@@ -1165,11 +1165,9 @@ export default {
           }
         })
         // eslint-disable-next-line
-        .then(response => {
-        })
+        .then(response => {})
         // eslint-disable-next-line
-        .catch(error => {
-        });
+        .catch(error => {});
     },
     format_answering_area: function() {
       let maxHeight = 0;
@@ -1204,9 +1202,9 @@ export default {
       let position = $("div.p-article-answer").offset().top;
       $("html,body").animate({ scrollTop: position }, { queue: false });
     },
-    setMetaTag: function(post){
-      this.title = post.title
-      this.description = post.content
+    setMetaTag: function(post) {
+      this.title = post.title;
+      this.description = post.content;
     }
   },
   head: {
@@ -1220,8 +1218,8 @@ export default {
     meta: function() {
       return [
         { property: "og:title", content: this.title + " |Loverage" },
-        { property: 'og:description', content: this.description },
-        { name: 'description', content: this.description },
+        { property: "og:description", content: this.description },
+        { name: "description", content: this.description }
         // { name: 'keywords', content: this.article.post.content },
         // ...
       ];
