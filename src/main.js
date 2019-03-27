@@ -5,6 +5,13 @@ import router from "./router";
 import moment from 'moment';
 import store from "./store";
 import VueHead from 'vue-head'
+import VueAnalytics from 'vue-analytics'
+
+// -----  Google Analytics ------------
+Vue.use(VueAnalytics, {
+  id: 'UA-137031526-1',
+  router
+})
 
 // -----  VueHead ------------
 Vue.use(VueHead, {
@@ -83,128 +90,83 @@ Vue.filter('translate_to_jp_sex', function (value) {
   }
 });
 Vue.filter('format_date', function (value) {
-      return moment(value).format('YYYY/MM/DD HH:mm')
-  }
+  return moment(value).format('YYYY/MM/DD HH:mm')
+}
 );
 
-  // ----- scroll -------------
-  const scrollHandler = (function() {
-    const targets = global.$(".t-wrapper");
+// ----- scroll -------------
+const scrollHandler = (function () {
+  const targets = global.$(".t-wrapper");
 
-    // Get suit scroll event
-    const pcScrollEvent = (() => {
-      if ("onwheel" in document) return "wheel";
-      if ("onmousewheel" in document) return "mousewheel";
-      return "DOMMouseScroll";
-    })();
-
-    const preventDefault = event => {
-      event.preventDefault();
-      return false;
-    };
-
-    // スクロールを無効化した時点でのスクロール位置を保持したい。
-    // 有効化するときに必要になる。
-    let scrollTop = 0;
-
-    // スクロールを無効化
-    const freeze = () => {
-      scrollTop = global.$(window).scrollTop();
-      targets.css({ position: "fixed" });
-    };
-
-    // ページ全体のスクロールを無効化する
-    const freezeAll = () => {
-      [pcScrollEvent, "touchmove"].forEach(event => {
-        document.addEventListener(event, preventDefault, { passive: false });
-      });
-    };
-
-    // スクロールを有効化
-    const allow = () => {
-      targets.css({ position: "" });
-      global.$("html,body").scrollTop(scrollTop);
-    };
-
-    // ページ全体のスクロールを有効化
-    const allowAll = () => {
-      [pcScrollEvent, "touchmove"].forEach(event => {
-        document.removeEventListener(event, preventDefault);
-      });
-    };
-
-    return {
-      freeze,
-      freezeAll,
-      allow,
-      allowAll
-    };
+  // Get suit scroll event
+  const pcScrollEvent = (() => {
+    if ("onwheel" in document) return "wheel";
+    if ("onmousewheel" in document) return "mousewheel";
+    return "DOMMouseScroll";
   })();
 
-  // scrollの処理入れる？
-  global.$(function() {
-    /***********************************
-     * 全ページ共通
-     ***********************************/
+  const preventDefault = event => {
+    event.preventDefault();
+    return false;
+  };
 
-    // 25px以上スクロールされたら
-    //   →.o-global-header に .is-scrolled を付与
-    // 一番上までもどってきたら
-    //   →.o-global-header から .is-scrolled を削除
-    global.$(window).on("scroll", () => {
-      const currentPageYOffset = window.pageYOffset;
-      if (currentPageYOffset >= 25)
-        global.$(".o-global-header").addClass("is-scrolled");
-      if (currentPageYOffset <= 0)
-        global.$(".o-global-header").removeClass("is-scrolled");
+  // スクロールを無効化した時点でのスクロール位置を保持したい。
+  // 有効化するときに必要になる。
+  let scrollTop = 0;
+
+  // スクロールを無効化
+  const freeze = () => {
+    scrollTop = global.$(window).scrollTop();
+    targets.css({ position: "fixed" });
+  };
+
+  // ページ全体のスクロールを無効化する
+  const freezeAll = () => {
+    [pcScrollEvent, "touchmove"].forEach(event => {
+      document.addEventListener(event, preventDefault, { passive: false });
     });
+  };
 
-    // // .o-global-header__function内の.postをクリックしたら、.o-question-post-popupのdisplay: noneをはずす
-    // global
-    //   .$(".o-global-header__function")
-    //   .find(".post")
-    //   .on("click", function(event) {
-    //     event.preventDefault();
-    //     global.$(".o-question-post-popup").css("display", "block");
-    //     scrollHandler.freeze();
-    //     return false;
-    //   });
+  // スクロールを有効化
+  const allow = () => {
+    targets.css({ position: "" });
+    global.$("html,body").scrollTop(scrollTop);
+  };
 
-    // // 下記をクリックしたとき .o-question-post-popup をdisplay: none; にする
-    // //    .o-question-post-popup > .a-popup-header__close
-    // //    .o-question-post-popup > .a-popup-header__back
-    // function closeQuestionPostPopup(event) {
-    //   event.preventDefault();
-    //   global.$(".o-question-post-popup").css("display", "none");
-    //   scrollHandler.allow();
-    //   return false;
-    // }
+  // ページ全体のスクロールを有効化
+  const allowAll = () => {
+    [pcScrollEvent, "touchmove"].forEach(event => {
+      document.removeEventListener(event, preventDefault);
+    });
+  };
 
-    // global
-    //   .$(".o-question-post-popup")
-    //   .find(".a-popup-header__close")
-    //   .on("click", closeQuestionPostPopup);
-    // global
-    //   .$(".o-question-post-popup")
-    //   .find(".a-popup-header__back")
-    //   .on("click", closeQuestionPostPopup);
+  return {
+    freeze,
+    freezeAll,
+    allow,
+    allowAll
+  };
+})();
 
-    // // .search-btn をクリックしたら.o-global-header__sp-search-areaのdisplay: none;を取る
-    // global.$(".search-btn").on("click", function(event) {
-    //   event.preventDefault();
-    //   global.$(".o-global-header__sp-search-area").css("display", "block");
-    //   scrollHandler.freezeAll();
-    //   return false;
-    // });
+// scrollの処理入れる？
+global.$(function () {
+  /***********************************
+   * 全ページ共通
+   ***********************************/
 
-    // // .m-search-box__cancelをクリックしたら.o-global-header__sp-search-areaをdisplay: none;
-    // global.$(".m-search-box__cancel").on("click", function(event) {
-    //   event.preventDefault();
-    //   global.$(".o-global-header__sp-search-area").css("display", "none");
-    //   scrollHandler.allowAll();
-    //   return false;
-    // });
+  // 25px以上スクロールされたら
+  //   →.o-global-header に .is-scrolled を付与
+  // 一番上までもどってきたら
+  //   →.o-global-header から .is-scrolled を削除
+  global.$(window).on("scroll", () => {
+    const currentPageYOffset = window.pageYOffset;
+    if (currentPageYOffset >= 25)
+      global.$(".o-global-header").addClass("is-scrolled");
+    if (currentPageYOffset <= 0)
+      global.$(".o-global-header").removeClass("is-scrolled");
   });
+
+});
 
 // -----  Vue -------------
 Vue.config.productionTip = false
