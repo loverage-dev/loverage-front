@@ -6,6 +6,8 @@ const port = process.env.PORT || 8080;
 // express()のインスタンス
 const app = express();
 
+app.use(basicAuth('love', 'average')); // 公開までの暫定処理（Basic認証）
+
 // どこにアクセスさせるかの設定
 // distフォルダ：コンパイルされたファイルが入る場所
 app.use(express.static(__dirname + "/dist/"));
