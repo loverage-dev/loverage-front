@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "b64-to-blob": "^1.2.19",
     "basic-auth-connect": "^1.0.0",
+    "compression": "^1.7.4",
     "express": "^4.16.4",
     "install": "^0.12.2",
     "jquery": "^3.2.1",
