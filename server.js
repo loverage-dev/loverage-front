@@ -12,7 +12,7 @@ const app = express();
 
 app.use(compression({
   threshold: 0,
-  level: 9,
+  level: 6,
   memLevel: 9
 }));
 
