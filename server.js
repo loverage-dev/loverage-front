@@ -1,7 +1,7 @@
 // expressの呼び込み
 const express = require('express');
 // const basicAuth = require('basic-auth-connect'); // 追加
-// const compression = require('compression');
+const compression = require('compression');
 
 // PORTの設定
 // もしenvにportが確立したらそのポートを、していなかったら8080を使う
@@ -10,11 +10,11 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 
-// app.use(compression({
-//   threshold: 0,
-//   level: 9,
-//   memLevel: 9
-// }));
+app.use(compression({
+  threshold: 0,
+  level: 9,
+  memLevel: 9
+}));
 
 // app.use(basicAuth('love', 'average')); // 公開までの暫定処理（Basic認証）
 
