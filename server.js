@@ -1,6 +1,6 @@
 // expressの呼び込み
 const express = require('express');
-// const basicAuth = require('basic-auth-connect'); // 追加
+const basicAuth = require('basic-auth-connect'); // 追加
 const compression = require('compression');
 
 // PORTの設定
