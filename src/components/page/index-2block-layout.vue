@@ -7,7 +7,8 @@
             <div class="m-card__image">
               <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}">
                 <div class="m-card__image-inner">
-                  <IconEyeCatching :age="$store.state.womens_topic.user_age" :sex="$store.state.womens_topic.user_sex" :tag="$store.state.womens_topic.img_tag"/>
+                  <IconEyeCatching :age="$store.state.womens_topic.user_age" :sex="$store.state.womens_topic.user_sex" :tag="$store.state.womens_topic.img_tag"
+                  :fileNo="getRandomNo()"/>
                 </div>
               </router-link>
             </div>
@@ -144,7 +145,8 @@
             <div class="m-card__image">
               <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}">
                 <div class="m-card__image-inner">
-                  <IconEyeCatching :age="$store.state.mens_topic.user_age" :sex="$store.state.mens_topic.user_sex" :tag="$store.state.mens_topic.img_tag"/>
+                  <IconEyeCatching :age="$store.state.mens_topic.user_age" :sex="$store.state.mens_topic.user_sex" :tag="$store.state.mens_topic.img_tag"
+                  :fileNo="getRandomNo()"/>
                 </div>
               </router-link>
             </div>
@@ -291,6 +293,12 @@ export default {
   components: {
     IconSex,
     IconEyeCatching
+  },
+  methods: {
+      getRandomNo: function(){
+      let num = 1 + Math.floor( Math.random() * 6 )
+      return num
+    }
   }
 };
 </script>
