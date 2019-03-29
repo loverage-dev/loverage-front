@@ -3,10 +3,11 @@
     @include inner;
     padding-top: 25px;
     padding-bottom: 30px;
-
+    
     @include mq {
       padding-top: 45px;
       padding-bottom: 45px;
+      min-height: 300px;
     }
 
     @include mq(medium) {
