@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.84a068cb8dbc5a0d93f955076699d78d.js"
+  "/precache-manifest.28d5563fc7af8414edb24b28affc79e3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "loverage_front"});
