@@ -208,6 +208,7 @@
             :sex="article.post.user_sex"
             :tag="article.post.img_tag"
             :user_img="article.post.img_base64"
+            :isContentPage="true"
           />
         </div>
         <ul class="m-hashtag-list">
