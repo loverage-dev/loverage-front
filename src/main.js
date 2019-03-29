@@ -6,6 +6,7 @@ import moment from 'moment';
 import store from "./store";
 import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
+import './registerServiceWorker'
 
 // -----  Google Analytics ------------
 Vue.use(VueAnalytics, {
@@ -95,7 +96,7 @@ Vue.filter('format_date', function (value) {
 );
 
 // ----- scroll -------------
-const scrollHandler = (function () {
+(function () {
   const targets = global.$(".t-wrapper");
 
   // Get suit scroll event
@@ -148,7 +149,6 @@ const scrollHandler = (function () {
   };
 })();
 
-// scrollの処理入れる？
 global.$(function () {
   /***********************************
    * 全ページ共通

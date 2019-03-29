@@ -1,13 +1,6 @@
 {
-	"name":				"",
-	"short_name":		"",
-	"description":		"",
-	"start_url":		"/",
-	"display":			"standalone",
-	"orientation":		"any",
-	"background_color":	"#fff",
-	"theme_color":		"#fff",
-	"orientation":		"any",
+  "name": "Loverage|2択の恋愛相談コミュニティ ラベレージ",
+  "short_name": "Loverage",
 	"icons": [
 		{
 			"src": "/android-chrome-36x36.png",
@@ -64,5 +57,9 @@
 			"sizes": "512x512",
 			"type": "image/png"
 		}
-	]
+	],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#4DBA87"
 }

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import base64ToBlob from 'b64-to-blob' // https://www.npmjs.com/package/b64-to-blob
+// import base64ToBlob from 'b64-to-blob' // https://www.npmjs.com/package/b64-to-blob
 
 export default {
   name: "ResizableImageInput",
