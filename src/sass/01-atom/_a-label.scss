@@ -29,17 +29,13 @@
 
   &--woman {
     background-color: $woman-color;
-
-    g {
-      fill: $woman-color1;
-    }
   }
 
   &--man {
     background-color: $man-color;
-
-    g {
-      fill: $man-color1;
-    }
+  }
+ 
+  &--no-jender {
+    background-color: $no-jender-color;
   }
 }
