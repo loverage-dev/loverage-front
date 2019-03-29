@@ -6,7 +6,7 @@ import moment from 'moment';
 import store from "./store";
 import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
-import './registerServiceWorker'
+// import './registerServiceWorker'
 
 // -----  Google Analytics ------------
 Vue.use(VueAnalytics, {
