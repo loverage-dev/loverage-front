@@ -17,7 +17,7 @@ importScripts(
   "/precache-manifest.04f1db5135d23ac99710c42336286360.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "loverage_front"});
+workbox.core.setCacheNameDetails({prefix: "loverage"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to

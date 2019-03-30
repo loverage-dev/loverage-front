@@ -1,4 +1,4 @@
-# loverage_front
+# loverage
 
 ## Project setup
 ```
