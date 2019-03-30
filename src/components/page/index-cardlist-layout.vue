@@ -150,7 +150,7 @@
                     :age="$store.state.featured[1].user_age"
                     :sex="$store.state.featured[1].user_sex" 
                     :tag="$store.state.featured[1].img_tag"
-                        :fileNo="getRandomNo()"/>
+                    :fileNo="getRandomNo()"/>
                 </router-link>
               </div>
             </div>

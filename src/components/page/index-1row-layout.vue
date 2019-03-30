@@ -7,7 +7,11 @@
             <div class="m-card__image">
               <div class="m-card__image-inner">
                 <router-link :to="{ name: 'article', params: { id: article.id }}">
-                  <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" :fileNo="getRandomNo()"/>
+                  <IconEyeCatching
+                    :age="article.user_age" 
+                    :sex="article.user_sex"
+                    :tag="article.img_tag"
+                    :fileNo="getRandomNo()"/>
                 </router-link>
               </div>
             </div>

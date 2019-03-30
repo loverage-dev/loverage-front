@@ -166,7 +166,7 @@
                           :age="article.user_age"
                           :sex="article.user_sex"
                           :tag="article.img_tag"
-                        :fileNo="getRandomNo()" />
+                          :fileNo="getRandomNo()" />
                       </router-link>
                     </div>
                   </div>
