@@ -167,7 +167,7 @@ export default {
   },
   methods: {
       getRandomNo: function(){
-      let num = 1 + Math.floor( Math.random() * 6 )
+      let num = 1 + Math.floor( Math.random() * 8 )
       return num
     }
   }

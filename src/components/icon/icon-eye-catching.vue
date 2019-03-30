@@ -9,6 +9,8 @@
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'f' && fileNo == 4" src="@/images/temp/f_e_20s_4.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'f' && fileNo == 5" src="@/images/temp/f_e_20s_5.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'f' && fileNo == 6" src="@/images/temp/f_e_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'f' && fileNo == 7" src="@/images/temp/f_e_20s_7.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'f' && fileNo == 8" src="@/images/temp/f_e_20s_8.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_30s' && sex == 'f'" src="@/images/temp/f_e_30s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_40s' && sex == 'f'" src="@/images/temp/f_e_40s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_50s' && sex == 'f'" src="@/images/temp/f_e_50s.png" alt>
@@ -20,6 +22,8 @@
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'f' && fileNo == 4" src="@/images/temp/f_l_20s_4.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'f' && fileNo == 5" src="@/images/temp/f_l_20s_5.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'f' && fileNo == 6" src="@/images/temp/f_l_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'f' && fileNo == 7" src="@/images/temp/f_l_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'f' && fileNo == 8" src="@/images/temp/f_l_20s_6.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_30s' && sex == 'f'" src="@/images/temp/f_l_30s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_40s' && sex == 'f'" src="@/images/temp/f_l_40s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_50s' && sex == 'f'" src="@/images/temp/f_l_50s.png" alt>
@@ -31,6 +35,8 @@
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'm' && fileNo == 4" src="@/images/temp/m_e_20s_4.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'm' && fileNo == 5" src="@/images/temp/m_e_20s_5.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'm' && fileNo == 6" src="@/images/temp/m_e_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'm' && fileNo == 7" src="@/images/temp/m_e_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_20s' && sex == 'm' && fileNo == 8" src="@/images/temp/m_e_20s_6.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_30s' && sex == 'm'" src="@/images/temp/m_e_30s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_40s' && sex == 'm'" src="@/images/temp/m_e_40s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'e_50s' && sex == 'm'" src="@/images/temp/m_e_50s.png" alt>
@@ -42,6 +48,8 @@
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'm' && fileNo == 4" src="@/images/temp/m_l_20s_4.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'm' && fileNo == 5" src="@/images/temp/m_l_20s_5.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'm' && fileNo == 6" src="@/images/temp/m_l_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'm' && fileNo == 7" src="@/images/temp/m_l_20s_6.png" alt>
+    <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_20s' && sex == 'm' && fileNo == 8" src="@/images/temp/m_l_20s_6.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_30s' && sex == 'm'" src="@/images/temp/m_l_30s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_40s' && sex == 'm'" src="@/images/temp/m_l_40s.png" alt>
     <img v-if="!isContentPage && user_img == '' && (tag == null || tag == '') && age == 'l_50s' && sex == 'm'" src="@/images/temp/m_l_50s.png" alt>
