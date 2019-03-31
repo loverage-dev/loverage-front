@@ -1,6 +1,6 @@
 // expressの呼び込み
 const express = require('express');
-const basicAuth = require('basic-auth-connect'); // 追加
+// const basicAuth = require('basic-auth-connect'); // 追加
 const compression = require('compression');
 
 // PORTの設定
@@ -16,7 +16,7 @@ app.use(compression({
   memLevel: 9
 }));
 
-app.use(basicAuth('love', 'average')); // 公開までの暫定処理（Basic認証）
+// app.use(basicAuth('love', 'average')); // 公開までの暫定処理（Basic認証）
 
 // どこにアクセスさせるかの設定
 // distフォルダ：コンパイルされたファイルが入る場所
