@@ -13,14 +13,22 @@ export default new Vuex.Store({
     showToast: false,
     post_input: {
       isChanged: false,
-      age: "",
-      sex: "",
+      age: "e_20s",
+      sex: "f",
       content: "",
       opt1: "",
       opt2: "",
       tag_list: "",
       img_base64: ""
     },
+    hasError_content: false,
+    msgError_content: "",
+    hasError_options: false,
+    msgError_options: "",
+    hasError_sex: false,
+    hasError_age: false,
+    msgError_sex_age: "",
+    canPost: false,
     post_data: null,
     top_feature_special: null,
     top_feature_normal: null,
@@ -119,8 +127,8 @@ export default new Vuex.Store({
       state.post_data = jsonObj;
     },
     resetPostData(state){
-      state.post_input.age = ""
-      state.post_input.sex = ""
+      state.post_input.age = "e_20s"
+      state.post_input.sex = "f"
       state.post_input.content = ""
       state.post_input.opt1 = ""
       state.post_input.opt2 = ""
@@ -133,16 +141,91 @@ export default new Vuex.Store({
     },
     setInputValue(state, payload){
       Vue.set(state.post_input, payload.key, payload.value)
+    },
+    chkErrors(state){
+      // 内容チェック
+      if(state.post_input.content == ""){
+        state.hasError_content = true;
+        state.msgError_content = "画像の添付以外は入力が必須です。"
+      }else{
+        state.hasError_content = false;
+        state.msgError_content = ""
+      }
+      // アリナシチェック
+      if(state.post_input.opt1 != "" && state.post_input.opt2 != "" && state.post_input.opt1 == state.post_input.opt2){
+        state.hasError_options = true;
+        state.msgError_options = "選択肢１/選択肢２は異なる値を入力してください。"
+      }else{
+        state.hasError_options = false;
+        state.msgError_options = ""
+      }
+      // 性別・年代チェック
+      if (state.post_input.sex == "" && state.post_input.age != "") {
+        state.hasError_sex = true;
+        state.hasError_age = false;
+        state.msgError_sex_age = "性別を選択してください。";
+      } else if (state.post_input.sex != "" && state.post_input.age == "") {
+        state.hasError_sex = false;
+        state.hasError_age = true;
+        state.msgError_sex_age = "年代を選択してください。";
+      } else if ( state.post_input.sex == "" && state.post_input.age == "") {
+        state.hasError_sex = true;
+        state.hasError_age = true;
+        state.msgError_sex_age = "性別・年代を選択してください。";
+      } else{
+        state.hasError_sex = false;
+        state.hasError_age = false;
+        state.msgError_sex_age = "";
+      }
+    },
+    chkCanPost(state){
+      if(state.post_input.content == ""){
+        state.canPost = false;
+      }else if(state.post_input.opt1 != "" && state.post_input.opt2 != "" && state.post_input.opt1 == state.post_input.opt2){
+        state.canPost = false;
+      }else if (state.post_input.sex == "" && state.post_input.age != "") {
+        state.canPost = false;
+      } else if (state.post_input.sex != "" && state.post_input.age == "") {
+        state.canPost = false;
+      } else if ( state.post_input.sex == "" && state.post_input.age == "") {
+        state.canPost = false;
+      } else{
+        state.canPost = true;
+      }
+    },
+    resetErrors(state){
+      state.hasError_content = false;
+      state.msgError_content = "";
+      state.hasError_options = false;
+      state.msgError_options = "";
+      state.hasError_sex = false;
+      state.hasError_age = false;
+      state.msgError_sex_age = "";
+      state.canPost = false;
     }
   },
   getters: {
     inputValues(state) { return state.post_input },
     toasting(state) { return state.toasting },
-    loading(state) { return state.loading }
+    loading(state) { return state.loading },
+    error_content(state) { return state.hasError_content },
+    error_content_msg(state) { return state.msgError_content },
+    error_options(state) { return state.hasError_options },
+    error_options_msg(state) { return state.msgError_options },
+    error_sex(state) { return state.hasError_sex },
+    error_age(state) { return state.hasError_age },
+    error_sex_age_msg(state) { return state.msgError_sex_age },
+    canPost(state){ return state.canPost }
   },
   actions: {
     doUpdateInputValue({commit}, payload) {
       commit('setInputValue', payload)
+    },
+    doChkErrors({commit}){
+      commit("chkErrors")
+    },
+    doChkCanPost({commit}){
+      commit("chkCanPost")
     }
   }
 });

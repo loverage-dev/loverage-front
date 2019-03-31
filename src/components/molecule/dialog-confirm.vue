@@ -45,6 +45,7 @@ export default {
             params: { id: response.data.id }
           });
           this.$store.commit("resetPostData");
+          this.$store.commit("resetErrors");
           this.$store.commit("setShowToast", true);
         })
         // eslint-disable-next-line

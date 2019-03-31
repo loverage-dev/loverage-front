@@ -23,6 +23,7 @@ export default {
     del: function(){
       this.$store.commit("setDeleteConfirming", false);
       this.$store.commit("resetPostData")
+      this.$store.commit("resetErrors")
       this.$store.commit("setPosting", false);
     }
   }

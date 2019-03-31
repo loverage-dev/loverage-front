@@ -4,7 +4,6 @@
       <div class="a-popup-header">
         <div class="a-popup-header__inner">
           <a class="a-popup-header__logo" href>
-            <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
               class="a-logo"
               width="128px"
@@ -14,7 +13,6 @@
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
             >
-              <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
               <title>logo</title>
               <desc>Created with Sketch.</desc>
               <defs></defs>
@@ -84,8 +82,6 @@
           </a>
           <h3 class="a-popup-header__heading">相談する</h3>
           <a class="a-popup-header__back" @click="close">
-            <!-- <?xml version="1.0" encoding="utf-8"?> -->
-            <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg
               version="1.1"
               id="ãƒ¬ã‚¤ãƒ¤ãƒ¼_1"
@@ -97,11 +93,6 @@
               style="enable-background:new 0 0 23 14;"
               xml:space="preserve"
             >
-              <!-- <style type="text/css">
-                .arrowback0 {
-                  fill: #777777;
-                }
-              </style>-->
               <title>ion-ios-arrow-thin-right - Ionicons Copy 2</title>
               <desc>Created with Sketch.</desc>
               <g id="Symbols">
@@ -124,8 +115,6 @@
           </a>
           <a class="a-popup-header__close change-pointer" @click="close">
             <span>閉じる</span>
-            <!-- <?xml version="1.0" encoding="utf-8"?> -->
-            <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg
               version="1.1"
               id="レイヤー_1"
@@ -137,11 +126,6 @@
               style="enable-background:new 0 0 12 13;"
               xml:space="preserve"
             >
-              <!-- <style type="text/css">
-                .close0 {
-                  fill: #777777;
-                }
-              </style>-->
               <title>icon/close</title>
               <desc>Created with Sketch.</desc>
               <g id="投稿後" transform="translate(-326.000000, -607.000000)">
@@ -179,10 +163,8 @@
                   placeholder="質問内容を入力してください"
                   v-bind:value="$store.getters.inputValues.content"
                   v-on:input="updateInputValue($event, 'content')"
-                  v-bind:class="{ has_error: hasError_content}"
+                  v-bind:class="{ has_error: $store.getters.error_content}"
                 ></textarea>
-                <!-- <input class="image-post" type="file" name="image">
-                 --> 
                 <ResizableImageInput
                   class="image-post"
                   name="image"
@@ -198,6 +180,7 @@
                 autocomplete="on"
               >-->
             </div>
+            <p class="message_error">{{ $store.getters.error_content_msg }}</p>
           </div>
           <div class="m-question-post-form__block">
             <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
@@ -209,6 +192,7 @@
               autocomplete="on"
               v-bind:value="$store.getters.inputValues.opt1"
               v-on:input="updateInputValue($event, 'opt1')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
             >
             <input
               class="a-input option2"
@@ -218,7 +202,9 @@
               autocomplete="on"
               v-bind:value="$store.getters.inputValues.opt2"
               v-on:input="updateInputValue($event, 'opt2')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
             >
+            <p class="message_error">{{ $store.getters.error_options_msg }}</p>
             <div class="m-question-post-form__heading">あなたの性別・年代</div>
             <div class="selectbox-wrapper gender">
               <select 
@@ -226,7 +212,7 @@
                 name="gender"
                 v-bind:value="$store.getters.inputValues.sex"
                 v-on:input="updateInputValue($event, 'sex')"
-                v-bind:class="{ has_error: hasError_sex}"
+                v-bind:class="{ has_error: $store.getters.error_sex}"
                 style="max-height:42.33px;min-height:42.33px;"
                 >
                 <option value=""></option>
@@ -241,10 +227,9 @@
               name="age" 
                 v-bind:value="$store.getters.inputValues.age"
                 v-on:input="updateInputValue($event, 'age')"
-                v-bind:class="{ has_error: hasError_age}"
+                v-bind:class="{ has_error: $store.getters.error_age}"
                 style="max-height:42.33px;min-height:42.33px;"
                 >
-                <option value=""></option>
                 <option value="e_10s">10代前半</option>
                 <option value="l_10s">10代後半</option>
                 <option value="e_20s">20代前半</option>
@@ -259,6 +244,7 @@
                 <option value="l_60s">60代後半</option>
               </select>
             </div>
+            <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
             <p class="m-question-post-form__terms">
               <a @click="toTerms" class="change-pointer">利用規約</a>に同意して
             </p>
@@ -266,16 +252,9 @@
               class="submit change-pointer"
               type="submit"
               value="投稿する"
-              v-bind:disabled="!canPost"
-              v-bind:class="{ disable_btn: !canPost}">
+              v-bind:class="{ disable_btn: !$store.getters.canPost}">
           </div>
         </form>
-        <br class="u-sp-tablet-d">
-        <div
-          class="message_error"
-          v-for="(error_message,index) in error_messages()"
-          v-bind:key="index"
-        >{{ error_message }}</div>
       </div>
     </div>
   </div>
@@ -288,40 +267,6 @@ export default {
   name: "QuestionPostFormPopup",
   components: {
     ResizableImageInput
-  },
-  computed: {
-    hasError_content: function(){
-      if(this.$store.state.post_input.content == ""){
-        return true
-      }else{
-        return false
-      }
-    },
-    hasError_sex: function(){
-      if(this.$store.state.post_input.sex == ""){
-        return true
-      }else{
-        return false
-      }
-    },
-    hasError_age: function(){
-      if(this.$store.state.post_input.age == ""){
-        return true
-      }else{
-        return false
-      }
-    },
-    canPost: function(){
-      if (
-          this.$store.state.post_input.content != "" &&
-          this.$store.state.post_input.age != "" &&
-          this.$store.state.post_input.sex != ""
-        ){
-          return true
-        }else{
-          return false
-        }
-    }
   },
   props: {},
   methods: {
@@ -351,10 +296,13 @@ export default {
       this.$store.dispatch('doUpdateInputValue', { key: item_key, value: event.target.value })
     },
     onSubmit: function() {
-      // postData作成
-      this.$store.commit("setPostData");
-      // ダイアログ表示
-      this.$store.commit("setPostConfirming", true);
+      this.$store.dispatch('doChkErrors')
+      if(this.$store.state.canPost){
+        // postData作成
+        this.$store.commit("setPostData");
+        // ダイアログ表示
+        this.$store.commit("setPostConfirming", true);
+      }
     },
     close: function() {
       if (this.$store.state.post_input.isChanged == true) {
@@ -377,38 +325,11 @@ export default {
       } else {
         this.$store.commit("changeInputState", true);
       }
+      this.$store.dispatch('doChkCanPost')
     },
     toTerms: function() {
       this.$router.push({ name: "terms" });
       this.$store.commit("setPosting", false);
-    },
-    error_messages: function() {
-      let err_list = [];
-
-      if (this.$store.state.post_input.isChanged) {
-        if (this.$store.state.post_input.content == "") {
-          err_list.push("×質問内容を入力してください。");
-        }
-        if (
-          this.$store.state.post_input.sex == "" &&
-          this.$store.state.post_input.age != ""
-        ) {
-          err_list.push("×性別を選択してください。");
-        }
-        if (
-          this.$store.state.post_input.sex != "" &&
-          this.$store.state.post_input.age == ""
-        ) {
-          err_list.push("×年代を選択してください。");
-        }
-        if (
-          this.$store.state.post_input.sex == "" &&
-          this.$store.state.post_input.age == ""
-        ) {
-          err_list.push("×性別・年代を選択してください。");
-        }
-      }
-      return err_list;
     }
   }
 };
@@ -426,10 +347,11 @@ export default {
   display: block;
 }
 .message_error {
-  text-align: center;
   color:red;
 }
 .has_error {
+  border-color: red;
+  border-width: 0.5px;
   background-color: rgb(255, 80, 80, 0.1)
 }
 input.disable_btn{

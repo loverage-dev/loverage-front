@@ -21,7 +21,7 @@ export default {
   watch: {
       '$store.state.post_input.img_base64': function(value) {
         if(value == ''){
-          global.$("input[type=file]").val("");
+          global.$("input[type=file]").val("補足の画像がある場合は添付してください");
         }else{
           this.$store.commit("changeInputState", true);
         }
