@@ -348,6 +348,7 @@ export default {
 }
 .message_error {
   color:red;
+  font-size: 13px;
 }
 .has_error {
   border-color: red;

@@ -146,7 +146,7 @@ export default new Vuex.Store({
       // 内容チェック
       if(state.post_input.content == ""){
         state.hasError_content = true;
-        state.msgError_content = "画像の添付以外は入力が必須です。"
+        state.msgError_content = "画像ファイルの添付以外は入力が必須です。"
       }else{
         state.hasError_content = false;
         state.msgError_content = ""
