@@ -159,8 +159,7 @@ global.$(function () {
 
 // -----  Google Analytics ------------
 Vue.use(VueAnalytics, {
-  id: 'UA-137031526-1',
-  router
+  id: 'UA-137031526-1'
 })
 
 // -----  VueHead ------------
