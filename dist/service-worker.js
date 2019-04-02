@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.525da45bbae07b3d2df68fd98f77ace3.js"
+  "/precache-manifest.ca4e10c79310f51d1b7192c072be1667.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "loverage"});
