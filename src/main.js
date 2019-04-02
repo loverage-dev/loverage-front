@@ -157,14 +157,15 @@ global.$(function () {
 
 });
 
-// -----  Google Analytics ------------
-Vue.use(VueAnalytics, {
-  id: 'UA-137031526-1'
-})
 
 // -----  VueHead ------------
 Vue.use(VueHead, {
   separator: ' | '
+})
+// -----  Google Analytics ------------
+Vue.use(VueAnalytics, {
+  id: 'UA-137534203-1',
+  router
 })
 
 // -----  Vue -------------

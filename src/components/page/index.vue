@@ -63,7 +63,6 @@ export default {
   mounted: function(){
     global.$("body").addClass("p-index")
     this.$emit('updateHead');
-    this.$ga.page('/');
   },
   destroyed: function(){
     global.$("body").removeClass("p-index")
