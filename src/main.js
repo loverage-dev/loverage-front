@@ -8,17 +8,6 @@ import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
 // import './registerServiceWorker'
 
-// -----  Google Analytics ------------
-Vue.use(VueAnalytics, {
-  id: 'UA-137031526-1',
-  router
-})
-
-// -----  VueHead ------------
-Vue.use(VueHead, {
-  separator: ' | '
-})
-
 // -----  jQuery -------------
 global.jquery = jQuery
 global.$ = jQuery
@@ -167,6 +156,17 @@ global.$(function () {
   });
 
 });
+
+// -----  Google Analytics ------------
+Vue.use(VueAnalytics, {
+  id: 'UA-137031526-1',
+  router
+})
+
+// -----  VueHead ------------
+Vue.use(VueHead, {
+  separator: ' | '
+})
 
 // -----  Vue -------------
 Vue.config.productionTip = false
