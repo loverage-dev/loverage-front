@@ -5,7 +5,6 @@ import router from "./router";
 import moment from 'moment';
 import store from "./store";
 import VueHead from 'vue-head'
-import VueAnalytics from 'vue-analytics'
 import gv from './mixins/grobalValiables'
 // import './registerServiceWorker'
 
@@ -164,11 +163,6 @@ global.$(function () {
 // -----  VueHead ------------
 Vue.use(VueHead, {
   separator: ' | '
-})
-// -----  Google Analytics ------------
-Vue.use(VueAnalytics, {
-  id: 'UA-137031526-1',
-  router
 })
 
 // -----  Vue -------------
