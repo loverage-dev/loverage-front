@@ -674,7 +674,7 @@ export default {
     fetchArticles: function() {
       if (this.$route.query) {
         let url =
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles?";
+          `${ this.API_URL }/api/v1/articles?`;
         if (this.$route.query.sex) {
           if (url.slice(-1) != "?") url += "&";
           url += "sex=" + this.$route.query.sex;
@@ -719,13 +719,13 @@ export default {
             .all([
               axios.get(url),
               axios.get(
-                "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=3"
+                `${ this.API_URL }/api/v1/ranking_view?limit=3`
               ),
               axios.get(
-                "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+                `${ this.API_URL }/api/v1/latest?limit=3`
               ),
               axios.get(
-                "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+                `${ this.API_URL }/api/v1/hot_topics?limit=3`
               )
             ])
             .then(

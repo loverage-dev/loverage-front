@@ -1060,7 +1060,7 @@ export default {
       this.$store.commit("setLoading", true);
       if (this.$route.params) {
         let url =
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/";
+          `${ this.API_URL }/api/v1/articles/`;
         url += this.$route.params.id;
         if (this.$store.state.latest && this.$store.state.editors_pick) {
           this.latest = this.$store.state.latest;
@@ -1081,10 +1081,10 @@ export default {
             .all([
               axios.get(url),
               axios.get(
-                "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+                `${ this.API_URL }/api/v1/latest?limit=3`
               ),
               axios.get(
-                "https://whispering-anchorage-57506.herokuapp.com/api/v1/editors_picks?limit=6"
+                `${ this.API_URL }/api/v1/editors_picks?limit=6`
               )
             ])
             .then(
@@ -1154,7 +1154,7 @@ export default {
     },
     vote_to: function() {
       let url =
-        "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles/" +
+        `${ this.API_URL }/api/v1/articles/` +
         this.$route.params.id +
         "/vote";
       axios

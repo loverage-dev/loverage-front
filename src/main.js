@@ -6,7 +6,10 @@ import moment from 'moment';
 import store from "./store";
 import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
+import gv from './mixins/grobalValiables'
 // import './registerServiceWorker'
+
+Vue.mixin(gv)    // mixinに登録
 
 // -----  jQuery -------------
 global.jquery = jQuery

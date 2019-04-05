@@ -600,10 +600,10 @@ export default {
         axios
           .all([
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=10"
+              `${ this.API_URL }/api/v1/ranking_view?limit=10`
             ),
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_vote?limit=10"
+              `${ this.API_URL }/api/v1/ranking_vote?limit=10`
             )
           ])
           .then(
@@ -619,16 +619,16 @@ export default {
         axios
           .all([
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_view?limit=10"
+              `${ this.API_URL }/api/v1/ranking_view?limit=10`
             ),
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/ranking_vote?limit=10"
+              `${ this.API_URL }/api/v1/ranking_vote?limit=10`
             ),
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/latest?limit=3"
+              `${ this.API_URL }/api/v1/latest?limit=3`
             ),
             axios.get(
-              "https://whispering-anchorage-57506.herokuapp.com/api/v1/hot_topics?limit=3"
+              `${ this.API_URL }/api/v1/hot_topics?limit=3`
             )
           ])
           .then(

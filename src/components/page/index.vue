@@ -40,7 +40,7 @@ export default {
   },
   created: function () {
     this.$store.commit("setLoading", true);
-    axios.get('https://whispering-anchorage-57506.herokuapp.com/api/v1/overview')
+    axios.get(`${ this.API_URL }/api/v1/overview`)
       .then(response => {
         this.$store.commit("setTopFeatureSpecial", response.data.top_featured.articles[0])
         this.$store.commit("setTopFeatureNormal", response.data.top_featured.articles.slice(1))

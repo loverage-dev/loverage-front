@@ -34,7 +34,7 @@ export default {
       this.$store.commit("setPosting", false);
       axios
         .post(
-          "https://whispering-anchorage-57506.herokuapp.com/api/v1/articles",
+          `${ this.API_URL }/api/v1/articles`,
           {
             post: this.$store.state.post_data
           }
