@@ -1,0 +1,20 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "loverage-front",
+  "scripts": {
+    "postdeploy": "",
+    "pr-predestroy": ""
+  },
+  "stack": "heroku-18"
+}
