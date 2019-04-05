@@ -1,7 +1,7 @@
 export default {
   data() {
       return {
-          API_URL: "https://whispering-anchorage-57506.herokuapp.com",
+          API_URL: "https://limitless-crag-46636.herokuapp.com",
       }
   }
 }
