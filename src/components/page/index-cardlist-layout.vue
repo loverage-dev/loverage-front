@@ -264,7 +264,7 @@
               </div>
             </div>
             <div class="m-card__text">
-              <router-link :to="{ name: 'article', params: { id: $store.state.featured[0].id }}">
+              <router-link :to="{ name: 'article', params: { id: $store.state.featured[2].id }}">
                 <h2 class="m-card__title">{{ $store.state.featured[2].content }}</h2>
               </router-link>
               <div class="m-card-info">
@@ -417,7 +417,7 @@
                   {{ $store.state.featured[3].votes_amount }} votes
                 </div>
                 <router-link
-                  :to="{ name: 'article', params: { id: $store.state.featured[0].id }}"
+                  :to="{ name: 'article', params: { id: $store.state.featured[3].id }}"
                   class="a-link a-link--arrow"
                 >
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
