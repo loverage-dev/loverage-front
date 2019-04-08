@@ -1,7 +1,0 @@
-export default {
-  data() {
-      return {
-          API_URL: process.env.VUE_APP_API_ORIGIN
-      }
-  }
-}
