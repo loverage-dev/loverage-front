@@ -12,6 +12,7 @@
     "build:stg": "vue-cli-service build --mode staging",
     "build:prod": "vue-cli-service build --mode staging",
     "build": "vue-cli-service build",
+    "post-build": "node server.js",
     "lint": "vue-cli-service lint",
     "start": "node server.js",
     "postinstall": "npm run build"
