@@ -1,0 +1,1902 @@
+<template>
+  <div class="t-contents" v-if="!$store.getters.loading">
+    <PageTitle pageTitle="カテゴリー一覧" pageDescription="投稿者のカテゴリーから相談を探す"/>
+    <div class="t-2column">
+      <div class="t-2column__inner">
+        <div class="t-contents__inner t-2column__main">
+          <h2 class="a-heading">性別 × 年代</h2>
+          <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_10s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性10代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'e_10s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性10代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_10s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性10代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_10s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性10代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_20s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性20代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_20s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性20代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_20s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性20代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_20s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性20代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_30s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性30代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'e_30s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性30代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_30s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性30代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_30s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性30代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_40s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性40代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'e_40s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性40代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_40s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性40代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_40s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性40代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_50s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性50代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'e_50s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性50代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_50s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性50代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_50s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性50代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'e_60s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性60代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'e_60s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性60代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f', age: 'l_60s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性60代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm', age: 'l_60s'  }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性60代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+          <h2 class="a-heading">性別</h2>
+          <ul class="p-category-list-btn-list p-category-list-btn-list--3columns">
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'f'}}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >女性
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'm'}}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >男性
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: {  sex: 'o'}}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--gray-arrow"
+              >その他
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+          <h2 class="a-heading">年代</h2>
+          <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_10s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >10代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_10s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >10代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_20s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >20代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_20s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >20代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_30s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >30代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_30s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >30代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_40s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >40代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_40s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >40代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_50s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >50代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_50s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >50代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'e_60s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >60代前半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+            <li class="p-category-list-btn-list__item">
+              <router-link
+                v-bind:to="{ name: 'category-detail', query: { age: 'l_60s' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+              >60代後半
+                <div class="arrow">
+                  <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                  <svg
+                    width="17px"
+                    height="11px"
+                    viewBox="0 0 17 11"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                    <title></title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g
+                        class="variable-fill"
+                        id="トップ"
+                        transform="translate(-288.000000, -3400.000000)"
+                        fill="#FFA9C8"
+                      >
+                        <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                          <path
+                            d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                            id=""
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="t-2column__side o-card-list o-card-list--row o-card-list--square o-card-list--black o-card-list--set"
+        >
+          <div class="t-2column__side-inner">
+            <div class="m-list-heading pink">
+              <h2 class="m-list-heading__jp">閲覧数ランキング</h2>
+              <div class="m-list-heading__en">
+                <!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg
+                  width="74px"
+                  height="24px"
+                  viewBox="0 0 74 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title>Ranking</title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-281.000000, -840.000000)"
+                      fill="#58DDC4"
+                    >
+                      <path
+                        d="M301.64,841.776 L301.664,841.776 L301.64,841.776 Z M297.379623,858.853543 C297.383665,858.856389 297.387833,858.859833 297.392,858.864 C297.387974,858.861124 297.383961,858.858234 297.379962,858.855331 L297.379623,858.853543 Z M297.379623,858.853543 C297.360389,858.84 297.344,858.84 297.344,858.84 L297.44,858.912 L297.488,858.96 C297.776,859.176 298.04,859.416 298.28,859.68 C298.4,859.848 298.52,859.992 298.568,860.184 C298.64,860.424 298.376,860.544 298.184,860.568 C297.968,860.592 297.68,860.472 297.584,860.28 C297.56,860.184 297.56,860.088 297.608,860.04 L297.56,860.016 C297.536,859.944 297.488,859.896 297.44,859.848 C297.368,859.8 297.32,859.728 297.272,859.68 L297.272,859.656 L297.248,859.656 L297.248,859.632 L297.152,859.584 L296.888,859.344 C296.864,859.32 296.768,859.248 296.72,859.224 C296.672,859.152 296.6,859.104 296.552,859.056 L295.832,858.456 C295.352,858.048 294.848,857.664 294.344,857.256 L292.568,855.816 C292.16,855.504 291.776,855.168 291.416,854.808 C291.008,854.448 290.6,854.088 290.168,853.776 L289.856,853.536 C289.832,853.536 289.784,853.488 289.736,853.488 L289.592,853.416 L289.424,853.344 C289.424,853.32 289.424,853.32 289.4,853.32 L289.424,853.32 L289.376,853.32 L289.232,853.272 L289.208,853.272 C289.04,853.248 288.752,853.128 288.728,852.912 C288.656,852.768 288.728,852.624 288.872,852.6 C290.456,852.24 291.992,851.76 293.504,851.16 C294.704,850.68 295.928,850.08 297.056,849.384 C298.016,848.784 298.928,848.112 299.816,847.44 C300.56,846.816 300.752,846.696 301.016,846.432 C301.424,846.072 301.808,845.688 302.144,845.256 C302.312,845.04 302.456,844.848 302.576,844.632 C302.576,844.608 302.648,844.512 302.6,844.56 C302.624,844.536 302.648,844.512 302.648,844.488 L302.72,844.344 C302.768,844.248 302.816,844.152 302.84,844.032 C302.888,843.936 302.912,843.816 302.912,843.72 C302.936,843.696 302.936,843.672 302.936,843.648 L302.936,843.48 C302.936,843.336 302.936,843.216 302.912,843.096 C302.912,843.048 302.912,843 302.888,842.952 L302.864,842.904 C302.864,842.88 302.84,842.856 302.84,842.832 L302.696,842.544 C302.744,842.64 302.648,842.496 302.624,842.472 L302.528,842.352 L302.48,842.28 L302.36,842.184 L302.144,842.016 L302.096,842.016 C302.096,841.992 302.072,841.992 302.048,841.968 L301.904,841.896 C301.856,841.848 301.76,841.824 301.664,841.776 L301.64,841.776 C301.616,841.752 301.592,841.752 301.568,841.752 L301.448,841.704 L301.184,841.632 L301.04,841.584 L301.016,841.584 C300.944,841.584 300.872,841.56 300.8,841.56 C300.608,841.512 300.392,841.512 300.2,841.512 C300.2,841.512 300.032,841.488 300.104,841.488 L299.24,841.488 L298.232,841.536 C297.512,841.608 296.864,841.704 296.216,841.824 C295.52,841.968 294.824,842.136 294.128,842.328 C292.736,842.736 291.368,843.264 290.048,843.864 C287.456,845.04 284.984,846.48 282.608,848.064 C282.992,848.256 283.304,848.52 283.568,848.88 C284.144,849.648 284.336,850.632 284.384,851.568 C284.432,852.624 284.336,853.704 284.192,854.76 L284,856.128 C283.88,857.616 283.832,857.904 283.808,858.192 C283.88,858.048 283.952,857.904 284.024,857.784 L284.936,856.32 C286.328,854.184 287.864,852.144 289.376,850.104 C290.096,849.144 290.792,848.184 291.512,847.248 C291.752,846.936 291.968,846.6 292.184,846.288 L292.544,845.736 C292.64,845.616 292.736,845.472 292.88,845.4 C293.024,845.328 293.216,845.352 293.36,845.472 C293.456,845.544 293.528,845.712 293.384,845.808 C293.336,845.832 293.432,845.76 293.36,845.808 L293.312,845.88 C293.24,845.952 293.192,846.024 293.144,846.12 L292.784,846.672 C292.568,847.032 292.352,847.368 292.112,847.704 C290.648,849.72 289.136,851.712 287.72,853.728 C287,854.76 286.28,855.792 285.632,856.824 C285.32,857.304 285.032,857.76 284.768,858.24 C284.432,858.816 284.24,859.464 283.832,860.016 C283.736,860.136 283.496,860.136 283.376,860.088 C283.232,860.04 283.112,859.968 283.04,859.824 C282.968,859.704 282.944,859.512 282.92,859.368 C282.896,859.128 282.896,858.912 282.92,858.672 C282.92,857.712 283.04,856.728 283.16,855.768 C283.28,854.784 283.448,853.776 283.496,852.84 C283.52,852.312 283.544,851.784 283.496,851.28 C283.472,851.04 283.448,850.8 283.4,850.56 C283.4,850.44 283.376,850.32 283.328,850.2 C283.328,850.152 283.304,850.08 283.304,850.032 C283.304,850.104 283.28,850.032 283.28,850.008 C283.28,849.984 283.28,849.96 283.256,849.936 C283.184,849.744 283.112,849.528 282.992,849.336 L282.92,849.192 C282.872,849.12 282.968,849.264 282.896,849.192 C282.896,849.168 282.872,849.144 282.872,849.12 L282.68,848.88 L282.608,848.808 L282.488,848.712 L282.368,848.64 C282.344,848.616 282.2,848.52 282.32,848.592 C282.224,848.52 282.128,848.472 282.008,848.424 L282.008,848.4 C282.008,848.424 281.984,848.4 281.96,848.4 L281.936,848.4 C281.888,848.376 281.84,848.352 281.768,848.352 C281.576,848.28 281.264,848.016 281.528,847.824 C283.304,846.624 285.152,845.496 287.048,844.512 C289.664,843.12 292.448,841.944 295.352,841.32 C296.72,841.032 298.136,840.864 299.528,840.888 C300.008,840.888 300.488,840.888 300.944,840.984 C301.376,841.08 301.808,841.2 302.216,841.392 C303.08,841.8 303.824,842.568 303.824,843.576 C303.8,844.584 303.152,845.472 302.48,846.168 C301.76,846.936 300.896,847.632 300.056,848.28 C299.096,849 298.112,849.672 297.056,850.272 C294.896,851.496 292.544,852.36 290.144,852.984 C290.288,853.056 290.432,853.152 290.552,853.248 C290.96,853.512 291.344,853.848 291.728,854.184 C292.04,854.448 292.352,854.76 292.688,855.048 C293.168,855.48 293.72,855.864 294.224,856.272 C294.824,856.752 295.424,857.232 296.024,857.736 L296.936,858.48 C297.076549,858.597124 297.217098,858.737111 297.379962,858.855331 L297.379623,858.853543 Z M281.936,848.4 L282.008,848.4 L281.936,848.4 Z M302.888,842.952 C302.888,842.928 302.888,842.928 302.864,842.928 L302.888,842.952 Z M297.2,859.632 L297.248,859.632 L297.272,859.656 L297.2,859.632 Z M301.016,841.584 L300.968,841.584 C301.136,841.608 301.04,841.584 301.016,841.584 Z M306.728,851.28 C306.848,851.328 307.04,851.52 306.92,851.616 C306.128,852.312 305.408,852.96 304.52,853.536 C304.112,853.8 303.92,853.944 303.608,854.112 C302.648,854.64 302.312,854.784 301.952,854.856 C301.376,854.928 300.632,854.856 300.32,854.328 C300.128,854.04 300.176,853.656 300.272,853.32 C300.056,853.584 299.816,853.8 299.552,854.04 C299.312,854.256 299.096,854.544 298.856,854.712 C298.664,854.88 298.448,855 298.184,855.096 C297.896,855.216 297.56,855.216 297.248,855 C297.032,854.832 296.936,854.544 296.936,854.28 C296.96,853.68 297.32,853.2 297.656,852.744 C298.04,852.264 298.472,851.832 298.976,851.472 C299.336,851.208 299.744,851.016 300.248,850.848 C300.416,850.8 300.656,850.752 300.848,850.776 C301.064,850.848 301.376,851.016 301.256,851.28 C301.184,851.448 300.992,851.448 300.848,851.376 C300.8,851.376 300.776,851.352 300.728,851.328 L300.704,851.328 C300.68,851.352 300.632,851.328 300.608,851.352 C300.584,851.352 300.464,851.4 300.512,851.376 C300.128,851.544 299.768,851.76 299.432,852 C299.144,852.24 298.784,852.552 298.496,852.912 C298.208,853.248 297.896,853.608 297.752,854.064 C297.68,854.256 297.632,854.472 297.704,854.664 C297.728,854.664 297.752,854.664 297.776,854.64 C298.04,854.496 298.232,854.376 298.424,854.184 C298.688,853.968 298.928,853.728 299.144,853.488 L300.536,852 L301.28,851.328 L301.304,851.304 C301.472,851.088 301.688,850.896 301.832,850.68 C302,850.488 302.552,850.656 302.552,850.92 L302.552,850.944 C302.552,850.992 302.48,851.088 302.432,851.136 C302.408,851.184 302.36,851.208 302.336,851.256 C302.144,851.496 302.048,851.52 301.592,852.216 C301.52,852.336 301.424,852.456 301.376,852.576 C301.232,852.864 301.088,853.176 301.016,853.44 L300.944,853.68 C300.776,854.112 301.136,854.496 301.712,854.328 C302.192,854.184 302.6,853.944 303.104,853.68 C304.28,853.056 305.24,852.168 306.248,851.28 C306.416,851.184 306.608,851.208 306.728,851.28 Z M313.904,851.064 C314.024,851.088 314.192,851.28 314.072,851.4 C313.544,851.88 312.968,852.288 312.368,852.72 C311.648,853.224 310.904,853.704 310.112,854.184 C309.776,854.376 309.464,854.568 309.128,854.712 C308.864,854.856 308.552,854.976 308.264,855.024 C307.88,855.096 307.592,854.952 307.4,854.64 C307.184,854.256 307.304,853.824 307.472,853.44 C307.64,853.008 307.904,852.6 308.168,852.168 C308.264,851.976 308.384,851.784 308.456,851.544 C307.832,851.904 307.28,852.456 306.8,852.96 C306.176,853.656 305.624,854.448 304.976,855.168 C304.952,855.168 304.928,855.192 304.904,855.216 C304.808,855.36 304.592,855.312 304.448,855.24 C304.352,855.216 304.208,855.096 304.256,854.976 C304.688,853.968 305.24,853.08 305.84,852.216 C306.056,851.904 306.176,851.568 306.416,851.208 C306.56,850.92 306.776,850.488 307.16,850.488 C307.304,850.488 307.52,850.56 307.592,850.704 C307.664,850.872 307.544,850.968 307.4,850.968 C307.376,850.968 307.376,850.992 307.328,851.016 L307.184,851.208 L306.968,851.664 L306.776,852.096 C307.304,851.544 307.952,851.04 308.696,850.824 C308.864,850.752 309.2,850.872 309.248,851.088 C309.272,851.52 309.08,851.928 308.888,852.312 C308.672,852.72 308.408,853.104 308.24,853.536 C308.144,853.752 308.072,853.92 308.048,854.16 C308.024,854.256 308.024,854.4 308.072,854.52 C308.192,854.496 308.288,854.448 308.408,854.4 L308.864,854.16 L309.92,853.536 C310.664,853.056 311.384,852.6 312.104,852.072 L312.992,851.424 C313.088,851.328 313.184,851.256 313.304,851.184 L313.424,851.112 C313.472,851.088 313.52,851.016 313.472,851.088 C313.592,850.968 313.76,850.992 313.904,851.064 Z M321.2,851.28 C321.296,851.328 321.488,851.496 321.344,851.64 C320.36,852.576 319.256,853.344 318.08,854.04 C317.696,854.28 317.288,854.472 316.856,854.664 C316.28,854.928 315.656,855.192 315.008,855.288 C314.456,855.36 313.856,855.312 313.448,854.856 C313.328,854.736 313.184,854.472 313.136,854.328 L312.992,853.824 C312.944,853.872 312.896,853.92 312.848,853.992 C312.632,854.232 312.416,854.52 312.248,854.808 C312.128,855.048 311.984,855.312 311.864,855.576 C311.792,855.744 311.576,855.744 311.432,855.696 C311.312,855.648 311.072,855.504 311.144,855.336 C311.24,855.048 311.384,854.808 311.528,854.544 C312.536,852.456 313.664,850.44 315.008,848.52 C315.392,847.968 315.824,847.416 316.256,846.888 C316.592,846.456 316.952,846.048 317.312,845.64 L318.104,844.8 C318.248,844.68 318.368,844.536 318.536,844.44 C318.704,844.344 318.968,844.32 319.136,844.464 C319.208,844.536 319.304,844.68 319.16,844.776 C319.136,844.776 319.088,844.8 319.04,844.8 L319.016,844.8 L319.016,844.824 L318.944,844.872 C318.824,844.992 318.704,845.088 318.608,845.208 L317.96,845.928 C317.336,846.648 316.712,847.368 316.16,848.136 C315.296,849.312 314.504,850.56 313.784,851.832 C314.048,851.568 314.288,851.328 314.576,851.136 C314.96,850.848 315.368,850.656 315.824,850.656 C316.256,850.68 316.856,850.968 316.76,851.472 C316.736,851.664 316.616,851.832 316.496,852 L316.04,852.504 C315.704,852.792 315.344,853.008 314.936,853.224 C314.552,853.44 314.12,853.656 313.688,853.728 C313.736,853.92 313.784,854.088 313.832,854.256 C314.024,854.64 314.288,854.784 314.744,854.736 C315.368,854.664 315.968,854.4 316.544,854.136 C316.952,853.944 317.336,853.704 317.72,853.488 C318.776,852.84 319.808,852.12 320.696,851.28 C320.816,851.136 321.056,851.16 321.2,851.28 Z M313.928,852.768 C313.832,852.888 313.736,853.008 313.616,853.152 L313.784,853.104 C314.048,852.984 314.288,852.864 314.528,852.72 C314.696,852.624 314.888,852.552 315.032,852.432 L315.272,852.264 C315.272,852.24 315.32,852.216 315.368,852.168 L315.488,852.072 C315.632,851.928 315.8,851.76 315.92,851.592 L315.992,851.472 C316.016,851.448 316.112,851.112 315.776,851.184 C315.608,851.184 315.344,851.328 315.152,851.52 C314.96,851.712 314.864,851.76 314.696,851.928 C314.432,852.192 314.168,852.48 313.928,852.768 Z M322.112,851.016 L321.968,851.16 L321.872,851.232 L321.608,851.472 C321.2,851.88 320.816,852.312 320.504,852.792 C320.312,853.056 320.168,853.32 320.072,853.536 C319.928,853.8 319.784,854.088 319.712,854.376 C319.688,854.472 319.664,854.568 319.664,854.64 C319.688,854.712 319.76,854.712 319.832,854.688 L320.12,854.616 C320.504,854.52 320.888,854.328 321.272,854.184 L321.752,853.944 C321.968,853.848 322.328,853.656 322.64,853.464 C322.712,853.416 322.832,853.368 322.88,853.32 L324.272,852.456 C324.512,852.264 324.824,852.096 325.088,851.928 C325.52,851.616 325.808,851.448 326.096,851.304 C326.264,851.256 326.792,851.472 326.576,851.712 C326.432,851.88 326.192,852.024 325.928,852.192 C325.352,852.576 325.184,852.648 325.112,852.72 C324.32,853.248 323.528,853.752 322.472,854.304 C322.184,854.448 321.752,854.664 321.44,854.784 C320.888,855.024 319.4,855.672 318.968,854.832 C318.896,854.664 318.896,854.448 318.944,854.28 C319.016,854.016 319.136,853.704 319.28,853.464 C319.568,852.912 319.904,852.36 320.24,851.928 C320.408,851.712 320.6,851.472 320.816,851.28 L321.176,850.944 L321.608,850.632 C321.704,850.584 321.872,850.584 321.992,850.656 L321.968,850.656 C322.04,850.704 322.136,850.824 322.112,851.016 Z M322.256,849.936 C322.136,849.912 321.992,849.768 321.992,849.624 C322.016,849.552 322.088,849.48 322.184,849.408 C322.208,849.408 322.28,849.36 322.304,849.336 L322.424,849.264 L322.616,849.12 L322.808,848.952 C322.952,848.832 323.24,848.928 323.336,849.024 C323.408,849.072 323.552,849.24 323.432,849.36 L323.192,849.552 L322.976,849.72 C322.76,849.864 322.544,850.008 322.256,849.936 Z M333.776,851.064 C333.896,851.088 334.064,851.28 333.944,851.4 C333.416,851.88 332.84,852.288 332.24,852.72 C331.52,853.224 330.776,853.704 329.984,854.184 C329.648,854.376 329.336,854.568 329,854.712 C328.736,854.856 328.424,854.976 328.136,855.024 C327.752,855.096 327.464,854.952 327.272,854.64 C327.056,854.256 327.176,853.824 327.344,853.44 C327.512,853.008 327.776,852.6 328.04,852.168 C328.136,851.976 328.256,851.784 328.328,851.544 C327.704,851.904 327.152,852.456 326.672,852.96 C326.048,853.656 325.496,854.448 324.848,855.168 C324.824,855.168 324.8,855.192 324.776,855.216 C324.68,855.36 324.464,855.312 324.32,855.24 C324.224,855.216 324.08,855.096 324.128,854.976 C324.56,853.968 325.112,853.08 325.712,852.216 C325.928,851.904 326.048,851.568 326.288,851.208 C326.432,850.92 326.648,850.488 327.032,850.488 C327.176,850.488 327.392,850.56 327.464,850.704 C327.536,850.872 327.416,850.968 327.272,850.968 C327.248,850.968 327.248,850.992 327.2,851.016 L327.056,851.208 L326.84,851.664 L326.648,852.096 C327.176,851.544 327.824,851.04 328.568,850.824 C328.736,850.752 329.072,850.872 329.12,851.088 C329.144,851.52 328.952,851.928 328.76,852.312 C328.544,852.72 328.28,853.104 328.112,853.536 C328.016,853.752 327.944,853.92 327.92,854.16 C327.896,854.256 327.896,854.4 327.944,854.52 C328.064,854.496 328.16,854.448 328.28,854.4 L328.736,854.16 L329.792,853.536 C330.536,853.056 331.256,852.6 331.976,852.072 L332.864,851.424 C332.96,851.328 333.056,851.256 333.176,851.184 L333.296,851.112 C333.344,851.088 333.392,851.016 333.344,851.088 C333.464,850.968 333.632,850.992 333.776,851.064 Z M334.340096,854.030592 C334.34336,854.0256 334.3472,854.0208 334.352,854.016 C334.349167,854.018833 334.346417,854.021667 334.343741,854.024495 L334.340096,854.030592 Z M334.343741,854.024495 C334.301083,854.069583 334.277167,854.113417 334.232,854.136 C333.92,854.448 333.608,854.736 333.248,854.976 C332.912,855.192 332.552,855.312 332.144,855.192 C331.784,855.12 331.472,854.856 331.424,854.472 C331.4,854.136 331.52,853.8 331.664,853.488 C331.832,853.104 332.048,852.744 332.288,852.384 C332.648,851.832 333.056,851.28 333.56,850.848 C333.872,850.584 334.256,850.296 334.688,850.344 C334.904,850.368 335.168,850.512 335.24,850.728 C335.264,850.848 335.288,850.968 335.264,851.088 C335.24,851.232 335.192,851.328 335.12,851.472 C335.048,851.544 334.88,851.544 334.808,851.52 C334.712,851.472 334.592,851.4 334.592,851.304 C334.568,851.184 334.568,851.088 334.568,850.968 L334.568,850.944 C334.448,851.016 334.352,851.088 334.256,851.16 L334.112,851.304 C334.04,851.352 333.992,851.4 333.944,851.448 C333.896,851.52 333.824,851.592 333.776,851.64 C333.608,851.832 333.464,852 333.344,852.192 C333.104,852.528 332.864,852.864 332.672,853.2 C332.648,853.224 332.624,853.272 332.624,853.296 L332.6,853.296 L332.6,853.32 C332.576,853.368 332.552,853.392 332.528,853.44 C332.48,853.536 332.456,853.608 332.408,853.704 C332.336,853.872 332.264,854.016 332.24,854.208 C332.216,854.232 332.216,854.28 332.216,854.328 C332.192,854.352 332.192,854.424 332.192,854.4 L332.192,854.568 C332.192,854.592 332.216,854.64 332.216,854.64 C332.216,854.784 332.48,854.664 332.552,854.592 C332.72,854.496 332.864,854.4 333.008,854.28 L333.056,854.232 C333.08,854.232 333.104,854.208 333.128,854.184 C333.176,854.16 333.2,854.112 333.248,854.088 L333.488,853.848 C333.824,853.512 334.136,853.176 334.448,852.816 C334.712,852.528 334.976,852.216 335.216,851.928 C335.456,851.664 335.72,851.424 335.984,851.16 C336.104,850.944 336.248,850.752 336.512,850.68 C336.68,850.656 336.848,850.68 336.968,850.776 C337.064,850.848 337.16,850.992 337.064,851.112 C336.92,851.256 336.776,851.376 336.632,851.52 C336.56,851.664 336.488,851.784 336.416,851.904 C336.296,852.096 336.2,852.264 336.08,852.456 C335.888,852.768 335.696,853.08 335.504,853.416 C335.48,853.488 335.432,853.536 335.408,853.608 C335.384,853.608 335.384,853.632 335.384,853.656 C335.36,853.68 335.336,853.704 335.336,853.752 C335.264,853.872 335.192,854.016 335.12,854.136 C335,854.352 334.88,854.568 334.784,854.784 C334.448,855.456 334.112,856.176 333.776,856.848 C333.656,857.064 333.56,857.28 333.44,857.496 C334.904,857.136 336.392,856.8 337.88,856.512 C339.272,856.248 340.664,856.008 342.08,855.816 C343.472,855.648 344.888,855.528 346.304,855.456 C347.888,855.36 349.472,855.384 351.032,855.576 C351.728,855.648 352.448,855.72 353.12,855.936 C353.792,856.128 354.824,856.56 354.584,857.424 C354.464,857.784 353.648,857.544 353.744,857.184 C353.768,857.088 353.768,857.016 353.744,856.92 C353.744,856.896 353.744,856.872 353.72,856.848 L353.72,856.824 L353.696,856.824 C353.696,856.8 353.6,856.728 353.648,856.752 L353.624,856.728 L353.6,856.728 C353.528,856.68 353.456,856.632 353.384,856.608 C353.36,856.584 353.336,856.584 353.312,856.584 C353.312,856.56 353.312,856.56 353.288,856.56 C353.24,856.536 353.216,856.536 353.168,856.512 C353.096,856.488 353,856.464 352.928,856.44 C352.064,856.248 351.272,856.128 350.36,856.08 C348.824,855.96 347.288,855.96 345.728,856.08 C345.056,856.128 344.384,856.176 343.712,856.248 C342.992,856.32 342.296,856.416 341.6,856.512 C338.768,856.92 335.912,857.544 333.104,858.24 C333.08,858.264 333.056,858.264 333.032,858.264 C333.032,858.288 333.032,858.288 333.008,858.312 C333.008,858.336 332.984,858.36 332.984,858.36 C332.768,858.792 332.528,859.2 332.312,859.608 C331.856,860.376 331.4,861.168 330.872,861.888 C330.416,862.512 329.912,863.112 329.168,863.4 C328.64,863.616 327.968,863.616 327.488,863.256 C327.08,862.968 326.936,862.464 327.008,861.96 C327.104,861.432 327.368,860.904 327.68,860.472 C327.968,860.04 328.328,859.68 328.76,859.344 C329.6,858.696 330.608,858.288 331.616,857.976 L332.408,857.76 C332.504,857.568 332.624,857.376 332.72,857.184 L332.72,857.16 C332.96,856.656 333.224,856.2 333.752,855.168 C333.944,854.808 334.112,854.448 334.304,854.112 C334.3232,854.0736 334.32704,854.05056 334.340096,854.030592 L334.343741,854.024495 Z M328.352,863.016 C328.376,862.992 328.4,862.992 328.424,862.992 C328.472,862.992 328.544,862.968 328.592,862.944 C328.664,862.92 328.688,862.92 328.76,862.872 C328.904,862.8 329.072,862.704 329.192,862.608 C329.216,862.584 329.24,862.584 329.264,862.56 L329.288,862.56 L329.288,862.536 C329.528,862.344 329.72,862.104 329.912,861.864 C330.44,861.192 330.896,860.472 331.328,859.728 C331.568,859.32 331.784,858.912 332.024,858.504 C332,858.504 331.976,858.504 331.952,858.528 C331.424,858.672 330.992,858.84 330.512,859.08 C329.6,859.536 328.808,860.136 328.256,861.024 C328.016,861.408 327.752,861.96 327.776,862.416 C327.776,862.464 327.776,862.536 327.8,862.584 L327.8,862.632 C327.8,862.656 327.824,862.68 327.824,862.68 C327.848,862.728 327.848,862.776 327.872,862.824 L327.896,862.824 C327.896,862.848 327.92,862.872 327.92,862.872 L327.968,862.92 C327.992,862.944 328.016,862.968 328.064,862.992 L328.112,862.992 L328.136,863.016 L328.352,863.016 Z"
+                        id="Ranking"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <ul class="list">
+              <li
+                class="item"
+                v-for="(article,index) in $store.state.ranking_view"
+                v-bind:key="article.id"
+              >
+                <div class="m-card m-card--square">
+                  <div class="m-card__image">
+                    <div class="m-card__image-number">
+                      <div class="m-card__image-number-inner">{{ index + 1 }}</div>
+                    </div>
+                    <div class="m-card__image-inner">
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag"/>
+                      </router-link>
+                    </div>
+                  </div>
+                  <div class="m-card__text">
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
+                    <div class="m-card-info">
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
+                      <div class="a-counter a-counter--withouttitle">
+                        <!--?xml version="1.0" encoding="UTF-8"?-->
+                        <svg
+                          width="14px"
+                          height="14px"
+                          viewBox="0 0 14 14"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                          <title>Combined Shape</title>
+                          <desc>Created with Sketch.</desc>
+                          <defs></defs>
+                          <g
+                            id="SP"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                            opacity="0.900000036"
+                          >
+                            <g
+                              id="トップ"
+                              transform="translate(-142.000000, -429.000000)"
+                              fill="#AAAAAA"
+                            >
+                              <path
+                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
+                                id="Combined-Shape"
+                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
+                              ></path>
+                            </g>
+                          </g>
+                        </svg>
+                        {{ article.votes_amount }} votes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <router-link
+              to="/ranking"
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >SEE MORE
+              <div class="arrow">
+                <!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </router-link>
+            <div class="m-list-heading green">
+              <h2 class="m-list-heading__jp">最新の相談</h2>
+              <div class="m-list-heading__en">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="48px"
+                  height="20px"
+                  viewBox="0 0 48 20"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title>Latest</title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-308.000000, -1219.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <path
+                        d="M331.152,1234.736 C331.2,1234.856 331.224,1234.976 331.104,1235.072 C331.008,1235.168 330.864,1235.216 330.72,1235.216 C330.552,1235.216 330.36,1235.168 330.216,1235.024 L329.664,1235 C329.496,1234.976 329.304,1234.976 329.112,1234.976 C328.968,1234.952 329.208,1234.976 329.064,1234.952 L328.656,1234.952 C327.936,1234.952 327.216,1234.952 326.496,1235 C323.544,1235.168 320.664,1235.648 317.784,1236.2 C316.32,1236.464 314.856,1236.752 313.416,1237.112 C312.696,1237.304 311.976,1237.496 311.256,1237.736 C310.896,1237.832 310.536,1237.952 310.2,1238.072 L309.648,1238.288 C309.6,1238.288 309.528,1238.312 309.456,1238.336 C309.36,1238.384 309.24,1238.408 309.144,1238.432 L309.096,1238.432 C308.952,1238.456 308.784,1238.408 308.712,1238.288 C308.64,1238.216 308.616,1238.12 308.688,1238.072 C308.76,1237.976 308.856,1237.952 308.952,1237.904 C309.048,1237.856 309.144,1237.832 309.216,1237.784 L309.768,1237.568 L310.848,1237.208 C311.592,1236.968 312.336,1236.728 313.08,1236.536 C314.52,1236.176 315.96,1235.864 317.424,1235.6 C318.888,1235.336 320.328,1235.072 321.792,1234.856 C324.72,1234.4 327.72,1234.136 330.672,1234.448 C330.84,1234.448 331.08,1234.568 331.152,1234.736 Z M314.04,1235.6 L314.016,1235.576 C314.064,1235.648 314.04,1235.624 314.04,1235.6 Z M314.016,1235.288 C314.016,1235.216 314.04,1235.144 314.064,1235.048 C314.112,1234.856 314.208,1234.64 314.28,1234.448 C314.544,1233.848 314.856,1233.296 315.168,1232.72 C315.936,1231.328 316.776,1229.984 317.64,1228.64 C318.264,1227.632 318.936,1226.648 319.584,1225.664 L321.192,1223.384 C321.648,1222.736 322.08,1222.088 322.536,1221.464 L323.232,1220.528 L323.592,1220.024 C323.64,1219.952 323.688,1219.88 323.76,1219.808 L323.76,1219.664 C323.784,1219.496 324.12,1219.52 324.216,1219.544 C324.336,1219.592 324.552,1219.688 324.528,1219.832 C324.528,1219.904 324.552,1219.976 324.528,1220.048 C324.504,1220.12 324.456,1220.168 324.408,1220.24 L324.096,1220.648 L323.496,1221.488 L320.832,1225.304 C320.568,1225.664 320.304,1226.048 320.064,1226.432 C319.296,1227.56 318.552,1228.688 317.832,1229.84 L316.56,1231.928 L315.984,1232.936 L315.864,1233.176 C315.888,1233.104 315.84,1233.224 315.816,1233.248 L315.768,1233.344 C315.672,1233.488 315.6,1233.656 315.528,1233.8 C315.288,1234.256 315.048,1234.736 314.88,1235.216 L314.808,1235.48 C314.808,1235.504 314.808,1235.552 314.784,1235.576 L314.784,1235.6 C314.856,1235.648 314.904,1235.696 314.904,1235.792 C314.904,1235.888 314.832,1235.936 314.736,1235.984 L314.64,1235.984 C314.616,1236.008 314.592,1236.008 314.568,1236.008 L314.568,1235.984 C314.424,1235.984 314.256,1235.888 314.136,1235.792 C314.112,1235.768 314.064,1235.72 314.064,1235.672 L314.04,1235.6 C314.04,1235.576 314.016,1235.528 314.016,1235.528 L314.016,1235.288 Z M330.264,1228.28 C330.384,1228.328 330.576,1228.52 330.456,1228.616 C329.664,1229.312 328.944,1229.96 328.056,1230.536 C327.648,1230.8 327.456,1230.944 327.144,1231.112 C326.184,1231.64 325.848,1231.784 325.488,1231.856 C324.912,1231.928 324.168,1231.856 323.856,1231.328 C323.664,1231.04 323.712,1230.656 323.808,1230.32 C323.592,1230.584 323.352,1230.8 323.088,1231.04 C322.848,1231.256 322.632,1231.544 322.392,1231.712 C322.2,1231.88 321.984,1232 321.72,1232.096 C321.432,1232.216 321.096,1232.216 320.784,1232 C320.568,1231.832 320.472,1231.544 320.472,1231.28 C320.496,1230.68 320.856,1230.2 321.192,1229.744 C321.576,1229.264 322.008,1228.832 322.512,1228.472 C322.872,1228.208 323.28,1228.016 323.784,1227.848 C323.952,1227.8 324.192,1227.752 324.384,1227.776 C324.6,1227.848 324.912,1228.016 324.792,1228.28 C324.72,1228.448 324.528,1228.448 324.384,1228.376 C324.336,1228.376 324.312,1228.352 324.264,1228.328 L324.24,1228.328 C324.216,1228.352 324.168,1228.328 324.144,1228.352 C324.12,1228.352 324,1228.4 324.048,1228.376 C323.664,1228.544 323.304,1228.76 322.968,1229 C322.68,1229.24 322.32,1229.552 322.032,1229.912 C321.744,1230.248 321.432,1230.608 321.288,1231.064 C321.216,1231.256 321.168,1231.472 321.24,1231.664 C321.264,1231.664 321.288,1231.664 321.312,1231.64 C321.576,1231.496 321.768,1231.376 321.96,1231.184 C322.224,1230.968 322.464,1230.728 322.68,1230.488 L324.072,1229 L324.816,1228.328 L324.84,1228.304 C325.008,1228.088 325.224,1227.896 325.368,1227.68 C325.536,1227.488 326.088,1227.656 326.088,1227.92 L326.088,1227.944 C326.088,1227.992 326.016,1228.088 325.968,1228.136 C325.944,1228.184 325.896,1228.208 325.872,1228.256 C325.68,1228.496 325.584,1228.52 325.128,1229.216 C325.056,1229.336 324.96,1229.456 324.912,1229.576 C324.768,1229.864 324.624,1230.176 324.552,1230.44 L324.48,1230.68 C324.312,1231.112 324.672,1231.496 325.248,1231.328 C325.728,1231.184 326.136,1230.944 326.64,1230.68 C327.816,1230.056 328.776,1229.168 329.784,1228.28 C329.952,1228.184 330.144,1228.208 330.264,1228.28 Z M332.616155,1225.064 C333.120108,1225.064 333.648054,1225.088 334.176,1225.088 C334.8,1225.088 335.448,1225.064 336.072,1225.136 C336.216,1225.16 336.408,1225.256 336.48,1225.4 C336.528,1225.52 336.456,1225.664 336.312,1225.688 C335.904,1225.76 335.52,1225.904 335.088,1225.976 C334.896,1226 334.68,1225.952 334.56,1225.808 C334.512,1225.76 334.488,1225.712 334.488,1225.64 L332.28,1225.64 C331.848,1226.432 331.368,1227.248 330.936,1228.04 C330.432,1229.024 329.904,1230.008 329.544,1231.064 C329.472,1231.28 329.4,1231.496 329.376,1231.76 L329.376,1231.784 C329.376,1232.216 329.784,1232.048 330.048,1231.976 C330.384,1231.88 330.72,1231.76 331.104,1231.568 C333.048,1230.632 334.944,1229.384 336.624,1228.064 C336.768,1227.944 337.056,1228.04 337.176,1228.136 C337.272,1228.208 337.392,1228.376 337.272,1228.472 C336.768,1228.928 336.096,1229.336 335.544,1229.744 C334.968,1230.152 334.392,1230.512 333.768,1230.896 C332.904,1231.424 332.04,1231.928 331.104,1232.312 C330.48,1232.552 329.664,1232.816 329.04,1232.48 C328.776,1232.336 328.584,1232.096 328.56,1231.784 C328.536,1231.424 328.68,1231.04 328.8,1230.704 C329.16,1229.648 329.688,1228.664 330.24,1227.68 C330.6,1226.984 330.984,1226.312 331.392,1225.64 L330.936,1225.64 C329.544,1225.64 328.176,1225.64 326.808,1225.664 C325.488,1225.664 324.168,1225.688 322.848,1225.688 C321.864,1225.688 320.88,1225.712 319.872,1225.712 L319.032,1225.712 C318.744,1225.736 318.336,1225.76 318.24,1225.4 C318.216,1225.328 318.288,1225.256 318.336,1225.208 C318.384,1225.16 318.48,1225.16 318.552,1225.16 L318.516,1225.16 L318.6,1225.16 C319.368,1225.136 320.136,1225.136 320.928,1225.136 C321.312,1225.136 321.72,1225.136 326.688,1225.088 L330.792,1225.088 C331.104,1225.088 331.416,1225.088 331.728,1225.064 C331.8,1224.92 331.896,1224.776 331.992,1224.608 C332.04,1224.488 332.112,1224.368 332.184,1224.248 L332.328,1223.984 C332.472,1223.72 332.64,1223.456 332.808,1223.192 L333.384,1222.328 L333.72,1221.896 L333.888,1221.704 C333.96,1221.608 334.032,1221.584 334.176,1221.56 C334.32,1221.56 334.464,1221.608 334.536,1221.704 C334.608,1221.776 334.608,1221.872 334.56,1221.968 C334.128,1222.496 333.792,1223.096 333.432,1223.648 C333.36,1223.792 333.24,1223.936 333.168,1224.056 L333.024,1224.344 C332.904,1224.584 332.784,1224.8 332.64,1225.016 C332.64,1225.03609 332.623179,1225.05619 332.617701,1225.0622 L332.616155,1225.064 Z M318.516,1225.16 L318.504,1225.16 L318.516,1225.16 Z M336.48,1230.272 C336.24,1230.392 335.856,1230.44 335.568,1230.32 L335.52,1230.368 C335.472,1230.464 335.424,1230.56 335.4,1230.68 C335.376,1230.704 335.376,1230.728 335.376,1230.752 C335.376,1230.776 335.352,1230.8 335.352,1230.824 L335.328,1230.92 C335.328,1231.088 335.304,1231.256 335.472,1231.4 C335.52,1231.424 335.568,1231.448 335.616,1231.448 L335.832,1231.448 C336.408,1231.4 336.816,1231.256 337.32,1231.04 C338.496,1230.512 339.576,1229.816 340.872,1228.928 C341.136,1228.736 341.472,1228.544 341.712,1228.352 C341.832,1228.28 342,1228.16 342.168,1228.112 C342.216,1228.088 342.264,1228.088 342.336,1228.088 L342.36,1228.088 C342.336,1228.088 342.432,1228.112 342.432,1228.112 C342.552,1228.136 342.504,1228.136 342.576,1228.184 L342.648,1228.256 C342.672,1228.328 342.672,1228.352 342.648,1228.424 L342.6,1228.496 L342.528,1228.568 L342.216,1228.808 L342.12,1228.88 L341.352,1229.408 C340.656,1229.888 339.84,1230.44 338.928,1230.92 C338.304,1231.256 337.512,1231.64 336.84,1231.808 C336.48,1231.904 336.072,1231.952 335.688,1231.928 C335.232,1231.88 334.776,1231.616 334.632,1231.16 C334.536,1230.728 334.776,1230.224 334.992,1229.864 C335.256,1229.456 335.64,1229 336,1228.664 C336.312,1228.352 336.72,1228.016 337.176,1227.752 C337.56,1227.512 338.184,1227.272 338.64,1227.608 C339.024,1227.92 338.808,1228.4 338.568,1228.736 C338.328,1229.072 338.016,1229.36 337.656,1229.624 C337.32,1229.864 336.888,1230.128 336.48,1230.272 Z M335.808,1229.912 C335.712,1230.056 337.296,1229.456 338.088,1228.256 C338.088,1228.256 338.184,1228.088 338.16,1227.92 C337.944,1227.968 337.728,1228.088 337.488,1228.256 C337.344,1228.352 337.248,1228.448 337.128,1228.544 C337.104,1228.568 337.008,1228.64 337.008,1228.64 C336.624,1228.976 336.24,1229.336 335.928,1229.744 L335.808,1229.912 Z M348.12,1228.28 C348.216,1228.352 348.24,1228.448 348.168,1228.568 C348.024,1228.76 347.856,1228.88 347.64,1229.072 C347.472,1229.216 347.304,1229.384 347.112,1229.528 C346.728,1229.816 346.56,1229.984 346.152,1230.272 C345.576,1230.68 344.976,1231.064 344.328,1231.424 C343.464,1231.88 342.912,1232.144 341.952,1232.288 C341.76,1232.312 341.544,1232.336 341.352,1232.336 L341.28,1232.552 C341.256,1232.648 341.184,1232.744 341.112,1232.816 C341.088,1232.864 341.016,1232.888 340.944,1232.888 C340.776,1232.96 340.584,1232.888 340.44,1232.816 C340.272,1232.72 340.128,1232.576 340.008,1232.432 L339.48,1231.952 C339.336,1231.76 339.168,1231.592 339,1231.4 C338.928,1231.328 338.832,1231.232 338.784,1231.16 C338.736,1231.112 338.688,1231.016 338.664,1230.944 C338.64,1230.92 338.64,1230.896 338.64,1230.872 C338.592,1230.776 338.712,1230.704 338.784,1230.68 C338.976,1230.632 339.288,1230.68 339.36,1230.872 C339.408,1230.92 339.432,1230.968 339.48,1231.016 C339.528,1231.064 339.576,1231.112 339.624,1231.184 C339.648,1231.184 339.696,1231.256 339.696,1231.256 L339.792,1231.328 L340.056,1231.52 L340.152,1231.568 C340.224,1231.616 340.296,1231.64 340.368,1231.664 C340.392,1231.664 340.44,1231.688 340.44,1231.688 L340.536,1231.736 L340.68,1231.76 C340.92,1230.848 341.112,1229.984 341.496,1229.12 C341.88,1228.28 342.48,1227.488 343.392,1227.176 C343.608,1227.128 343.896,1227.224 343.992,1227.416 C344.064,1227.56 343.968,1227.656 343.824,1227.704 L343.848,1227.704 L343.752,1227.752 C343.728,1227.752 343.656,1227.8 343.728,1227.752 L343.56,1227.824 L343.272,1228.016 C343.248,1228.04 343.176,1228.088 343.056,1228.208 L342.84,1228.448 L342.48,1228.976 L342.336,1229.264 L342.192,1229.576 L341.952,1230.248 C341.784,1230.68 341.664,1231.16 341.544,1231.616 C341.52,1231.664 341.52,1231.712 341.496,1231.784 C341.928,1231.784 342.384,1231.616 342.84,1231.472 C343.272,1231.328 343.368,1231.28 343.464,1231.232 C343.968,1230.968 344.112,1230.872 344.544,1230.608 C345.048,1230.296 345.456,1229.984 345.936,1229.624 L346.728,1229 C347.016,1228.784 347.328,1228.448 347.64,1228.232 C347.784,1228.136 347.976,1228.184 348.12,1228.28 Z M336.29223,1225.16 C336.284451,1225.16 336.278771,1225.16 336.264,1225.16 C336.288,1225.16 336.288,1225.16 336.288,1225.16 L336.36,1225.16 C337.128,1225.136 337.896,1225.136 338.688,1225.136 C339.072,1225.136 339.48,1225.136 344.448,1225.088 L348.552,1225.088 C348.864,1225.088 349.176,1225.088 349.488,1225.064 C349.56,1224.92 349.656,1224.776 349.752,1224.608 C349.8,1224.488 349.872,1224.368 349.944,1224.248 L350.088,1223.984 C350.232,1223.72 350.4,1223.456 350.568,1223.192 L351.144,1222.328 L351.48,1221.896 L351.648,1221.704 C351.72,1221.608 351.792,1221.584 351.936,1221.56 C352.08,1221.56 352.224,1221.608 352.296,1221.704 C352.368,1221.776 352.368,1221.872 352.32,1221.968 C351.888,1222.496 351.552,1223.096 351.192,1223.648 C351.12,1223.792 351,1223.936 350.928,1224.056 L350.784,1224.344 C350.664,1224.584 350.544,1224.8 350.4,1225.016 C350.4,1225.04 350.376,1225.064 350.376,1225.064 C350.88,1225.064 351.408,1225.088 351.936,1225.088 C352.56,1225.088 353.208,1225.064 353.832,1225.136 C353.976,1225.16 354.168,1225.256 354.24,1225.4 C354.288,1225.52 354.216,1225.664 354.072,1225.688 C353.664,1225.76 353.28,1225.904 352.848,1225.976 C352.656,1226 352.44,1225.952 352.32,1225.808 C352.272,1225.76 352.248,1225.712 352.248,1225.64 C352.2,1225.64 352.152,1225.64 352.104,1225.64 L350.04,1225.64 C349.608,1226.432 349.128,1227.248 348.696,1228.04 C348.192,1229.024 347.664,1230.008 347.304,1231.064 C347.232,1231.28 347.16,1231.496 347.136,1231.76 C347.136,1231.784 347.136,1231.784 347.136,1231.784 C347.136,1232.216 347.544,1232.048 347.808,1231.976 C348.144,1231.88 348.48,1231.76 348.864,1231.568 C350.808,1230.632 352.704,1229.384 354.384,1228.064 C354.528,1227.944 354.816,1228.04 354.936,1228.136 C355.032,1228.208 355.152,1228.376 355.032,1228.472 C354.528,1228.928 353.856,1229.336 353.304,1229.744 C352.728,1230.152 352.152,1230.512 351.528,1230.896 C350.664,1231.424 349.8,1231.928 348.864,1232.312 C348.24,1232.552 347.424,1232.816 346.8,1232.48 C346.536,1232.336 346.344,1232.096 346.32,1231.784 C346.296,1231.424 346.44,1231.04 346.56,1230.704 C346.92,1229.648 347.448,1228.664 348,1227.68 C348.36,1226.984 348.744,1226.312 349.152,1225.64 L348.696,1225.64 C347.304,1225.64 345.936,1225.64 344.568,1225.664 C343.248,1225.664 341.928,1225.688 340.608,1225.688 C339.624,1225.688 338.64,1225.712 337.632,1225.712 L336.792,1225.712 C336.504,1225.736 336.096,1225.76 336,1225.4 C335.976,1225.328 336.048,1225.256 336.096,1225.208 C336.140632,1225.16337 336.226764,1225.16024 336.296514,1225.16002 L336.29223,1225.16 Z"
+                        id="Latest"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <ul class="list">
+              <li class="item" v-for="article in $store.state.latest" v-bind:key="article.id">
+                <div class="m-card m-card--square">
+                  <div class="m-card__image">
+                    <div class="m-card__image-inner">
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
+                      </router-link>
+                    </div>
+                  </div>
+                  <div class="m-card__text">
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
+                    <div class="m-card-info">
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
+                      <div class="a-counter a-counter--withouttitle">
+                        <!--?xml version="1.0" encoding="UTF-8"?-->
+                        <svg
+                          width="14px"
+                          height="14px"
+                          viewBox="0 0 14 14"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                          <title>Combined Shape</title>
+                          <desc>Created with Sketch.</desc>
+                          <defs></defs>
+                          <g
+                            id="SP"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                            opacity="0.900000036"
+                          >
+                            <g
+                              id="トップ"
+                              transform="translate(-142.000000, -429.000000)"
+                              fill="#AAAAAA"
+                            >
+                              <path
+                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
+                                id="Combined-Shape"
+                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
+                              ></path>
+                            </g>
+                          </g>
+                        </svg>
+                        {{ article.votes_amount }} votes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="m-list-heading pink">
+              <h2 class="m-list-heading__jp">話題の相談</h2>
+              <div class="m-list-heading__en">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="69px"
+                  height="22px"
+                  viewBox="0 0 69 22"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title>Hot Topic</title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-287.000000, -2287.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <path
+                        d="M305.608,2289.144 C305.776,2289.216 305.776,2289.408 305.704,2289.576 L305.704,2289.6 C305.68,2289.624 305.68,2289.648 305.656,2289.672 L305.656,2289.696 C305.32,2290.2 305.008,2290.704 304.696,2291.208 L303.424,2293.176 C302.992,2293.824 302.536,2294.448 302.128,2295.12 C301.84,2295.6 301.528,2296.08 301.216,2296.56 C301.696,2296.56 302.152,2296.536 302.608,2296.512 C302.968,2296.512 303.352,2296.512 303.712,2296.56 C304.024,2296.608 304.768,2296.824 304.48,2297.28 C304.36,2297.448 304.072,2297.376 303.928,2297.304 C303.856,2297.256 303.784,2297.184 303.736,2297.112 C303.616,2297.088 303.472,2297.088 303.352,2297.088 L302.944,2297.088 C302.464,2297.088 301.984,2297.088 301.504,2297.112 C301.288,2297.112 301.072,2297.136 300.856,2297.136 C300.472,2297.784 300.064,2298.408 299.68,2299.056 C298.888,2300.376 298.096,2301.72 297.376,2303.064 L296.632,2304.48 C296.536,2304.696 296.416,2304.912 296.344,2305.152 C296.296,2305.224 296.272,2305.32 296.224,2305.416 C296.224,2305.464 296.2,2305.488 296.2,2305.512 C296.2,2305.92 295.408,2305.8 295.384,2305.44 C295.384,2305.272 295.432,2305.128 295.504,2304.984 C295.576,2304.792 295.648,2304.6 295.744,2304.432 C296.296,2303.28 296.92,2302.176 297.544,2301.048 C298.288,2299.752 299.08,2298.48 299.872,2297.184 C299.224,2297.232 298.552,2297.256 297.88,2297.304 C296.752,2297.376 295.648,2297.448 294.52,2297.52 C294.016,2298.36 293.512,2299.176 293.008,2300.016 L290.728,2303.928 C290.248,2304.768 289.744,2305.608 289.312,2306.472 C289.432,2306.568 289.504,2306.688 289.408,2306.808 C289.192,2307.192 288.952,2307.552 288.64,2307.888 C288.52,2308.032 288.256,2307.984 288.112,2307.912 C287.992,2307.864 287.824,2307.72 287.872,2307.576 C288.544,2306.016 289.408,2304.576 290.248,2303.136 C291.016,2301.84 291.76,2300.52 292.552,2299.2 L293.536,2297.592 C293.464,2297.616 293.392,2297.616 293.296,2297.616 L290.92,2297.76 C290.128,2297.808 289.336,2297.856 288.544,2297.856 C288.376,2297.856 288.184,2297.808 288.112,2297.64 C288.04,2297.496 288.184,2297.4 288.328,2297.4 C289.048,2297.328 289.768,2297.304 290.488,2297.256 C291.64,2297.184 292.768,2297.112 293.896,2297.016 L294.976,2295.216 L297.496,2291.256 L298.72,2289.432 L299.584,2288.064 L299.728,2287.872 C299.776,2287.848 299.8,2287.824 299.848,2287.824 C299.968,2287.608 300.472,2287.776 300.448,2288.016 C300.448,2288.088 300.448,2288.136 300.424,2288.16 C300.4,2288.256 300.352,2288.352 300.304,2288.424 L299.872,2289.144 L299.248,2290.08 L297.952,2292.072 C296.92,2293.68 295.888,2295.312 294.88,2296.944 L299.272,2296.656 C299.608,2296.632 299.92,2296.632 300.232,2296.608 L301.168,2295.096 C301.6,2294.424 302.032,2293.8 302.464,2293.152 C302.896,2292.504 303.328,2291.856 303.736,2291.184 L304.936,2289.312 L304.936,2289.264 C304.96,2289.216 304.984,2289.168 305.032,2289.144 C305.056,2289.144 305.056,2289.12 305.08,2289.12 C305.248,2288.976 305.464,2289.048 305.608,2289.144 Z M310,2296.896 C310.216,2296.752 310.792,2297.04 310.504,2297.28 C310.072,2297.64 309.544,2297.88 309.016,2298.096 C308.488,2298.312 307.936,2298.504 307.36,2298.624 C307.144,2298.648 306.832,2298.72 306.544,2298.744 C306.424,2298.912 306.304,2299.08 306.16,2299.248 C305.92,2299.56 305.68,2299.848 305.416,2300.136 C305.104,2300.472 304.744,2300.808 304.312,2300.976 C303.904,2301.144 303.424,2301.24 303.016,2301 C302.824,2300.88 302.68,2300.712 302.632,2300.472 C302.584,2300.28 302.608,2300.064 302.656,2299.872 C302.8,2299.248 303.136,2298.672 303.496,2298.168 C303.904,2297.64 304.384,2297.16 304.96,2296.824 C305.104,2296.752 305.32,2296.8 305.44,2296.896 C305.632,2297.04 305.536,2297.304 305.32,2297.304 C304.912,2297.64 304.552,2298.024 304.216,2298.456 C303.88,2298.888 303.568,2299.392 303.424,2299.944 C303.4,2300.04 303.352,2300.16 303.352,2300.28 L303.352,2300.472 C303.352,2300.592 303.472,2300.592 303.544,2300.592 C303.592,2300.592 303.616,2300.568 303.664,2300.568 C303.688,2300.568 303.808,2300.496 303.736,2300.544 L303.856,2300.472 C304.24,2300.28 304.504,2300.016 304.816,2299.704 C305.08,2299.392 305.368,2299.08 305.608,2298.744 C305.68,2298.648 305.752,2298.576 305.8,2298.504 L305.728,2298.432 C305.584,2298.264 305.536,2298.048 305.536,2297.832 C305.536,2297.688 305.536,2297.496 305.608,2297.352 C305.68,2297.136 305.848,2296.92 306.04,2296.8 C306.352,2296.632 306.736,2296.728 306.928,2297.016 C307.168,2297.352 307.072,2297.736 306.928,2298.096 L306.928,2298.12 L306.976,2298.12 C307.552,2298 308.104,2297.808 308.656,2297.592 L309.376,2297.256 C309.592,2297.136 309.808,2297.04 310,2296.896 Z M306.304,2297.16 L306.28,2297.16 L306.304,2297.16 Z M312.376155,2294.064 C312.880108,2294.064 313.408054,2294.088 313.936,2294.088 C314.56,2294.088 315.208,2294.064 315.832,2294.136 C315.976,2294.16 316.168,2294.256 316.24,2294.4 C316.288,2294.52 316.216,2294.664 316.072,2294.688 C315.664,2294.76 315.28,2294.904 314.848,2294.976 C314.656,2295 314.44,2294.952 314.32,2294.808 C314.272,2294.76 314.248,2294.712 314.248,2294.64 L312.04,2294.64 C311.608,2295.432 311.128,2296.248 310.696,2297.04 C310.192,2298.024 309.664,2299.008 309.304,2300.064 C309.232,2300.28 309.16,2300.496 309.136,2300.76 L309.136,2300.784 C309.136,2301.216 309.544,2301.048 309.808,2300.976 C310.144,2300.88 310.48,2300.76 310.864,2300.568 C312.808,2299.632 314.704,2298.384 316.384,2297.064 C316.528,2296.944 316.816,2297.04 316.936,2297.136 C317.032,2297.208 317.152,2297.376 317.032,2297.472 C316.528,2297.928 315.856,2298.336 315.304,2298.744 C314.728,2299.152 314.152,2299.512 313.528,2299.896 C312.664,2300.424 311.8,2300.928 310.864,2301.312 C310.24,2301.552 309.424,2301.816 308.8,2301.48 C308.536,2301.336 308.344,2301.096 308.32,2300.784 C308.296,2300.424 308.44,2300.04 308.56,2299.704 C308.92,2298.648 309.448,2297.664 310,2296.68 C310.36,2295.984 310.744,2295.312 311.152,2294.64 L310.696,2294.64 C309.304,2294.64 307.936,2294.64 306.568,2294.664 C305.248,2294.664 303.928,2294.688 302.608,2294.688 C301.624,2294.688 300.64,2294.712 299.632,2294.712 L298.792,2294.712 C298.504,2294.736 298.096,2294.76 298,2294.4 C297.976,2294.328 298.048,2294.256 298.096,2294.208 C298.144,2294.16 298.24,2294.16 298.312,2294.16 L298.276,2294.16 L298.36,2294.16 C299.128,2294.136 299.896,2294.136 300.688,2294.136 C301.072,2294.136 301.48,2294.136 306.448,2294.088 L310.552,2294.088 C310.864,2294.088 311.176,2294.088 311.488,2294.064 C311.56,2293.92 311.656,2293.776 311.752,2293.608 C311.8,2293.488 311.872,2293.368 311.944,2293.248 L312.088,2292.984 C312.232,2292.72 312.4,2292.456 312.568,2292.192 L313.144,2291.328 L313.48,2290.896 L313.648,2290.704 C313.72,2290.608 313.792,2290.584 313.936,2290.56 C314.08,2290.56 314.224,2290.608 314.296,2290.704 C314.368,2290.776 314.368,2290.872 314.32,2290.968 C313.888,2291.496 313.552,2292.096 313.192,2292.648 C313.12,2292.792 313,2292.936 312.928,2293.056 L312.784,2293.344 C312.664,2293.584 312.544,2293.8 312.4,2294.016 C312.4,2294.03609 312.383179,2294.05619 312.377701,2294.0622 L312.376155,2294.064 Z M298.276,2294.16 L298.264,2294.16 L298.276,2294.16 Z M346.24,2289.072 C346.288,2289.192 346.264,2289.312 346.144,2289.36 C345.952,2289.504 345.712,2289.552 345.472,2289.624 C345.304,2289.696 345.04,2289.6 344.92,2289.456 C344.872,2289.408 344.848,2289.36 344.848,2289.312 C344.608,2289.288 344.368,2289.264 344.128,2289.264 C343.984,2289.264 343.816,2289.264 343.672,2289.24 L343.312,2289.24 C343.024,2289.24 342.736,2289.216 342.448,2289.216 C341.152,2289.216 339.88,2289.288 338.584,2289.336 C337.096,2289.408 335.632,2289.504 334.144,2289.624 C332.656,2289.744 331.168,2289.864 329.68,2290.032 C328.144,2290.176 326.632,2290.368 325.096,2290.536 C324.352,2290.608 323.584,2290.656 322.84,2290.776 C322.24,2290.848 321.616,2290.968 320.992,2290.968 C320.776,2290.944 320.512,2290.872 320.392,2290.656 C320.296,2290.464 320.488,2290.32 320.68,2290.32 C321.208,2290.344 321.76,2290.248 322.288,2290.176 C322.888,2290.08 323.512,2290.032 324.112,2289.96 C325.456,2289.84 326.776,2289.672 328.12,2289.504 C331.072,2289.168 334.048,2288.928 337.024,2288.76 C338.56,2288.664 340.096,2288.592 341.632,2288.592 C343,2288.568 344.392,2288.592 345.76,2288.784 C345.952,2288.808 346.168,2288.904 346.24,2289.072 Z M331.612,2290.692 L331.624,2290.68 L331.612,2290.692 Z M331.612,2290.692 L331.6,2290.704 C331.624,2290.632 331.72,2290.608 331.792,2290.608 C331.984,2290.608 332.176,2290.704 332.248,2290.896 C332.32,2291.04 332.224,2291.208 332.176,2291.352 C332.056,2291.64 331.888,2291.904 331.72,2292.168 C331.576,2292.408 331.384,2292.648 331.216,2292.888 C331.048,2293.176 330.856,2293.464 330.664,2293.728 C329.944,2294.856 329.224,2295.96 328.528,2297.088 L327.328,2299.08 L326.128,2301.048 C325.384,2302.344 324.688,2303.688 324.16,2305.104 C324.064,2305.344 323.656,2305.272 323.488,2305.128 C323.344,2305.008 323.224,2304.864 323.248,2304.648 C323.272,2304.528 323.368,2304.432 323.392,2304.36 C323.44,2304.264 323.512,2304.216 323.608,2304.216 C324.448,2302.2 325.6,2300.28 326.752,2298.432 L327.976,2296.44 C328.384,2295.768 328.816,2295.096 329.248,2294.448 L330.544,2292.456 C330.736,2292.144 330.952,2291.88 331.144,2291.568 C331.216,2291.424 331.312,2291.28 331.384,2291.112 L331.48,2290.872 C331.504,2290.824 331.504,2290.776 331.552,2290.752 L331.612,2290.692 Z M337.264,2296.896 C337.48,2296.752 338.056,2297.04 337.768,2297.28 C337.336,2297.64 336.808,2297.88 336.28,2298.096 C335.752,2298.312 335.2,2298.504 334.624,2298.624 C334.408,2298.648 334.096,2298.72 333.808,2298.744 C333.688,2298.912 333.568,2299.08 333.424,2299.248 C333.184,2299.56 332.944,2299.848 332.68,2300.136 C332.368,2300.472 332.008,2300.808 331.576,2300.976 C331.168,2301.144 330.688,2301.24 330.28,2301 C330.088,2300.88 329.944,2300.712 329.896,2300.472 C329.848,2300.28 329.872,2300.064 329.92,2299.872 C330.064,2299.248 330.4,2298.672 330.76,2298.168 C331.168,2297.64 331.648,2297.16 332.224,2296.824 C332.368,2296.752 332.584,2296.8 332.704,2296.896 C332.896,2297.04 332.8,2297.304 332.584,2297.304 C332.176,2297.64 331.816,2298.024 331.48,2298.456 C331.144,2298.888 330.832,2299.392 330.688,2299.944 C330.664,2300.04 330.616,2300.16 330.616,2300.28 L330.616,2300.472 C330.616,2300.592 330.736,2300.592 330.808,2300.592 C330.856,2300.592 330.88,2300.568 330.928,2300.568 C330.952,2300.568 331.072,2300.496 331,2300.544 L331.12,2300.472 C331.504,2300.28 331.768,2300.016 332.08,2299.704 C332.344,2299.392 332.632,2299.08 332.872,2298.744 C332.944,2298.648 333.016,2298.576 333.064,2298.504 L332.992,2298.432 C332.848,2298.264 332.8,2298.048 332.8,2297.832 C332.8,2297.688 332.8,2297.496 332.872,2297.352 C332.944,2297.136 333.112,2296.92 333.304,2296.8 C333.616,2296.632 334,2296.728 334.192,2297.016 C334.432,2297.352 334.336,2297.736 334.192,2298.096 L334.192,2298.12 L334.24,2298.12 C334.816,2298 335.368,2297.808 335.92,2297.592 L336.64,2297.256 C336.856,2297.136 337.072,2297.04 337.264,2296.896 Z M333.568,2297.16 L333.544,2297.16 L333.568,2297.16 Z M345.208,2297.136 C345.304,2297.184 345.472,2297.352 345.352,2297.472 C344.632,2298.192 343.84,2298.816 343,2299.416 C342.184,2299.992 341.296,2300.544 340.384,2300.928 C339.592,2301.288 338.68,2301.6 337.816,2301.432 C337.672,2301.408 337.504,2301.336 337.432,2301.192 C337.384,2301.096 337.408,2301.024 337.504,2300.952 C337.528,2300.952 337.552,2300.928 337.576,2300.904 C337.576,2300.904 337.6,2300.904 337.6,2300.88 C337.6,2300.88 337.624,2300.88 337.624,2300.856 L337.84,2300.664 L338.392,2300.136 C338.824,2299.704 339.232,2299.248 339.616,2298.744 L339.928,2298.312 L340.072,2298.072 C340.072,2298.048 340.096,2298.048 340.096,2298.024 L340.144,2297.928 C340.192,2297.808 340.24,2297.688 340.264,2297.568 C340.288,2297.544 340.288,2297.496 340.288,2297.472 L340.288,2297.4 C340.288,2297.376 340.264,2297.352 340.216,2297.352 L340.096,2297.352 C340.048,2297.352 340.024,2297.352 340,2297.376 L339.976,2297.376 C339.928,2297.376 339.88,2297.376 339.832,2297.4 C339.784,2297.4 339.736,2297.424 339.688,2297.448 C339.664,2297.448 339.64,2297.448 339.616,2297.472 C339.4,2297.568 339.208,2297.664 339.04,2297.808 C338.824,2297.952 338.704,2298.024 338.536,2298.216 C338.368,2298.36 338.2,2298.528 338.056,2298.696 C337.792,2299.008 337.528,2299.32 337.312,2299.656 C337.192,2299.824 337.072,2299.992 336.976,2300.16 L336.208,2301.312 C335.728,2302.56 335.224,2303.784 334.768,2305.008 C334.528,2305.608 334.336,2306.208 334.048,2306.784 C333.784,2307.336 333.472,2307.864 333.016,2308.272 C332.824,2308.464 332.44,2308.368 332.32,2308.128 C332.128,2307.696 332.176,2307.192 332.272,2306.76 C332.392,2306.232 332.584,2305.728 332.824,2305.248 C333.04,2304.768 333.328,2304.312 333.592,2303.856 C333.976,2303.256 334.36,2302.656 334.768,2302.056 L335.608,2300.808 L335.656,2300.664 C335.896,2300.016 336.184,2299.368 336.424,2298.72 C336.64,2298.168 336.856,2297.568 336.952,2296.992 C336.904,2296.968 336.88,2296.92 336.856,2296.872 C336.832,2296.848 336.832,2296.776 336.856,2296.752 L336.904,2296.704 L336.904,2296.728 C336.928,2296.68 336.976,2296.656 337.024,2296.632 C337.048,2296.632 337.096,2296.608 337.12,2296.608 C337.24,2296.584 337.336,2296.608 337.456,2296.656 C337.504,2296.68 337.624,2296.776 337.624,2296.872 C337.6,2297.4 337.456,2297.904 337.312,2298.408 C337.528,2298.144 337.768,2297.928 338.008,2297.712 C338.368,2297.4 338.752,2297.112 339.208,2296.944 C339.592,2296.824 340.096,2296.752 340.48,2296.896 C340.768,2297.016 341.056,2297.232 341.056,2297.568 C341.056,2297.856 340.912,2298.12 340.768,2298.384 C340.408,2299.032 339.88,2299.608 339.376,2300.16 C339.16,2300.424 338.896,2300.664 338.656,2300.904 C338.776,2300.88 338.896,2300.856 338.992,2300.808 C339.256,2300.736 339.52,2300.64 339.76,2300.544 C339.712,2300.568 339.808,2300.52 339.832,2300.52 C339.856,2300.496 339.904,2300.472 339.928,2300.472 L340.504,2300.184 C341.392,2299.728 342.232,2299.176 343.048,2298.552 C343.24,2298.432 343.432,2298.288 343.6,2298.144 L343.864,2297.928 L344.056,2297.784 C344.296,2297.592 344.536,2297.376 344.752,2297.16 C344.872,2297.04 345.064,2297.064 345.208,2297.136 Z M333.976,2304.96 L334.24,2304.312 C334.048,2304.624 333.88,2304.912 333.712,2305.224 C333.448,2305.728 333.208,2306.256 333.064,2306.784 C333.04,2306.904 333.016,2307.048 332.992,2307.192 C333.424,2306.496 333.688,2305.704 333.976,2304.96 Z M345.904,2297.016 L345.76,2297.16 L345.664,2297.232 L345.4,2297.472 C344.992,2297.88 344.608,2298.312 344.296,2298.792 C344.104,2299.056 343.96,2299.32 343.864,2299.536 C343.72,2299.8 343.576,2300.088 343.504,2300.376 C343.48,2300.472 343.456,2300.568 343.456,2300.64 C343.48,2300.712 343.552,2300.712 343.624,2300.688 L343.912,2300.616 C344.296,2300.52 344.68,2300.328 345.064,2300.184 L345.544,2299.944 C345.76,2299.848 346.12,2299.656 346.432,2299.464 C346.504,2299.416 346.624,2299.368 346.672,2299.32 L348.064,2298.456 C348.304,2298.264 348.616,2298.096 348.88,2297.928 C349.312,2297.616 349.6,2297.448 349.888,2297.304 C350.056,2297.256 350.584,2297.472 350.368,2297.712 C350.224,2297.88 349.984,2298.024 349.72,2298.192 C349.144,2298.576 348.976,2298.648 348.904,2298.72 C348.112,2299.248 347.32,2299.752 346.264,2300.304 C345.976,2300.448 345.544,2300.664 345.232,2300.784 C344.68,2301.024 343.192,2301.672 342.76,2300.832 C342.688,2300.664 342.688,2300.448 342.736,2300.28 C342.808,2300.016 342.928,2299.704 343.072,2299.464 C343.36,2298.912 343.696,2298.36 344.032,2297.928 C344.2,2297.712 344.392,2297.472 344.608,2297.28 L344.968,2296.944 L345.4,2296.632 C345.496,2296.584 345.664,2296.584 345.784,2296.656 L345.76,2296.656 C345.832,2296.704 345.928,2296.824 345.904,2297.016 Z M346.048,2295.936 C345.928,2295.912 345.784,2295.768 345.784,2295.624 C345.808,2295.552 345.88,2295.48 345.976,2295.408 C346,2295.408 346.072,2295.36 346.096,2295.336 L346.216,2295.264 L346.408,2295.12 L346.6,2294.952 C346.744,2294.832 347.032,2294.928 347.128,2295.024 C347.2,2295.072 347.344,2295.24 347.224,2295.36 L346.984,2295.552 L346.768,2295.72 C346.552,2295.864 346.336,2296.008 346.048,2295.936 Z M351.64,2297.304 C351.544,2297.448 351.304,2297.376 351.208,2297.256 C351.16,2297.304 351.064,2297.328 351.016,2297.376 C350.872,2297.472 350.632,2297.616 350.488,2297.76 L350.296,2297.904 C350.104,2298.096 350.032,2298.168 349.84,2298.384 C349.552,2298.696 349.288,2299.008 349.048,2299.344 C348.688,2299.872 348.616,2299.896 348.52,2300.184 C348.472,2300.28 348.448,2300.424 348.448,2300.592 C348.448,2300.664 348.4,2300.856 349.168,2300.616 C349.6,2300.472 349.696,2300.4 349.768,2300.376 L350.32,2300.136 L350.608,2299.992 C351.064,2299.728 351.496,2299.488 351.928,2299.2 L353.176,2298.336 C353.176,2298.336 353.272,2298.264 353.296,2298.24 L353.968,2297.712 C354.28,2297.424 354.352,2297.424 354.568,2297.208 C354.664,2297.16 354.808,2297.16 354.904,2297.208 C355,2297.28 355.12,2297.4 355.144,2297.496 C355.096,2297.592 354.976,2297.76 354.88,2297.856 L354.544,2298.168 L354.256,2298.384 C354.04,2298.528 353.848,2298.696 353.632,2298.84 L353.056,2299.272 C352.072,2299.944 350.944,2300.64 349.672,2301.072 C349.264,2301.216 348.736,2301.288 348.304,2301.144 C347.968,2301.024 347.608,2300.784 347.632,2300.376 C347.656,2300.088 347.872,2299.704 348.016,2299.44 C348.448,2298.768 349,2298.192 349.552,2297.64 C349.96,2297.232 350.728,2296.488 351.4,2296.704 C351.544,2296.752 351.712,2296.848 351.736,2297.016 C351.76,2297.112 351.712,2297.208 351.64,2297.304 Z"
+                        id="Hot-Topic"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <ul class="list">
+              <li class="item" v-for="article in $store.state.hot_topic" v-bind:key="article.id">
+                <div class="m-card m-card--square">
+                  <div class="m-card__image">
+                    <div class="m-card__image-inner">
+                      <router-link :to="{ name: 'article', params: { id: article.id }}">
+                        <IconEyeCatching :age="article.user_age" :sex="article.user_sex" :tag="article.img_tag" />
+                      </router-link>
+                    </div>
+                  </div>
+                  <div class="m-card__text">
+                    <router-link :to="{ name: 'article', params: { id: article.id }}">
+                      <h2 class="m-card__title">{{ article.content }}</h2>
+                    </router-link>
+                    <div class="m-card-info">
+                      <IconSex
+                        :to="{ name: 'article', params: { id: article.id }}"
+                        :user_age="article.user_age"
+                        :sex="article.user_sex"
+                      />
+                      <div class="a-counter a-counter--withouttitle">
+                        <!--?xml version="1.0" encoding="UTF-8"?-->
+                        <svg
+                          width="14px"
+                          height="14px"
+                          viewBox="0 0 14 14"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                          <title>Combined Shape</title>
+                          <desc>Created with Sketch.</desc>
+                          <defs></defs>
+                          <g
+                            id="SP"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                            opacity="0.900000036"
+                          >
+                            <g
+                              id="トップ"
+                              transform="translate(-142.000000, -429.000000)"
+                              fill="#AAAAAA"
+                            >
+                              <path
+                                d="M150.811787,431.439026 C151.248604,430.995794 151.956748,430.995794 152.393565,431.439026 L156.050001,435.149154 C156.125469,435.225731 156.125469,435.349529 156.050001,435.426106 L152.332651,439.198043 C152.257363,439.274437 152.135176,439.274437 152.059708,439.198043 L148.403452,435.487914 C147.966635,435.044682 147.966635,434.325957 148.403452,433.882726 L150.811787,431.439026 Z M141.84255,432.040843 C142.279367,431.597612 142.98769,431.597612 143.424328,432.040843 L151.268891,440.000418 C151.344179,440.076994 151.344179,440.200975 151.268891,440.277369 L147.551541,444.049306 C147.476253,444.1257 147.353886,444.1257 147.278598,444.049306 L139.434215,436.089732 C138.997397,435.646318 138.997397,434.927775 139.434215,434.484544 L141.84255,432.040843 Z"
+                                id="Combined-Shape"
+                                transform="translate(147.606602, 437.606602) rotate(-315.000000) translate(-147.606602, -437.606602) "
+                              ></path>
+                            </g>
+                          </g>
+                        </svg>
+                        {{ article.votes_amount }} votes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import IconSex from "../icon/icon-sex.vue";
+import IconEyeCatching from "../icon/icon-eye-catching.vue";
+import PageTitle from "../organism/page-title.vue";
+import axios from "axios";
+
+export default {
+  name: "PageCategoryList",
+  props: {},
+  components: {
+    PageTitle,
+    IconSex,
+    IconEyeCatching
+  },
+  created: function() {
+    if(!this.$store.state.latest && !this.$store.state.hot_topic && !this.$store.state.ranking_view){
+      this.$store.commit("setLoading", true);
+      axios
+        .all([
+          axios.get(
+            `${ this.API_URL }/api/v1/ranking_view?limit=3`
+          ),
+          axios.get(
+            `${ this.API_URL }/api/v1/latest?limit=3`
+          ),
+          axios.get(
+            `${ this.API_URL }/api/v1/hot_topics?limit=3`
+          )
+        ])
+        .then(
+          axios.spread((api1Result, api2Result, api3Result) => {
+            this.$store.commit("setRankingView", api1Result.data.articles);
+            this.$store.commit("setLatest", api2Result.data.articles);
+            this.$store.commit("setHotTopic", api3Result.data.articles);
+          })
+        )
+        .finally(() => {
+          this.$store.commit("setLoading", false);
+        });
+    }
+  },
+  mounted: function() {
+    global.$("body").addClass("p-category-list");
+    this.$emit('updateHead');
+  },
+  destroyed: function() {
+    global.$("body").removeClass("p-category-list");
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "カデゴリー",
+        separator: "|",
+        complement: "Loverage"
+      };
+    },
+    meta: function(){[
+      { name: 'description', content: '投稿者のカテゴリーから相談を検索することができます。カテゴリーは次の組み合わせを指定できます。性別（男性・女性・どちらでもない）/ 年代（１０代前半・１０代後半・２０代前半・２０代後半・３０代前半・３０代後半・４０代前半・４０代後半・５０代前半・５０代後半・６０代前半・６０代後半）' },
+      { property: 'og:title', content: 'カデゴリー|Loverage' },
+      { property: 'og:description', content: '投稿者のカテゴリーから相談を検索することができます。カテゴリーは次の組み合わせを指定できます。性別（男性・女性・どちらでもない）/ 年代（１０代前半・１０代後半・２０代前半・２０代後半・３０代前半・３０代後半・４０代前半・４０代後半・５０代前半・５０代後半・６０代前半・６０代後半）' },
+      { property: 'og:type', content: 'website' }
+    ]}
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped></style>
