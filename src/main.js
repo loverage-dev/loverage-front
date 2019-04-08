@@ -166,10 +166,12 @@ Vue.use(VueHead, {
   separator: ' | '
 })
 // -----  Google Analytics ------------
-Vue.use(VueAnalytics, {
-  id: 'UA-137031526-1',
-  router
-})
+if(process.env.NODE_ENV === 'production'){
+  Vue.use(VueAnalytics, {
+    id: 'UA-137031526-1',
+    router
+  })
+}
 
 // -----  Vue -------------
 Vue.config.productionTip = false

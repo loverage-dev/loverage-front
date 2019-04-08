@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve:local": "vue-cli-service serve  --mode local",
+    "serve:dev": "vue-cli-service serve --mode development",
+    "serve:stg": "vue-cli-service serve --mode staging",
+    "serve:prod": "vue-cli-service serve --mode production",
+    "build:local": "vue-cli-service build  --mode local",
+    "build:dev": "vue-cli-service build --mode development",
+    "build:stg": "vue-cli-service build --mode staging",
+    "build:prod": "vue-cli-service build --mode staging",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
