@@ -120,8 +120,6 @@
             <br>メールアドレス：info@loverage.jp
           </li>
         </ol>
-
-        <!-- <p class="t-doc__date">【制定：平成30年11月28日】</p> -->
       </div>
     </div>
   </div>
