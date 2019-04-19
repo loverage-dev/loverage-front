@@ -25,6 +25,12 @@ export default new Router({
                 import("@/components/page/ranking.vue")
         },
         {
+            path: '/latest',
+            name: 'latest',
+            component: () =>
+                import("@/components/page/latest.vue")
+        },
+        {
             path: '/privacy-policy',
             name: 'privacy-policy',
             component: () =>
