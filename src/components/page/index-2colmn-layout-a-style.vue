@@ -26,7 +26,7 @@
                   </router-link>
                   <div class="m-card-info">
                     <IconSex
-                      :to="{ name: 'article', params: { id: article.id }}"
+                      :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                       :user_age="article.user_age"
                       :sex="article.user_sex"
                     />
@@ -187,7 +187,7 @@
                       </router-link>
                       <div class="m-card-info">
                         <IconSex
-                          :to="{ name: 'article', params: { id: article.id }}"
+                          :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                           :user_age="article.user_age"
                           :sex="article.user_sex"
                         />
@@ -320,7 +320,7 @@
                       </router-link>
                       <div class="m-card-info">
                         <IconSex
-                          :to="{ name: 'article', params: { id: article.id }}"
+                          :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                           :user_age="article.user_age"
                           :sex="article.user_sex"
                         />
