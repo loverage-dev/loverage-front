@@ -235,7 +235,7 @@
               </ul>
               <router-link
                 to="/ranking"
-                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
               >SEE MORE
                 <router-link to="/ranking">
                   <div class="arrow">
@@ -368,7 +368,7 @@
               </ul>
               <router-link
                 to="/latest"
-                class="a-btn a-btn--medium a-btn--right-arrow a-btn--blue-arrow"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
               >SEE MORE
                 <router-link to="/latest">
                   <div class="arrow">
