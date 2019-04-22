@@ -52,7 +52,7 @@
                     </router-link>
                     <div class="m-card-info">
                       <IconSex
-                        :to="{ name: 'article', params: { id: article.id }}"
+                        :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
                       />
@@ -266,7 +266,7 @@
                     </router-link>
                     <div class="m-card-info">
                       <IconSex
-                        :to="{ name: 'article', params: { id: article.id }}"
+                        :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
                       />
@@ -396,7 +396,7 @@
                     </router-link>
                     <div class="m-card-info">
                       <IconSex
-                        :to="{ name: 'article', params: { id: article.id }}"
+                        :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
                       />
@@ -708,6 +708,7 @@ export default {
       this.pageNum += 1;
     },
     fetchArticles: function() {
+      this.title = "";
       if (this.$route.query) {
         let url =
           `${ this.API_URL }/api/v1/articles?`;

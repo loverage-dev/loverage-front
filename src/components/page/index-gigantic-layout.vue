@@ -44,7 +44,7 @@
         >{{ $store.state.top_feature_special.content }}</router-link>
         <div class="m-card-info">
           <IconSex
-            :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}"
+          :to="{ name: 'category-detail', query: {  sex:  $store.state.top_feature_special.user_sex, age:  $store.state.top_feature_special.user_age  }}"
             :user_age="$store.state.top_feature_special.user_age"
             :sex="$store.state.top_feature_special.user_sex"
           />

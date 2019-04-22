@@ -4,7 +4,7 @@
       <h1 class="o-pagetitle__title">{{article.post.title}}</h1>
       <div class="m-card-info">
         <IconSex
-          :to="{ name: 'article', params: { id: article.post.id }}"
+          :to="{ name: 'category-detail', query: {  sex:  article.post.user_sex, age:  article.post.user_age  }}"
           :user_age="article.post.user_age"
           :sex="article.post.user_sex"
         />

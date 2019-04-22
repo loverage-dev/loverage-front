@@ -49,7 +49,7 @@
             </router-link>
             <div class="m-card-info">
               <IconSex
-                :to="{ name: 'article', params: { id: $store.state.featured[0].id }}"
+                :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[0].user_sex, age:  $store.state.featured[0].user_age  }}"
                 :user_age="$store.state.featured[0].user_age"
                 :sex="$store.state.featured[0].user_sex"
               />
@@ -160,7 +160,7 @@
               </router-link>
               <div class="m-card-info">
                 <IconSex
-                  :to="{ name: 'article', params: { id: $store.state.featured[1].id }}"
+                  :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[1].user_sex, age:  $store.state.featured[1].user_age  }}"
                   :user_age="$store.state.featured[1].user_age"
                   :sex="$store.state.featured[1].user_sex"
                 />
@@ -269,7 +269,7 @@
               </router-link>
               <div class="m-card-info">
                 <IconSex
-                  :to="{ name: 'article', params: { id: $store.state.featured[2].id }}"
+                  :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[2].user_sex, age:  $store.state.featured[2].user_age  }}"
                   :user_age="$store.state.featured[2].user_age"
                   :sex="$store.state.featured[2].user_sex"
                 />
@@ -379,7 +379,7 @@
               </router-link>
               <div class="m-card-info">
                 <IconSex
-                  :to="{ name: 'article', params: { id: $store.state.featured[3].id }}"
+                  :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[3].user_sex, age:  $store.state.featured[3].user_age  }}"
                   :user_age="$store.state.featured[3].user_age"
                   :sex="$store.state.featured[3].user_sex"
                 />
@@ -487,7 +487,7 @@
               </router-link>
               <div class="m-card-info">
                 <IconSex
-                  :to="{ name: 'article', params: { id: $store.state.featured[4].id }}"
+                  :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[4].user_sex, age:  $store.state.featured[4].user_age  }}"
                   :user_age="$store.state.featured[4].user_age"
                   :sex="$store.state.featured[4].user_sex"
                 />
