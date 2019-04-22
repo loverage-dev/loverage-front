@@ -99,7 +99,7 @@
           </li>
           <li class="item item3">
             <router-link to="/latest">
-              最新の記事
+              最新の相談
             </router-link>
           </li>
           <!-- <li class="item item5"><a href="">まとめ</a></li> -->
