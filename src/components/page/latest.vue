@@ -1,6 +1,6 @@
 <template>
   <div class="t-contents t-search-result" v-if="!$store.getters.loading">
-    <PageTitle pageTitle="最新の記事" pageDescription="最近投稿された記事をチェック"/>
+    <PageTitle pageTitle="最新の相談" pageDescription="最近投稿された相談をチェック"/>
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
@@ -595,7 +595,7 @@ export default {
   head: {
     title: function() {
       return {
-        inner: "最新の記事",
+        inner: "最新の相談",
         separator: "|",
         complement: "Loverage"
       };
@@ -603,7 +603,7 @@ export default {
     meta: function(){
      return [
         { name: 'description', content: '' },
-        { property: 'og:title', content: '最新の記事|Loverage' },
+        { property: 'og:title', content: '最新の相談|Loverage' },
         { property: 'og:description', content: '' },
         { property: 'og:type', content: 'website' }
       ]
