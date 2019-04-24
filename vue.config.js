@@ -3,6 +3,10 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const productionGzipExtensions = ['js', 'css']
 const isProduction = process.env.NODE_ENV !== 'local'
 
+if (!process.env.VUE_APP_API_ORIGIN) {
+  process.env.VUE_APP_API_ORIGIN = "https://limitless-crag-46636.herokuapp.com";
+}
+
 module.exports = {
   configureWebpack: config => {
     if (isProduction) {
