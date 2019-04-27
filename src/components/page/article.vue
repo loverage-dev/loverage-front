@@ -1218,11 +1218,17 @@ export default {
     },
     meta: function() {
       return [
+        { property: "", content: this.title + " |Loverage" },
+        { name: "description", content: this.description },
+        { property: "og:site_neme", content: "Loverage" },
+        { property: "og:type", content: "website" },
         { property: "og:title", content: this.title + " |Loverage" },
         { property: "og:description", content: this.description },
-        { name: "description", content: this.description }
-        // { name: 'keywords', content: this.article.post.content },
-        // ...
+        { property: "og:url", content: location.href },
+        { property: "og:image", content: location.origin + "/ogp.png" },
+        { property: "fb:app_id", content: "330308701012309" },
+        { property: "twitter:card", content: "summary" },
+        { property: "twitter:site", content: "@Loverage_jp" }
       ];
     }
   }
