@@ -34,6 +34,10 @@
 
       .o-card-list {
         padding-top: 60px;
+
+        &:first-child {
+          padding-top: 0px;
+        }
       }
     }
 
