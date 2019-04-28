@@ -23,11 +23,11 @@
                 v-bind:class="{ has_error: $store.getters.error_content}"
               ></textarea>
                 <div class="image-post-wrapper">
-                <ResizableImageInput
-                 class="image-post"
-                 name="image"
-                 :draw-image-args="drawImageArgs"
-                  @resized="uploadProfileImage" />
+                  <ResizableImageInput
+                   class="image-post"
+                   name="image"
+                   :draw-image-args="drawImageArgs"
+                    @resized="uploadProfileImage" />
                 </div>
             </div>
             <!-- <input
