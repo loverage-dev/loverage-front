@@ -35,6 +35,10 @@
       .o-card-list {
         padding-top: 60px;
       }
+
+      *:first-child.o-card-list {
+        padding-top: 0px;
+      }
     }
 
     &--2 {
