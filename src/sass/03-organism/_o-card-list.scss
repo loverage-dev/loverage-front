@@ -190,6 +190,12 @@
     }
   }
 
+  &--row:first-child {
+    .list {
+      margin: 0px 0;
+    }
+  }
+
   &--slide {
     @include inner;
     padding-top: 34px;
