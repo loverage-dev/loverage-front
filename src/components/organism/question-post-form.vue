@@ -7,9 +7,9 @@
       <p class="o-question-post-bottom-area__desc">2択で回答可能な
         <br class="u-sp-tablet-d">恋愛に関する相談を投稿してみましょう。
       </p>
-      <form action 
-        class="m-question-post-form" 
-        v-on:submit.prevent="onSubmit" 
+      <form action
+        class="m-question-post-form"
+        v-on:submit.prevent="onSubmit"
         v-on:change="validate">
         <div class="m-question-post-form__block">
           <div class="m-contents-textarea">
@@ -22,11 +22,13 @@
                 v-on:input="updateInputValue($event, 'content')"
                 v-bind:class="{ has_error: $store.getters.error_content}"
               ></textarea>
-                <ResizableImageInput
-                 class="image-post"
-                 name="image"
-                 :draw-image-args="drawImageArgs"
-                  @resized="uploadProfileImage" />
+                <div class="image-post-wrapper">
+                  <ResizableImageInput
+                   class="image-post"
+                   name="image"
+                   :draw-image-args="drawImageArgs"
+                    @resized="uploadProfileImage" />
+                </div>
             </div>
             <!-- <input
               v-model="$store.state.post_input.tag_list"

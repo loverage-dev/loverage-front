@@ -165,11 +165,13 @@
                   v-on:input="updateInputValue($event, 'content')"
                   v-bind:class="{ has_error: $store.getters.error_content}"
                 ></textarea>
-                <ResizableImageInput
-                  class="image-post"
-                  name="image"
-                  :draw-image-args="drawImageArgs"
-                  @resized="uploadProfileImage" />
+                <div class="image-post-wrapper">
+                  <ResizableImageInput
+                    class="image-post"
+                    name="image"
+                    :draw-image-args="drawImageArgs"
+                    @resized="uploadProfileImage" />
+                </div>
               </div>
               <!-- <input
                 v-model="$store.state.post_input.tag_list"
@@ -207,8 +209,8 @@
             <p class="message_error">{{ $store.getters.error_options_msg }}</p>
             <div class="m-question-post-form__heading">あなたの性別・年代</div>
             <div class="selectbox-wrapper gender">
-              <select 
-                class="a-selectbox" 
+              <select
+                class="a-selectbox"
                 name="gender"
                 v-bind:value="$store.getters.inputValues.sex"
                 v-on:input="updateInputValue($event, 'sex')"
@@ -222,9 +224,9 @@
               </select>
             </div>
             <div class="selectbox-wrapper selectbox-wrapper--green age">
-              <select 
-                class="a-selectbox" 
-              name="age" 
+              <select
+                class="a-selectbox"
+              name="age"
                 v-bind:value="$store.getters.inputValues.age"
                 v-on:input="updateInputValue($event, 'age')"
                 v-bind:class="{ has_error: $store.getters.error_age}"
