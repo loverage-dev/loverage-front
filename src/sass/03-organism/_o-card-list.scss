@@ -166,6 +166,12 @@
         }
       }
     }
+
+    &:first-child {
+      .list {
+        margin: 0px 0;
+      }
+    }
   }
 
   &--square {
@@ -187,12 +193,6 @@
       & + .a-btn--right-arrow {
         margin-top: 20px;
       }
-    }
-  }
-
-  &--row:first-child {
-    .list {
-      margin: 0px 0;
     }
   }
 
