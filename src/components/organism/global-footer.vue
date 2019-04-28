@@ -97,6 +97,11 @@
               ランキング
             </router-link>
           </li>
+          <li class="item item3">
+            <router-link to="/latest">
+              最新の相談
+            </router-link>
+          </li>
           <!-- <li class="item item5"><a href="">まとめ</a></li> -->
           <li class="item item6">
             <router-link to="/about">

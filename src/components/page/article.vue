@@ -635,7 +635,7 @@
                     </router-link>
                     <div class="m-card-info">
                       <IconSex
-                        :to="{ name: 'article', params: { id: article.id }}"
+                        :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
                       />
@@ -785,7 +785,7 @@
                 </router-link>
                 <div class="m-card-info">
                   <IconSex
-                    :to="{ name: 'article', params: { id: article.id }}"
+                    :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                     :user_age="article.user_age"
                     :sex="article.user_sex"
                   />
@@ -882,7 +882,7 @@
                   </router-link>
                   <div class="m-card-info">
                     <IconSex
-                      :to="{ name: 'article', params: { id: article.id }}"
+                      :to="{ name: 'category-detail', query: {  sex:  article.user_sex, age:  article.user_age  }}"
                       :user_age="article.user_age"
                       :sex="article.user_sex"
                     />
@@ -1218,11 +1218,9 @@ export default {
     },
     meta: function() {
       return [
-        { property: "og:title", content: this.title + " |Loverage" },
-        { property: "og:description", content: this.description },
-        { name: "description", content: this.description }
-        // { name: 'keywords', content: this.article.post.content },
-        // ...
+        { property: "", content: this.title + " |Loverage" },
+        { name: "description", content: this.description },
+        { property: "og:url", content: location.href }
       ];
     }
   }
