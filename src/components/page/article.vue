@@ -1220,8 +1220,6 @@ export default {
       return [
         { property: "", content: this.title + " |Loverage" },
         { name: "description", content: this.description },
-        { property: "og:title", content: this.title + " |Loverage" },
-        { property: "og:description", content: this.description },
         { property: "og:url", content: location.href }
       ];
     }
