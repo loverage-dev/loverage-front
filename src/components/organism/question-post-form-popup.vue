@@ -173,14 +173,14 @@
                     @resized="uploadProfileImage" />
                 </div>
               </div>
-              <!-- <input
+              <input
                 v-model="$store.state.post_input.tag_list"
                 class="a-input"
                 type="text"
                 name="hashtag"
                 placeholder="#ハッシュタグ"
                 autocomplete="on"
-              >-->
+              >
             </div>
             <p class="message_error">{{ $store.getters.error_content_msg }}</p>
           </div>
