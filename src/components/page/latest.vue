@@ -499,11 +499,11 @@ export default {
     this.fetchArticles();
   },
   mounted: function() {
-    global.$("body").addClass("p-category-detail");
+    global.$("body").addClass("p-latest-list");
     this.$emit('updateHead');
   },
   destroyed: function() {
-    global.$("body").removeClass("p-category-detail");
+    global.$("body").removeClass("p-latest-list");
   },
   methods: {
     onGrep: function() {
