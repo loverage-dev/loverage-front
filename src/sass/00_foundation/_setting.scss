@@ -10,6 +10,12 @@ $mq-breakpoints: (
   }
 }
 
+@mixin mq-sp-only($breakpoint: small) {
+  @media screen and (max-width: #{map-get($mq-breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+
 // typography
 $base-font-color: #343434;
 $base-font-family: 'Muli', "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
