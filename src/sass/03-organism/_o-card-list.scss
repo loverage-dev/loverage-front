@@ -166,12 +166,6 @@
         }
       }
     }
-
-    &:first-child {
-      .list {
-        margin: 0px 0;
-      }
-    }
   }
 
   &--square {
@@ -217,7 +211,7 @@
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
       // white-space: nowrap;
-      
+
       @include mq {
         width: calc(100% + 60px);
       }
