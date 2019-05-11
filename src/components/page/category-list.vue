@@ -1594,7 +1594,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                     </div>
                   </div>
@@ -1724,7 +1724,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                     </div>
                   </div>
@@ -1854,7 +1854,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                     </div>
                   </div>

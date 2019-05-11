@@ -86,7 +86,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{$store.state.womens_topic.votes_amount}} votes
+                  {{$store.state.womens_topic.ref_count}} views
                 </div>
                 <router-link :to="{ name: 'article', params: { id: $store.state.womens_topic.id }}"
                  class="a-link a-link--arrow">
@@ -224,7 +224,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{ $store.state.mens_topic.votes_amount }} votes
+                  {{ $store.state.mens_topic.ref_count }} views
                 </div>
                 <router-link :to="{ name: 'article', params: { id: $store.state.mens_topic.id }}"
                  class="a-link a-link--arrow">

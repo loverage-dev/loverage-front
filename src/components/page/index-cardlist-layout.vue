@@ -84,7 +84,7 @@
                     </g>
                   </g>
                 </svg>
-                {{ $store.state.featured[0].votes_amount }} votes
+                {{ $store.state.featured[0].ref_count }} views
               </div>
               <router-link
                 :to="{ name: 'article', params: { id: $store.state.featured[0].id }}"
@@ -195,7 +195,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{ $store.state.featured[1].votes_amount }} votes
+                  {{ $store.state.featured[1].ref_count }} views
                 </div>
                 <router-link
                   :to="{ name: 'article', params: { id: $store.state.featured[1].id }}"
@@ -304,7 +304,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{ $store.state.featured[2].votes_amount }} votes
+                  {{ $store.state.featured[2].ref_count }} views
                 </div>
                 <router-link
                   :to="{ name: 'article', params: { id: $store.state.featured[2].id }}"
@@ -414,7 +414,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{ $store.state.featured[3].votes_amount }} votes
+                  {{ $store.state.featured[3].ref_count }} views
                 </div>
                 <router-link
                   :to="{ name: 'article', params: { id: $store.state.featured[0].id }}"
@@ -522,7 +522,7 @@
                       </g>
                     </g>
                   </svg>
-                  {{ $store.state.featured[4].votes_amount }} votes
+                  {{ $store.state.featured[4].ref_count }} views
                 </div>
                 <router-link
                   :to="{ name: 'article', params: { id: $store.state.featured[4].id }}"
