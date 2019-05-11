@@ -123,10 +123,10 @@
       </div>
       <div class="t-2column__side">
         <div class="t-2column__side-inner">
-          <div class="u-pc-d banner">
-            <router-link to="/">
+          <div class="u-pc-d banner change-pointer" @click="scrollToPost">
+            <!-- <router-link to="/"> -->
               <img src="@/images/banner1.png" alt>
-            </router-link>
+            <!-- </router-link> -->
           </div>
           <div class="u-sp-pc-d o-card-list green margin1 o-card-list--row o-card-list--square">
             <div class="m-list-heading">
@@ -244,10 +244,19 @@ export default {
       getRandomNo: function(){
       let num = 1 + Math.floor( Math.random() * 8 )
       return num
+    },
+      scrollToPost: function() {
+      let position = $("div.o-question-post-bottom-area").offset().top;
+      $("html,body").animate({ scrollTop: position }, { queue: false });
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.change-pointer{
+  cursor: hand;
+  cursor:pointer;
+}
+</style>
