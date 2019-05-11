@@ -38,7 +38,7 @@
               </g>
             </g>
           </svg>
-          {{ article.post.votes_amount }} votes
+          {{ article.post.ref_count }} views
         </div>
         <div class="a-date">{{ article.post.created_at|format_date }}</div>
       </div>
