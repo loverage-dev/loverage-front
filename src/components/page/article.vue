@@ -5,8 +5,8 @@
       <div class="p-article-sentences">
         <div class="a-avatar a-avatar--woman">
           <div class="a-avatar__inner" v-if="article.post.user_sex === 'f'">&#x1f469;</div>
-          <div class="a-avatar__inner" v-if="article.post.user_sex === 'm'"></div>
-          <div class="a-avatar__inner" v-if="article.post.user_sex === 'o'"></div>
+          <div class="a-avatar__inner" v-if="article.post.user_sex === 'm'">👨</div>
+          <div class="a-avatar__inner" v-if="article.post.user_sex === 'o'">😶</div>
           <div class="a-avatar__info">
             <div class="gender">{{ article.post.user_sex|translate_to_jp_sex }}</div>
             <div class="age">{{ article.post.user_age|translate_to_jp_age }}</div>
