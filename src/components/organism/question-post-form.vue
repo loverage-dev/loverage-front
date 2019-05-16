@@ -32,7 +32,7 @@
             </div>
             <input
               v-model="$store.state.post_input.tag_list"
-              class="a-input a-hashtag"
+              class="a-input a-hashtag-input"
               type="text"
               name="hashtag"
               placeholder="#ハッシュタグ"
