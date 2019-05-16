@@ -89,7 +89,7 @@
         <ul class="list">
           <li class="item item3">
             <router-link to="/category-list">
-              カテゴリ
+              カテゴリー
             </router-link>
           </li>
           <li class="item item4">
