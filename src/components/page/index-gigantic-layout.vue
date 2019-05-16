@@ -85,7 +85,7 @@
                 </g>
               </g>
             </svg>
-            {{ $store.state.top_feature_special.votes_amount }} votes
+            {{ $store.state.top_feature_special.ref_count }} views
           </div>
           <router-link
             :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}"
