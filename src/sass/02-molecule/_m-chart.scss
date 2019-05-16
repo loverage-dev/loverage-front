@@ -31,10 +31,18 @@
       width: 120px;
     }
 
+    .m-chart__number {
+      background-color: #89a7e1;
+    }
+
     &:first-child {
       right: auto;
       left: 0;
       background-color: $pink;
+
+      .m-chart__number {
+        background-color: #f5b3c0;
+      }
     }
 
     &.is-full {
@@ -44,12 +52,20 @@
 
   &__number {
     position: absolute;
-    width: 100%;
-    bottom: 10px;
+    bottom: 20px;
+    right: 50%;
+    transform: translate(50%, 0);
+    min-width: 31px;
+    max-width: calc(100% - 16px);
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 31px;
     color: $base-background-color;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    line-height: 1.25;
+    word-wrap: break-word;
 
     @include mq {
       font-size: 22px;

@@ -42,10 +42,18 @@ a {
   .variable-fill {
     fill: $pink;
   }
+
+  .variable-font-color {
+    color: $pink;
+  }
 }
 
 .green {
   .variable-fill {
     fill: $green;
+  }
+
+  .variable-font-color {
+    color: $green;
   }
 }

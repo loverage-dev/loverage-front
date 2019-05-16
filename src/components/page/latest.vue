@@ -60,7 +60,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                       <router-link
                         :to="{ name: 'article', params: { id: article.id }}"
@@ -274,7 +274,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                     </div>
                   </div>
@@ -443,7 +443,7 @@
                             </g>
                           </g>
                         </svg>
-                        {{ article.votes_amount }} votes
+                        {{ article.ref_count }} views
                       </div>
                     </div>
                   </div>

@@ -2,11 +2,12 @@
 
   .textarea-wrapper {
     position: relative;
-    border-radius: 3px;
+    border-radius: 3px 3px 0 0;
     border: 1px solid $line-color;
 
     .a-textarea {
       border: 0;
+      border-radius: 3px 3px 0 0;
       vertical-align: top;
       resize: none;
     }
@@ -14,17 +15,13 @@
     .image-post-wrapper {
       height: 36px;
       padding: 1px 15px 0;
-      border-radius: 0 0 3px 3px;
       border-top: 1px solid $line-color;
       background-color: $base-background-color;
-
-      .image-post {
-
-      }
     }
   }
 
-  .a-input {
+  .a-hashtag-input {
     border-radius: 0 0 3px 3px;
+    border-top: 0;
   }
 }
