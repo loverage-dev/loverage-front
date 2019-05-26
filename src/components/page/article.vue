@@ -1169,7 +1169,8 @@ export default {
       global
         .$(target)
         .parents(".o-answering-form")
-        .css("display", "none");
+        // .css("display", "none");
+        .fadeOut(150, 'linear');
       this.format_answering_area();
     },
     calcVoteRate: function(opt2_amount, opt1_amount) {
