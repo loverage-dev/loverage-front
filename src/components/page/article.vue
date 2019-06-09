@@ -1139,10 +1139,7 @@ export default {
             .finally(() => {
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
-              this.$nextTick(() => {
-                this.format_answering_area();
-                global.$('.o-answering-form').css('visibility','visible')
-                });
+              this.$nextTick(() => this.format_answering_area());
             });
         }
       }
@@ -1174,8 +1171,7 @@ export default {
         .parents(".o-answering-form")
         // .css("display", "none");
         .fadeOut(150, 'linear');
-        this.format_answering_area();
-        global.$('.m-chart-area').css('visibility','visible')
+      this.format_answering_area();
     },
     calcVoteRate: function(opt2_amount, opt1_amount) {
       let op1 = opt1_amount;
@@ -1232,9 +1228,6 @@ export default {
       global.$(".m-chart-area").each(function() {
         global.$(this).height(maxHeight);
       });
-      
-      global.$('.o-answering-form__inner').css('visibility','visible')
-      // global.$('.p-article-answer').css('visibility','visible')
     },
     getTwitterShareUrl: function() {
       return `https://twitter.com/share?text=${this.article.post.title}&url=${
@@ -1281,11 +1274,5 @@ export default {
 .change-pointer {
   cursor: hand;
   cursor: pointer;
-}
-.m-chart-area{
-  visibility: hidden;
-}
-.o-answering-form__inner{
-  visibility: hidden;
 }
 </style>
