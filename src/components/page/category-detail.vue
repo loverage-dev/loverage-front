@@ -6,7 +6,7 @@
         <div class="t-contents__inner t-2column__main">
           <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
-            <div v-if="canGrep == true">
+            <div v-if="canGrep == true && articles.length !== 0">
               <div class="m-question-post-form__heading">相談者のカテゴリーで絞り込み</div>
               <div class="selectbox-wrapper gender">
                 <select class="a-selectbox" name="gender" @change="onGrep()" v-model="grepSexValue">
@@ -668,6 +668,8 @@ export default {
     IconEyeCatching
   },
   created: function() {
+    this.grepAgeValue = "";
+    this.grepSexValue = "";
     this.fetchArticles();
   },
   mounted: function() {
