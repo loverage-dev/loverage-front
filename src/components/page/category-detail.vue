@@ -36,8 +36,8 @@
             </div>
           </form>
           <div class="o-card-list o-card-list--row">
-            <div v-if="articlesCount === 0">該当する相談が見つかりませんでした</div>
-            <ul class="list">
+            <div v-if="articlesCount === 0">該当する相談が見つかりませんでした。</div>
+            <ul class="list" v-if="articlesCount !== 0">
               <li class="item" v-for="article in articleShown" v-bind:key="article.id">
                 <div class="m-card m-card--row">
                   <div class="m-card__image">
