@@ -202,7 +202,7 @@
           </ul>
         </div>-->
         <p class="a-paragraph">{{ article.post.content }}</p>
-        <div class="p-article-sentences__image">
+        <div class="p-article-sentences__image" v-if="article.post.img_base64 !== ''">
           <IconEyeCatching
             :age="article.post.user_age"
             :sex="article.post.user_sex"
@@ -211,7 +211,7 @@
             :isContentPage="true"
           />
         </div>
-        <ul class="m-hashtag-list">
+        <ul class="m-hashtag-list" v-if="article.post.tag_list.length != 0">
           <li
             class="m-hashtag-list__item"
             v-for="(tag,index) in article.post.tag_list"
@@ -1139,7 +1139,10 @@ export default {
             .finally(() => {
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
-              this.$nextTick(() => this.format_answering_area());
+              this.$nextTick(() => {
+                this.format_answering_area();
+                global.$('.o-answering-form').css('visibility','visible')
+                });
             });
         }
       }
@@ -1171,7 +1174,8 @@ export default {
         .parents(".o-answering-form")
         // .css("display", "none");
         .fadeOut(150, 'linear');
-      this.format_answering_area();
+        this.format_answering_area();
+        global.$('.m-chart-area').css('visibility','visible')
     },
     calcVoteRate: function(opt2_amount, opt1_amount) {
       let op1 = opt1_amount;
@@ -1228,6 +1232,9 @@ export default {
       global.$(".m-chart-area").each(function() {
         global.$(this).height(maxHeight);
       });
+      
+      global.$('.o-answering-form__inner').css('visibility','visible')
+      // global.$('.p-article-answer').css('visibility','visible')
     },
     getTwitterShareUrl: function() {
       return `https://twitter.com/share?text=${this.article.post.title}&url=${
@@ -1274,5 +1281,11 @@ export default {
 .change-pointer {
   cursor: hand;
   cursor: pointer;
+}
+.m-chart-area{
+  visibility: hidden;
+}
+.o-answering-form__inner{
+  visibility: hidden;
 }
 </style>
