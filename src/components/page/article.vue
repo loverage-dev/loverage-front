@@ -202,7 +202,7 @@
           </ul>
         </div>-->
         <p class="a-paragraph">{{ article.post.content }}</p>
-        <div class="p-article-sentences__image">
+        <div class="p-article-sentences__image" v-if="article.post.img_base64 !== ''">
           <IconEyeCatching
             :age="article.post.user_age"
             :sex="article.post.user_sex"
@@ -211,7 +211,7 @@
             :isContentPage="true"
           />
         </div>
-        <ul class="m-hashtag-list">
+        <ul class="m-hashtag-list" v-if="article.post.tag_list.length != 0">
           <li
             class="m-hashtag-list__item"
             v-for="(tag,index) in article.post.tag_list"
