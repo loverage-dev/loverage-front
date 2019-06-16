@@ -6,6 +6,33 @@
   background-color: #f4f4f4;
   text-align: center;
 
+  &--s {
+    width: 32px;
+    height: 32px;
+    padding-top: 0;
+    border-radius: 16px;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+
+    @include mq {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+    }
+
+    &__inner {
+      display: inline-block;
+      vertical-align: 1px;
+      padding-top: 4px;
+      font-size: 14px;
+
+      @include mq {
+        font-size: 18px;
+      }
+    }
+  }
+
   @include mq {
     width: 60px;
     height: 60px;

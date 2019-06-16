@@ -6,6 +6,15 @@
     font-weight: normal;
   }
 
+  &--l {
+    font-size: 18px;
+    font-weight: bold;
+
+    @include mq {
+      font-size: 24px;
+    }
+  }
+
   @include mq(medium) {
     font-size: 18px;
   }

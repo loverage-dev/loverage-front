@@ -246,8 +246,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答や
+                  <br class="u-sp-d">コメントを見ることができます。
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -290,8 +290,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答や
+                  <br class="u-sp-d">コメントを見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -353,8 +353,8 @@
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答や
+                  <br class="u-sp-d">コメントを見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -389,8 +389,8 @@
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答や
+                  <br class="u-sp-d">コメントを見ることができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -579,6 +579,44 @@
             </li>
           </ul>
         </div>-->
+        <div class="o-comment-view-box">
+          <h3 class="a-heading--l">コメント</h3>
+          <ul class="o-chat-list">
+            <li class="m-chat-item is-option1">
+              <div class="a-avatar--s"><span class="a-avatar--s__inner">&#x1f435;</span></div>
+              <div class="a-balloon">
+                <div class="a-balloon__heading">彼氏は浮気している</div>
+                <p class="a-balloon--text">私もまったく同じ経験をしたのですがその時はやっぱり浮気でした。次の恋を探した方が幸せになれるはず。がんばって！<span class="genderage">（女性30代前半）</span></p>
+              </div>
+            </li>
+            <li class="m-chat-item is-option2">
+              <div class="a-avatar--s"><span class="a-avatar--s__inner">&#x1f430;</span></div>
+              <div class="a-balloon">
+                <div class="a-balloon__heading">彼氏は友人としてその女性と遊んでいる彼氏は友人としてその女性と遊んでいる</div>
+                <p class="a-balloon--text">私の彼氏はよく女友達と遊んでいますが、同じベッドで寝ても何も感じないと言っていました。気になるのはわかりますが、あなたの考えすぎでは？<span class="genderage">（女性20代前半）</span></p>
+              </div>
+            </li>
+          </ul>
+          <a class="a-btn a-btn--large a-btn--more">SEE MORE COMMENTS
+            <div class="arrow">
+              <svg width="14px" height="10px" viewBox="0 0 25 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="A4" transform="translate(-46.000000, -122.000000)" fill="#AAAAAA" fill-rule="nonzero">
+                          <path d="M53,130 L67,130 L67,133 L53,133 L50,133 L50,116 L53,116 L53,130 Z" id="Combined-Shape" transform="translate(58.500000, 124.500000) rotate(-45.000000) translate(-58.500000, -124.500000) "></path>
+                      </g>
+                  </g>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <form class="m-comment-form">
+          <div class="m-comment-form__your-answer"><span class="text1">あなたの回答は</span><span class="a-answer-label is-option1">彼氏は浮気している</span><span class="text2">です。</span></div>
+          <textarea name="" placeholder="コメントがあれば入力してください" class="a-textarea"></textarea>
+          <input type="submit" value="コメントを投稿する" class="a-btn-round change-pointer">
+        </form>
       </div>
       <div class="o-card-list o-card-list--slide o-card-list--black green">
         <div class="slide-inner">
@@ -1232,7 +1270,7 @@ export default {
       global.$(".m-chart-area").each(function() {
         global.$(this).height(maxHeight);
       });
-      
+
       global.$('.o-answering-form__inner').css('visibility','visible')
       // global.$('.p-article-answer').css('visibility','visible')
     },
