@@ -582,18 +582,13 @@
         <div class="o-comment-view-box">
           <h3 class="a-heading--l">コメント</h3>
           <ul class="o-chat-list">
-            <li class="m-chat-item is-option1">
-              <div class="a-avatar--s"><span class="a-avatar--s__inner">&#x1f435;</span></div>
+            <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentList" v-bind:key="c.origin_id">
+              <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="c.icon_id"></span></div>
               <div class="a-balloon">
-                <div class="a-balloon__heading">彼氏は浮気している</div>
-                <p class="a-balloon--text">私もまったく同じ経験をしたのですがその時はやっぱり浮気でした。次の恋を探した方が幸せになれるはず。がんばって！<span class="genderage">（女性30代前半）</span></p>
-              </div>
-            </li>
-            <li class="m-chat-item is-option2">
-              <div class="a-avatar--s"><span class="a-avatar--s__inner">&#x1f430;</span></div>
-              <div class="a-balloon">
-                <div class="a-balloon__heading">彼氏は友人としてその女性と遊んでいる彼氏は友人としてその女性と遊んでいる</div>
-                <p class="a-balloon--text">私の彼氏はよく女友達と遊んでいますが、同じベッドで寝ても何も感じないと言っていました。気になるのはわかりますが、あなたの考えすぎでは？<span class="genderage">（女性20代前半）</span></p>
+                <div class="a-balloon__heading">{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
+                <p class="a-balloon--text">{{ c.content }}
+                  <span class="genderage">({{ c.user_sex|translate_to_jp_sex }}{{ c.user_age|translate_to_jp_age }})</span>
+                </p>
               </div>
             </li>
           </ul>
@@ -1102,6 +1097,20 @@ export default {
     isVoted: function(){
       let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
       return (target == undefined)
+    },
+    commentList: function(){
+      // 投稿日時順にソート
+      let listSortedCreateDate = this.comments.sort((a,b) => {return (a.created_at < b.created_at ? 1 : -1);});
+      // opt1/opt2の回答をそれぞれ配列化
+      let listSelectedOpt1 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt1') })
+      let listSelectedOpt2 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt2') })
+      let resultList = []
+      // 各配列の長さの最小数だけループ
+      let l = Math.min(listSelectedOpt1.length, listSelectedOpt2.length)
+      for (let i = 0;i < l; i++) {
+        resultList.push(listSelectedOpt1[i], listSelectedOpt2[i])
+      }
+      return resultList
     }
   },
   data: function() {
@@ -1115,6 +1124,7 @@ export default {
       historyVote: [],
       editors_pick: null,
       latest: null,
+      comments: [],
       voteRate: 0,
       title: null,
       description: null,
@@ -1150,9 +1160,9 @@ export default {
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
       if (this.$route.params) {
-        let url =
-          `${ this.API_URL }/api/v1/articles/`;
+        let url = `${ this.API_URL }/api/v1/articles/`;
         url += this.$route.params.id;
+        let commentUrl = `${ url }/comments`
         if (this.$store.state.latest && this.$store.state.editors_pick) {
           this.latest = this.$store.state.latest;
           this.editors_pick = this.$store.state.editors_pick;
@@ -1160,6 +1170,7 @@ export default {
             .get(url)
             .then(result => {
               this.article = result.data.article;
+              this.comments = this.article.comments.contents
               this.setMetaTag(result.data.article.post);
             })
             .finally(() => {
@@ -1181,12 +1192,14 @@ export default {
             .then(
               axios.spread((api1Result, api2Result, api3Result) => {
                 this.article = api1Result.data.article;
+                this.comments = this.article.comments.contents
                 this.latest = api2Result.data.articles;
                 this.editors_pick = api3Result.data.articles;
                 this.setMetaTag(api1Result.data.article.post);
               })
             )
             .finally(() => {
+              console.log(this.comments)
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
               this.$nextTick(() => {
