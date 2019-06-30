@@ -610,10 +610,26 @@
             </div>
           </a>
         </div>
-        <form class="m-comment-form" v-if="!isVoted">
-          <div class="m-comment-form__your-answer"><span class="text1">あなたの回答は</span><span class="a-answer-label"  v-bind:class="[(getHistory().selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]">{{ (getHistory().selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</span><span class="text2">です。</span></div>
-          <textarea name="" placeholder="コメントがあれば入力してください" class="a-textarea"></textarea>
-          <input type="submit" value="コメントを投稿する" class="a-btn-round change-pointer">
+        <form
+          class="m-comment-form" v-if="!isVoted"
+          v-on:submit.prevent="onSubmit">
+          <div class="m-comment-form__your-answer">
+            <span class="text1">あなたの回答は</span><span class="a-answer-label"  v-bind:class="[(getHistory().selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]">{{ (getHistory().selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</span><span class="text2">です。</span>
+          </div>
+          <textarea 
+            name="comment" 
+            placeholder="コメントがあれば入力してください" 
+            v-bind:class="{ has_error: hasErrorComment }" 
+            class="a-textarea"
+            v-model="comment.content" 
+            v-on:input="updateInputValue($event)"
+            ></textarea>
+            <p v-if="hasErrorComment" class="message_error">コメントを入力してください。</p>
+          <input
+            type="submit"
+            value="コメントを投稿する"
+            v-bind:class="{ disable_btn: comment.content == '' }"
+            class="a-btn-round change-pointer">
         </form>
       </div>
       <div class="o-card-list o-card-list--slide o-card-list--black green">
@@ -1076,17 +1092,14 @@ export default {
     IconEyeCatching
   },
   watch: {
+    // eslint-disable-next-line
     $route: function(to, from) {
       global.$(".o-answering-form").css("display", "block");
       this.fetchArticles();
     }
   },
   created: function() {
-    if(!localStorage.getItem('history-vote')){
-      localStorage.setItem('history-vote',"[]")
-    }else{
-      this.historyVote = JSON.parse(localStorage.getItem('history-vote'));
-    }
+    
     this.fetchArticles();
   },
   computed: {
@@ -1125,6 +1138,14 @@ export default {
         sex: "",
         selected_opt: ""
       },
+      comment: {
+        age: "",
+        sex: "",
+        selected_opt: "",
+        icon_id: "",
+        content: ""
+      },
+      hasErrorComment: false,
       historyVote: [],
       editors_pick: null,
       latest: null,
@@ -1135,8 +1156,7 @@ export default {
       description: null,
       selectedOpt1Class: 'is-option1',
       selectedOpt2Class: 'is-option2',
-      pageNum: 1,
-      commentsGrepped: []
+      pageNum: 1
     };
   },
   mounted: function() {
@@ -1146,6 +1166,13 @@ export default {
     global.$("body").removeClass("p-article");
   },
   methods: {
+    fetchLocalStrageData: function(){
+      if(!localStorage.getItem('history-vote')){
+        localStorage.setItem('history-vote',"[]")
+      }else{
+        this.historyVote = JSON.parse(localStorage.getItem('history-vote'));
+      }
+    },
     grepComments: function(){
       // 投稿日時順にソート
       let listSortedCreateDate = this.comments.sort((a,b) => {return (a.created_at < b.created_at ? 1 : -1);});
@@ -1160,6 +1187,29 @@ export default {
       }
       resultList.push(...listSelectedOpt1.slice(l), ...listSelectedOpt2.slice(l))
       this.commentsGrepped = resultList
+    },
+    updateInputValue(event) {
+      this.comment.content = event.target.value;
+    },
+    onSubmit() {
+      this.setCommentData()
+      this.validate()
+      if(this.hasErrorComment) return;
+      this.postComment()
+    },
+    validate() {
+      if(this.comment.content === ""){
+        this.hasErrorComment = true;
+      }else{
+        this.hasErrorComment = false;
+      }
+    },
+    setCommentData(){
+      let history = this.getHistory();
+      this.comment.age = history.age;
+      this.comment.sex = history.sex;
+      this.comment.selected_opt = history.selected_opt;
+      this.comment.icon_id = this.getIcon();
     },
     opt1_amount: function() {
       let amount = 0;
@@ -1181,10 +1231,10 @@ export default {
     },
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
+      this.fetchLocalStrageData();
       if (this.$route.params) {
         let url = `${ this.API_URL }/api/v1/articles/`;
         url += this.$route.params.id;
-        let commentUrl = `${ url }/comments`
         if (this.$store.state.latest && this.$store.state.editors_pick) {
           this.latest = this.$store.state.latest;
           this.editors_pick = this.$store.state.editors_pick;
@@ -1289,8 +1339,7 @@ export default {
         post_id: this.$route.params.id,
         age: this.vote.age,
         sex: this.vote.sex,
-        selected_opt: this.vote.selected_opt,
-        commented: false
+        selected_opt: this.vote.selected_opt
       }
       let url =
         `${ this.API_URL }/api/v1/articles/` +
@@ -1314,6 +1363,84 @@ export default {
         })
         // eslint-disable-next-line
         .catch(error => {});
+    },
+    postComment: function(){
+      let url =
+        `${ this.API_URL }/api/v1/articles/` +
+        this.$route.params.id +
+        "/comment";
+      axios
+        .post(url, {
+          comment: this.comment
+        })
+        // eslint-disable-next-line
+        .then(response => {
+          if(response.status === 201){
+            this.hasErrorComment = false;
+            this.comment.content = "";
+            this.$store.commit("setShowToastComment", true);
+          }
+        })
+        // eslint-disable-next-line
+        .catch(error => {})
+        // eslint-disable-next-line
+        .finally(()=>{
+          this.fetchArticles();
+        });
+    },
+    getIcon: function(){
+      const maxNum = 15;
+      const minNum = 1;
+      let ret = ""
+      let randNum = Math.floor(Math.random()*(maxNum-minNum)+minNum);
+      switch (randNum) {
+        case 1:
+            ret = "&#x1f428;" //こあら
+          break;
+        case 2:
+            ret = "&#x1f439;" //ハムスター
+          break;
+        case 3:
+            ret = "&#x1f430;" //うさぎ
+          break;
+        case 4:
+            ret = "&#x1f43b;" //くま
+          break;
+        case 5:
+            ret = "&#x1f43c;" //ぱんだ
+          break;
+        case 6:
+            ret = "&#x1f981;" //ライオン
+          break;
+        case 7:
+            ret = "&#x1f42f;" //とら
+          break;
+        case 8:
+            ret = "&#x1f431;" //ねこ
+          break;
+        case 9:
+            ret = "&#x1f43a;" //おおかみ
+          break;
+        case 10:
+            ret = "&#x1f436;" //犬
+          break;
+        case 11:
+            ret = "&#x1f424;" //ひよこ
+          break;
+        case 12:
+            ret = "&#x1f433;" //くじら
+          break;
+        case 13:
+            ret = "&#x1f434;" //うま
+          break;
+        case 14:
+            ret = "&#x1f42d;" //ねずみ
+          break;
+        case 15:
+            ret = "&#x1f435;" //さる
+          break;
+      }
+      return ret;
     },
     format_answering_area: function() {
       let maxHeight = 0;
@@ -1393,5 +1520,17 @@ export default {
 }
 .o-answering-form__inner{
   visibility: hidden;
+}
+.message_error {
+  color:red;
+  font-size: 13px;
+  text-align: center;
+}
+.has_error {
+  background-color: rgb(255, 80, 80, 0.1)
+}
+input.disable_btn{
+  background-color: rgba(0, 0, 0, 0.308);
+  /* color: rgba(0, 0, 0, 0.315); */
 }
 </style>
