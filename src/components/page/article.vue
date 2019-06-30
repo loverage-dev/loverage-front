@@ -581,8 +581,9 @@
         </div>-->
         <div class="o-comment-view-box">
           <h3 class="a-heading--l">コメント</h3>
-          <ul class="o-chat-list">
-            <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentList" v-bind:key="c.origin_id">
+          <div style="text-align:center" v-if="commentsCount === 0">投稿されたコメントはありません。</div>
+          <ul class="o-chat-list" v-if="commentsCount !== 0">
+            <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentsShown" v-bind:key="c.origin_id">
               <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="c.icon_id"></span></div>
               <div class="a-balloon">
                 <div class="a-balloon__heading">{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
@@ -592,7 +593,9 @@
               </div>
             </li>
           </ul>
-          <a class="a-btn a-btn--large a-btn--more">SEE MORE COMMENTS
+          <a 
+            v-if="commentsShown.length < commentsCount"
+            class="a-btn a-btn--large a-btn--more" v-on:click="showMoreComments">SEE MORE COMMENTS
             <div class="arrow">
               <svg width="14px" height="10px" viewBox="0 0 25 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
@@ -1098,19 +1101,20 @@ export default {
       let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
       return (target == undefined)
     },
-    commentList: function(){
-      // 投稿日時順にソート
-      let listSortedCreateDate = this.comments.sort((a,b) => {return (a.created_at < b.created_at ? 1 : -1);});
-      // opt1/opt2の回答をそれぞれ配列化
-      let listSelectedOpt1 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt1') })
-      let listSelectedOpt2 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt2') })
-      let resultList = []
-      // 各配列の長さの最小数だけループ
-      let l = Math.min(listSelectedOpt1.length, listSelectedOpt2.length)
-      for (let i = 0;i < l; i++) {
-        resultList.push(listSelectedOpt1[i], listSelectedOpt2[i])
+    commentsShown: function() {
+      if(this.pageNum == 1){
+        return this.commentsGrepped.length > this.pageNum * 2
+        ? this.commentsGrepped.slice(0, this.pageNum * 2)
+        : this.commentsGrepped;
+      }else{
+        return this.commentsGrepped.length > (this.pageNum - 1) * 4 + 2
+        ? this.commentsGrepped.slice(0, (this.pageNum - 1) * 4 + 2)
+        : this.commentsGrepped;
       }
-      return resultList
+      
+    },
+    commentsCount: function() {
+      return this.commentsGrepped.length;
     }
   },
   data: function() {
@@ -1125,11 +1129,14 @@ export default {
       editors_pick: null,
       latest: null,
       comments: [],
+      commentsGrepped: [],
       voteRate: 0,
       title: null,
       description: null,
       selectedOpt1Class: 'is-option1',
-      selectedOpt2Class: 'is-option2'
+      selectedOpt2Class: 'is-option2',
+      pageNum: 1,
+      commentsGrepped: []
     };
   },
   mounted: function() {
@@ -1139,6 +1146,20 @@ export default {
     global.$("body").removeClass("p-article");
   },
   methods: {
+    grepComments: function(){
+      // 投稿日時順にソート
+      let listSortedCreateDate = this.comments.sort((a,b) => {return (a.created_at < b.created_at ? 1 : -1);});
+      // opt1/opt2の回答をそれぞれ配列化
+      let listSelectedOpt1 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt1') })
+      let listSelectedOpt2 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt2') })
+      let resultList = []
+      // 各配列の長さの最小数だけループ
+      let l = Math.min(listSelectedOpt1.length, listSelectedOpt2.length)
+      for (let i = 0;i < l; i++) {
+        resultList.push(listSelectedOpt1[i], listSelectedOpt2[i])
+      }
+      this.commentsGrepped = resultList
+    },
     opt1_amount: function() {
       let amount = 0;
       if (this.vote.selected_opt == "opt1") {
@@ -1176,6 +1197,7 @@ export default {
             .finally(() => {
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
+              this.grepComments()
               this.$nextTick(() => this.format_answering_area());
             });
         } else {
@@ -1199,7 +1221,7 @@ export default {
               })
             )
             .finally(() => {
-              console.log(this.comments)
+              this.grepComments()
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
               this.$nextTick(() => {
@@ -1335,6 +1357,9 @@ export default {
     getHistory: function(){
       let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
       return target
+    },
+    showMoreComments: function() {
+      this.pageNum += 1;
     }
   },
   head: {
