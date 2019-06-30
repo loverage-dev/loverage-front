@@ -227,7 +227,7 @@
       <div class="p-article-answer">
         <h2 class="p-article-answer__heading">みんなの回答</h2>
         <div class="p-article-answer__inner">
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -271,7 +271,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -334,7 +334,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -370,7 +370,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item is-active">
@@ -409,7 +409,7 @@
               </div>
             </div>
           </div>
-          <div class="m-chart-area">
+          <div class="m-chart-area" style="visibility:visible;" v-bind:style="[(isVoted == false)?{ 'visibility': 'visible' }:{ 'visibility': 'hidden'}]">
             <ul class="m-chart">
               <li
                 class="m-chart__bar"
@@ -612,7 +612,7 @@
             </div>
           </a>
         </div>
-        <form class="m-comment-form">
+        <form class="m-comment-form" v-if="!isVoted">
           <div class="m-comment-form__your-answer"><span class="text1">あなたの回答は</span><span class="a-answer-label is-option1">彼氏は浮気している</span><span class="text2">です。</span></div>
           <textarea name="" placeholder="コメントがあれば入力してください" class="a-textarea"></textarea>
           <input type="submit" value="コメントを投稿する" class="a-btn-round change-pointer">
@@ -1084,6 +1084,11 @@ export default {
     }
   },
   created: function() {
+    if(!localStorage.getItem('history-vote')){
+      localStorage.setItem('history-vote',"[]")
+    }else{
+      this.historyVote = JSON.parse(localStorage.getItem('history-vote'));
+    }
     this.fetchArticles();
   },
   computed: {
@@ -1093,6 +1098,10 @@ export default {
       } else {
         return false;
       }
+    },
+    isVoted: function(){
+      let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
+      return (target == undefined)
     }
   },
   data: function() {
@@ -1103,6 +1112,7 @@ export default {
         sex: "",
         selected_opt: ""
       },
+      historyVote: [],
       editors_pick: null,
       latest: null,
       voteRate: 0,
@@ -1237,6 +1247,13 @@ export default {
       return amount;
     },
     vote_to: function() {
+      let saveData = {
+        post_id: this.$route.params.id,
+        age: this.vote.age,
+        sex: this.vote.sex,
+        selected_opt: this.vote.selected_opt,
+        commented: false
+      }
       let url =
         `${ this.API_URL }/api/v1/articles/` +
         this.$route.params.id +
@@ -1250,7 +1267,13 @@ export default {
           }
         })
         // eslint-disable-next-line
-        .then(response => {})
+        .then(response => {
+          if(response.status === 201){
+            this.historyVote.push(saveData)
+            let saveDataString = JSON.stringify(this.historyVote)
+            localStorage.setItem('history-vote', saveDataString);
+          }
+        })
         // eslint-disable-next-line
         .catch(error => {});
     },
