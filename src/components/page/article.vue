@@ -1099,7 +1099,6 @@ export default {
     }
   },
   created: function() {
-    
     this.fetchArticles();
   },
   computed: {
@@ -1250,6 +1249,10 @@ export default {
               this.$store.commit("setLoading", false);
               this.grepComments()
               this.$nextTick(() => this.format_answering_area());
+              this.voteRate = this.calcVoteRate(
+                this.article.votes.opt2_selected.amount,
+                this.article.votes.opt1_selected.amount
+              );
             });
         } else {
           axios
@@ -1279,6 +1282,10 @@ export default {
                 this.format_answering_area();
                 global.$('.o-answering-form').css('visibility','visible')
                 });
+               this.voteRate = this.calcVoteRate(
+                this.article.votes.opt2_selected.amount,
+                this.article.votes.opt1_selected.amount
+              );
             });
         }
       }
