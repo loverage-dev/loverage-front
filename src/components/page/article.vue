@@ -613,7 +613,7 @@
           </a>
         </div>
         <form class="m-comment-form" v-if="!isVoted">
-          <div class="m-comment-form__your-answer"><span class="text1">あなたの回答は</span><span class="a-answer-label is-option1">彼氏は浮気している</span><span class="text2">です。</span></div>
+          <div class="m-comment-form__your-answer"><span class="text1">あなたの回答は</span><span class="a-answer-label"  v-bind:class="[(getHistory().selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]">{{ (getHistory().selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</span><span class="text2">です。</span></div>
           <textarea name="" placeholder="コメントがあれば入力してください" class="a-textarea"></textarea>
           <input type="submit" value="コメントを投稿する" class="a-btn-round change-pointer">
         </form>
@@ -1117,7 +1117,9 @@ export default {
       latest: null,
       voteRate: 0,
       title: null,
-      description: null
+      description: null,
+      selectedOpt1Class: 'is-option1',
+      selectedOpt2Class: 'is-option2'
     };
   },
   mounted: function() {
@@ -1316,6 +1318,10 @@ export default {
     setMetaTag: function(post) {
       this.title = post.title;
       this.description = post.content;
+    },
+    getHistory: function(){
+      let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
+      return target
     }
   },
   head: {
