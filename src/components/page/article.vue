@@ -1158,6 +1158,7 @@ export default {
       for (let i = 0;i < l; i++) {
         resultList.push(listSelectedOpt1[i], listSelectedOpt2[i])
       }
+      resultList.push(...listSelectedOpt1.slice(l), ...listSelectedOpt2.slice(l))
       this.commentsGrepped = resultList
     },
     opt1_amount: function() {
