@@ -14,6 +14,8 @@
 @import '00_foundation/base';
 
 @import '01-atom/a-avatar';
+@import '01-atom/a-answer-label';
+@import '01-atom/a-balloon';
 @import '01-atom/a-btn';
 @import '01-atom/a-btn-round';
 @import '01-atom/a-counter';
@@ -36,7 +38,9 @@
 
 @import '02-molecule/m-card-info';
 @import '02-molecule/m-card';
+@import '02-molecule/m-chat-item';
 @import '02-molecule/m-chart';
+@import '02-molecule/m-comment-form';
 @import '02-molecule/m-contents-textarea';
 @import '02-molecule/m-dialog';
 @import '02-molecule/m-hashtag-list';
@@ -50,6 +54,8 @@
 
 @import '03-organism/o-answering-form';
 @import '03-organism/o-card-list';
+@import '03-organism/o-chat-list';
+@import '03-organism/o-comment-view-box';
 @import '03-organism/o-flex-card-list';
 @import '03-organism/o-global-header';
 @import '03-organism/o-global-footer';

@@ -2,11 +2,10 @@
   &-sentences {
     @include inner;
     padding-top: 25px;
-    padding-bottom: 30px;
-    
+    padding-bottom: 45px;
+
     @include mq {
       padding-top: 45px;
-      padding-bottom: 45px;
       min-height: 300px;
     }
 
@@ -81,7 +80,7 @@
   &-answer {
     @include inner;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     background-color: #f2f2f2;
 
     @include mq {
