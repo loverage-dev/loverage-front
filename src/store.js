@@ -10,7 +10,9 @@ export default new Vuex.Store({
     deleting: false,
     posting:false,
     toasting: false,
+    toastingComment: false,
     showToast: false,
+    showToastComment: false,
     post_input: {
       isChanged: false,
       age: "e_20s",
@@ -61,8 +63,14 @@ export default new Vuex.Store({
     setToasting(state, payload) {
       state.toasting = payload;
     },
+    setToastingComment(state, payload) {
+      state.toastingComment = payload;
+    },
     setShowToast(state, payload) {
       state.showToast = payload;
+    },
+    setShowToastComment(state, payload) {
+      state.showToastComment = payload;
     },
     setTopFeatureSpecial(state, payload){
       state.top_feature_special = payload;
@@ -207,6 +215,7 @@ export default new Vuex.Store({
   getters: {
     inputValues(state) { return state.post_input },
     toasting(state) { return state.toasting },
+    toastingComment(state) { return state.toastingComment },
     loading(state) { return state.loading },
     error_content(state) { return state.hasError_content },
     error_content_msg(state) { return state.msgError_content },

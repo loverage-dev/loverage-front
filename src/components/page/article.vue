@@ -227,7 +227,7 @@
       <div class="p-article-answer">
         <h2 class="p-article-answer__heading">みんなの回答</h2>
         <div class="p-article-answer__inner">
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -246,8 +246,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -271,7 +271,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -290,8 +290,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -334,7 +334,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item">
@@ -353,8 +353,8 @@
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -370,7 +370,7 @@
               </div>
             </div>
           </div>
-          <div class="o-answering-form">
+          <div class="o-answering-form" v-if="isVoted">
             <div class="o-answering-form__inner">
               <ul class="m-step">
                 <li class="m-step__item is-active">
@@ -389,8 +389,8 @@
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えることで
-                  <br class="u-sp-d">みんなの回答を見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -409,7 +409,7 @@
               </div>
             </div>
           </div>
-          <div class="m-chart-area">
+          <div class="m-chart-area" style="visibility:visible;" v-bind:style="[(isVoted == false)?{ 'visibility': 'visible' }:{ 'visibility': 'hidden'}]">
             <ul class="m-chart">
               <li
                 class="m-chart__bar"
@@ -579,6 +579,58 @@
             </li>
           </ul>
         </div>-->
+        <div class="o-comment-view-box">
+          <h3 class="a-heading--l">コメント</h3>
+          <div style="text-align:center" v-if="commentsCount === 0">投稿されたコメントはありません。</div>
+          <ul class="o-chat-list" v-if="commentsCount !== 0">
+            <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentsShown" v-bind:key="c.origin_id">
+              <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="c.icon_id"></span></div>
+              <div class="a-balloon">
+                <div class="a-balloon__heading"><span class="a-balloon__heading-label">回答</span>{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
+                <p class="a-balloon--text">{{ c.content }}
+                  <span class="genderage">({{ c.user_sex|translate_to_jp_sex }}{{ c.user_age|translate_to_jp_age }})</span>
+                </p>
+              </div>
+            </li>
+          </ul>
+          <a
+            v-if="commentsShown.length < commentsCount"
+            class="a-btn a-btn--large a-btn--more" v-on:click="showMoreComments">SEE MORE COMMENTS
+            <div class="arrow">
+              <svg width="14px" height="10px" viewBox="0 0 25 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="A4" transform="translate(-46.000000, -122.000000)" fill="#AAAAAA" fill-rule="nonzero">
+                          <path d="M53,130 L67,130 L67,133 L53,133 L50,133 L50,116 L53,116 L53,130 Z" id="Combined-Shape" transform="translate(58.500000, 124.500000) rotate(-45.000000) translate(-58.500000, -124.500000) "></path>
+                      </g>
+                  </g>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <form
+          class="m-comment-form" v-if="!isVoted"
+          v-on:submit.prevent="onSubmit">
+          <div class="m-comment-form__your-answer">
+            <span class="text1">あなたの回答は</span><span class="a-answer-label"  v-bind:class="[(getHistory().selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]">{{ (getHistory().selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</span><span class="text2">です。</span>
+          </div>
+          <textarea
+            name="comment"
+            placeholder="コメントがあれば入力してください"
+            v-bind:class="{ has_error: hasErrorComment }"
+            class="a-textarea"
+            v-model="comment.content"
+            v-on:input="updateInputValue($event)"
+            ></textarea>
+            <p v-if="hasErrorComment" class="message_error">コメントを入力してください。</p>
+          <input
+            type="submit"
+            value="コメントを投稿する"
+            v-bind:class="{ disable_btn: comment.content == '' }"
+            class="a-btn-round change-pointer">
+        </form>
       </div>
       <div class="o-card-list o-card-list--slide o-card-list--black green">
         <div class="slide-inner">
@@ -1040,6 +1092,7 @@ export default {
     IconEyeCatching
   },
   watch: {
+    // eslint-disable-next-line
     $route: function(to, from) {
       global.$(".o-answering-form").css("display", "block");
       this.fetchArticles();
@@ -1055,6 +1108,25 @@ export default {
       } else {
         return false;
       }
+    },
+    isVoted: function(){
+      let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
+      return (target == undefined)
+    },
+    commentsShown: function() {
+      if(this.pageNum == 1){
+        return this.commentsGrepped.length > this.pageNum * 2
+        ? this.commentsGrepped.slice(0, this.pageNum * 2)
+        : this.commentsGrepped;
+      }else{
+        return this.commentsGrepped.length > (this.pageNum - 1) * 4 + 2
+        ? this.commentsGrepped.slice(0, (this.pageNum - 1) * 4 + 2)
+        : this.commentsGrepped;
+      }
+
+    },
+    commentsCount: function() {
+      return this.commentsGrepped.length;
     }
   },
   data: function() {
@@ -1065,11 +1137,25 @@ export default {
         sex: "",
         selected_opt: ""
       },
+      comment: {
+        age: "",
+        sex: "",
+        selected_opt: "",
+        icon_id: "",
+        content: ""
+      },
+      hasErrorComment: false,
+      historyVote: [],
       editors_pick: null,
       latest: null,
+      comments: [],
+      commentsGrepped: [],
       voteRate: 0,
       title: null,
-      description: null
+      description: null,
+      selectedOpt1Class: 'is-option1',
+      selectedOpt2Class: 'is-option2',
+      pageNum: 1
     };
   },
   mounted: function() {
@@ -1079,6 +1165,51 @@ export default {
     global.$("body").removeClass("p-article");
   },
   methods: {
+    fetchLocalStrageData: function(){
+      if(!localStorage.getItem('history-vote')){
+        localStorage.setItem('history-vote',"[]")
+      }else{
+        this.historyVote = JSON.parse(localStorage.getItem('history-vote'));
+      }
+    },
+    grepComments: function(){
+      // 投稿日時順にソート
+      let listSortedCreateDate = this.comments.sort((a,b) => {return (a.created_at < b.created_at ? 1 : -1);});
+      // opt1/opt2の回答をそれぞれ配列化
+      let listSelectedOpt1 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt1') })
+      let listSelectedOpt2 = listSortedCreateDate.filter((x) => { return (x.selected_opt == 'opt2') })
+      let resultList = []
+      // 各配列の長さの最小数だけループ
+      let l = Math.min(listSelectedOpt1.length, listSelectedOpt2.length)
+      for (let i = 0;i < l; i++) {
+        resultList.push(listSelectedOpt1[i], listSelectedOpt2[i])
+      }
+      resultList.push(...listSelectedOpt1.slice(l), ...listSelectedOpt2.slice(l))
+      this.commentsGrepped = resultList
+    },
+    updateInputValue(event) {
+      this.comment.content = event.target.value;
+    },
+    onSubmit() {
+      this.setCommentData()
+      this.validate()
+      if(this.hasErrorComment) return;
+      this.postComment()
+    },
+    validate() {
+      if(this.comment.content === ""){
+        this.hasErrorComment = true;
+      }else{
+        this.hasErrorComment = false;
+      }
+    },
+    setCommentData(){
+      let history = this.getHistory();
+      this.comment.age = history.age;
+      this.comment.sex = history.sex;
+      this.comment.selected_opt = history.selected_opt;
+      this.comment.icon_id = this.getIcon();
+    },
     opt1_amount: function() {
       let amount = 0;
       if (this.vote.selected_opt == "opt1") {
@@ -1099,9 +1230,9 @@ export default {
     },
     fetchArticles: function() {
       this.$store.commit("setLoading", true);
+      this.fetchLocalStrageData();
       if (this.$route.params) {
-        let url =
-          `${ this.API_URL }/api/v1/articles/`;
+        let url = `${ this.API_URL }/api/v1/articles/`;
         url += this.$route.params.id;
         if (this.$store.state.latest && this.$store.state.editors_pick) {
           this.latest = this.$store.state.latest;
@@ -1110,12 +1241,18 @@ export default {
             .get(url)
             .then(result => {
               this.article = result.data.article;
+              this.comments = this.article.comments.contents
               this.setMetaTag(result.data.article.post);
             })
             .finally(() => {
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
+              this.grepComments()
               this.$nextTick(() => this.format_answering_area());
+              this.voteRate = this.calcVoteRate(
+                this.article.votes.opt2_selected.amount,
+                this.article.votes.opt1_selected.amount
+              );
             });
         } else {
           axios
@@ -1131,18 +1268,24 @@ export default {
             .then(
               axios.spread((api1Result, api2Result, api3Result) => {
                 this.article = api1Result.data.article;
+                this.comments = this.article.comments.contents
                 this.latest = api2Result.data.articles;
                 this.editors_pick = api3Result.data.articles;
                 this.setMetaTag(api1Result.data.article.post);
               })
             )
             .finally(() => {
+              this.grepComments()
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
               this.$nextTick(() => {
                 this.format_answering_area();
                 global.$('.o-answering-form').css('visibility','visible')
                 });
+               this.voteRate = this.calcVoteRate(
+                this.article.votes.opt2_selected.amount,
+                this.article.votes.opt1_selected.amount
+              );
             });
         }
       }
@@ -1199,6 +1342,12 @@ export default {
       return amount;
     },
     vote_to: function() {
+      let saveData = {
+        post_id: this.$route.params.id,
+        age: this.vote.age,
+        sex: this.vote.sex,
+        selected_opt: this.vote.selected_opt
+      }
       let url =
         `${ this.API_URL }/api/v1/articles/` +
         this.$route.params.id +
@@ -1212,9 +1361,93 @@ export default {
           }
         })
         // eslint-disable-next-line
-        .then(response => {})
+        .then(response => {
+          if(response.status === 201){
+            this.historyVote.push(saveData)
+            let saveDataString = JSON.stringify(this.historyVote)
+            localStorage.setItem('history-vote', saveDataString);
+          }
+        })
         // eslint-disable-next-line
         .catch(error => {});
+    },
+    postComment: function(){
+      let url =
+        `${ this.API_URL }/api/v1/articles/` +
+        this.$route.params.id +
+        "/comment";
+      axios
+        .post(url, {
+          comment: this.comment
+        })
+        // eslint-disable-next-line
+        .then(response => {
+          if(response.status === 201){
+            this.hasErrorComment = false;
+            this.comment.content = "";
+            this.$store.commit("setShowToastComment", true);
+          }
+        })
+        // eslint-disable-next-line
+        .catch(error => {})
+        // eslint-disable-next-line
+        .finally(()=>{
+          this.fetchArticles();
+        });
+    },
+    getIcon: function(){
+      const maxNum = 15;
+      const minNum = 1;
+      let ret = ""
+      let randNum = Math.floor(Math.random()*(maxNum-minNum)+minNum);
+      switch (randNum) {
+        case 1:
+            ret = "&#x1f428;" //こあら
+          break;
+        case 2:
+            ret = "&#x1f439;" //ハムスター
+          break;
+        case 3:
+            ret = "&#x1f430;" //うさぎ
+          break;
+        case 4:
+            ret = "&#x1f43b;" //くま
+          break;
+        case 5:
+            ret = "&#x1f43c;" //ぱんだ
+          break;
+        case 6:
+            ret = "&#x1f981;" //ライオン
+          break;
+        case 7:
+            ret = "&#x1f42f;" //とら
+          break;
+        case 8:
+            ret = "&#x1f431;" //ねこ
+          break;
+        case 9:
+            ret = "&#x1f43a;" //おおかみ
+          break;
+        case 10:
+            ret = "&#x1f436;" //犬
+          break;
+        case 11:
+            ret = "&#x1f424;" //ひよこ
+          break;
+        case 12:
+            ret = "&#x1f433;" //くじら
+          break;
+        case 13:
+            ret = "&#x1f434;" //うま
+          break;
+        case 14:
+            ret = "&#x1f42d;" //ねずみ
+          break;
+        case 15:
+            ret = "&#x1f435;" //さる
+          break;
+      }
+      return ret;
     },
     format_answering_area: function() {
       let maxHeight = 0;
@@ -1232,7 +1465,7 @@ export default {
       global.$(".m-chart-area").each(function() {
         global.$(this).height(maxHeight);
       });
-      
+
       global.$('.o-answering-form__inner').css('visibility','visible')
       // global.$('.p-article-answer').css('visibility','visible')
     },
@@ -1255,6 +1488,13 @@ export default {
     setMetaTag: function(post) {
       this.title = post.title;
       this.description = post.content;
+    },
+    getHistory: function(){
+      let target = this.historyVote.find((h) => {return (h.post_id == this.$route.params.id)});
+      return target
+    },
+    showMoreComments: function() {
+      this.pageNum += 1;
     }
   },
   head: {
@@ -1287,5 +1527,17 @@ export default {
 }
 .o-answering-form__inner{
   visibility: hidden;
+}
+.message_error {
+  color:red;
+  font-size: 13px;
+  text-align: center;
+}
+.has_error {
+  background-color: rgb(255, 80, 80, 0.1)
+}
+input.disable_btn{
+  background-color: rgba(0, 0, 0, 0.308);
+  /* color: rgba(0, 0, 0, 0.315); */
 }
 </style>
