@@ -1245,6 +1245,7 @@ export default {
               this.setMetaTag(result.data.article.post);
             })
             .finally(() => {
+              this.resetVote();
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
               this.grepComments()
@@ -1275,6 +1276,7 @@ export default {
               })
             )
             .finally(() => {
+              this.resetVote();
               this.grepComments()
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
@@ -1396,6 +1398,13 @@ export default {
           this.fetchArticles();
           this.$store.commit("setLoading", false);
         });
+    },
+    resetVote:function(){
+      this.vote = {
+        age: "",
+        sex: "",
+        selected_opt: ""
+      }
     },
     getIcon: function(){
       const maxNum = 15;
