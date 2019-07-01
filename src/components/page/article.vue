@@ -1372,6 +1372,7 @@ export default {
         .catch(error => {});
     },
     postComment: function(){
+      this.$store.commit("setLoading", true);
       let url =
         `${ this.API_URL }/api/v1/articles/` +
         this.$route.params.id +
@@ -1393,6 +1394,7 @@ export default {
         // eslint-disable-next-line
         .finally(()=>{
           this.fetchArticles();
+          this.$store.commit("setLoading", false);
         });
     },
     getIcon: function(){
