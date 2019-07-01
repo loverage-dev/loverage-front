@@ -1245,6 +1245,7 @@ export default {
               this.setMetaTag(result.data.article.post);
             })
             .finally(() => {
+              this.resetVote();
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
               this.grepComments()
@@ -1275,6 +1276,7 @@ export default {
               })
             )
             .finally(() => {
+              this.resetVote();
               this.grepComments()
               this.$emit("updateHead");
               this.$store.commit("setLoading", false);
@@ -1372,6 +1374,7 @@ export default {
         .catch(error => {});
     },
     postComment: function(){
+      this.$store.commit("setLoading", true);
       let url =
         `${ this.API_URL }/api/v1/articles/` +
         this.$route.params.id +
@@ -1393,7 +1396,15 @@ export default {
         // eslint-disable-next-line
         .finally(()=>{
           this.fetchArticles();
+          this.$store.commit("setLoading", false);
         });
+    },
+    resetVote:function(){
+      this.vote = {
+        age: "",
+        sex: "",
+        selected_opt: ""
+      }
     },
     getIcon: function(){
       const maxNum = 15;

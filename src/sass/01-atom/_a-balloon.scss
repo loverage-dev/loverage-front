@@ -1,5 +1,5 @@
 .a-balloon {
-  padding: 9px 12px 7px;
+  padding: 9px 12px;
   border-width: 2px;
   border-style: solid;
   border-radius: 18px;
@@ -20,6 +20,12 @@
       margin-right: 5px;
       vertical-align: 1px;
       font-size: 11px;
+      color: $gray50;
+    }
+  }
+
+  &--text {
+    .genderage {
       color: $gray50;
     }
   }
