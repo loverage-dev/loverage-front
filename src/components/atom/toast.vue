@@ -3,7 +3,7 @@
     <div
       class="a-toast show"
       v-if="$store.getters.toasting">
-        投稿されました。
+        相談が投稿されました。
     </div>
   </transition>
 </template>
