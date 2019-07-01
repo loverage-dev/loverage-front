@@ -246,8 +246,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答や
-                  <br class="u-sp-d">コメントを見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -290,8 +290,8 @@
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答や
-                  <br class="u-sp-d">コメントを見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -353,8 +353,8 @@
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答や
-                  <br class="u-sp-d">コメントを見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -389,8 +389,8 @@
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答や
-                  <br class="u-sp-d">コメントを見ることができます。
+                  質問に答えると、みんなの回答の見たり
+                  <br class="u-sp-d">コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -586,14 +586,14 @@
             <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentsShown" v-bind:key="c.origin_id">
               <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="c.icon_id"></span></div>
               <div class="a-balloon">
-                <div class="a-balloon__heading">{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
+                <div class="a-balloon__heading"><span class="a-balloon__heading-label">回答</span>{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
                 <p class="a-balloon--text">{{ c.content }}
                   <span class="genderage">({{ c.user_sex|translate_to_jp_sex }}{{ c.user_age|translate_to_jp_age }})</span>
                 </p>
               </div>
             </li>
           </ul>
-          <a 
+          <a
             v-if="commentsShown.length < commentsCount"
             class="a-btn a-btn--large a-btn--more" v-on:click="showMoreComments">SEE MORE COMMENTS
             <div class="arrow">
@@ -616,12 +616,12 @@
           <div class="m-comment-form__your-answer">
             <span class="text1">あなたの回答は</span><span class="a-answer-label"  v-bind:class="[(getHistory().selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]">{{ (getHistory().selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</span><span class="text2">です。</span>
           </div>
-          <textarea 
-            name="comment" 
-            placeholder="コメントがあれば入力してください" 
-            v-bind:class="{ has_error: hasErrorComment }" 
+          <textarea
+            name="comment"
+            placeholder="コメントがあれば入力してください"
+            v-bind:class="{ has_error: hasErrorComment }"
             class="a-textarea"
-            v-model="comment.content" 
+            v-model="comment.content"
             v-on:input="updateInputValue($event)"
             ></textarea>
             <p v-if="hasErrorComment" class="message_error">コメントを入力してください。</p>
@@ -1123,7 +1123,7 @@ export default {
         ? this.commentsGrepped.slice(0, (this.pageNum - 1) * 4 + 2)
         : this.commentsGrepped;
       }
-      
+
     },
     commentsCount: function() {
       return this.commentsGrepped.length;
