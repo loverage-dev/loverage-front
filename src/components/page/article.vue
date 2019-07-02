@@ -247,7 +247,7 @@
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
                   質問に答えると、みんなの回答の見たり
-                  <br class="u-sp-d">コメントを投稿することができます。
+                  <br>コメントを投稿することができます。
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -291,7 +291,7 @@
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
                   質問に答えると、みんなの回答の見たり
-                  <br class="u-sp-d">コメントを投稿することができます。
+                  <br>コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -354,7 +354,7 @@
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
                   質問に答えると、みんなの回答の見たり
-                  <br class="u-sp-d">コメントを投稿することができます。
+                  <br>コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -390,7 +390,7 @@
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
                   質問に答えると、みんなの回答の見たり
-                  <br class="u-sp-d">コメントを投稿することができます。
+                  <br>コメントを投稿することができます。
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
