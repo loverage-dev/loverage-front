@@ -134,6 +134,7 @@
 
   &__function {
     float: right;
+    position: relative;
 
     @include mq {
       @include clearfix;
@@ -176,6 +177,12 @@
       height: 28px;
       vertical-align: middle;
       margin-left: 14px;
+
+      &--sp {
+        @include mq {
+          display: none;
+        }
+      }
 
       &.is-active {
         svg {

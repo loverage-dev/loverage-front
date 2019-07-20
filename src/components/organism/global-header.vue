@@ -76,7 +76,7 @@
           </form>
         </div>
 
-        <button class="personal-btn is-active">
+        <button class="personal-btn personal-btn--sp is-active">
           <svg width="18px" height="21px" viewBox="0 0 18 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
               <desc>Created with Sketch.</desc>
@@ -88,6 +88,42 @@
               </g>
           </svg>
         </button>
+
+        <div class="o-history-box">
+          <h6 class="o-history-box__heading">あなたの相談履歴（最新5件）</h6>
+          <ul class="o-history-box-list">
+            <li class="o-history-box-list__item">
+              <a href="#">
+                <time class="date">19/07/20</time>
+                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
+              </a>
+            </li>
+            <li class="o-history-box-list__item">
+              <a href="#">
+                <time class="date">19/07/20</time>
+                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
+              </a>
+            </li>
+            <li class="o-history-box-list__item">
+              <a href="#">
+                <time class="date">19/07/20</time>
+                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
+              </a>
+            </li>
+            <li class="o-history-box-list__item">
+              <a href="#">
+                <time class="date">19/07/20</time>
+                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
+              </a>
+            </li>
+            <li class="o-history-box-list__item">
+              <a href="#">
+                <time class="date">19/07/20</time>
+                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
