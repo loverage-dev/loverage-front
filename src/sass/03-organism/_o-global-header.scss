@@ -34,8 +34,8 @@
   &__inner {
     @include clearfix;
     @include inner;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 12px;
+    padding-bottom: 13px;
 
     @include mq {
       padding-left: 25px;
@@ -103,6 +103,10 @@
   &__id {
     float: left;
 
+    @include mq-sp-only {
+      padding-top: 3px;
+    }
+
     @include mq {
       padding-top: 2px;
     }
@@ -118,6 +122,9 @@
     }
 
     .a-logo {
+      width: 110px;
+      height: 24px;
+
       @include mq(medium) {
         width: 160px;
         height: 35px;
