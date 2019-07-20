@@ -13,7 +13,7 @@
                   <option value>性別</option>
                   <option value="f">女性</option>
                   <option value="m">男性</option>
-                  <option value="o">どちらでもない</option>
+                  <option value="o">その他</option>
                 </select>
               </div>
               <div class="selectbox-wrapper selectbox-wrapper--green age">
@@ -820,7 +820,7 @@ export default {
         case "f":
           return "女性";
         case "o":
-          return "どちらでもない";
+          return "その他";
         default:
           return value;
       }
