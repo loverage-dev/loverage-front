@@ -20,8 +20,11 @@
     &__item {
       a {
         display: block;
-        padding: 6px 10px 10px;
+        padding: 6px 26px 10px 10px;
         border-bottom: 1px solid $backgournd-gray;
+        background-image: url('#{$img-path}icon_arrow--blue.svg');
+        background-position: right 12px bottom 15px;
+        background-repeat: no-repeat;
       }
 
       &:last-child {

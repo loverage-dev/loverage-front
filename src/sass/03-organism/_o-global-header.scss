@@ -184,16 +184,23 @@
         }
       }
 
+      &--pc {
+        display: none;
+
+        @include mq {
+          display: block;
+          float: right;
+          padding-top: 6px;
+          margin-left: 30px;
+        }
+      }
+
       &.is-active {
         svg {
           g {
             fill: $green;
           }
         }
-      }
-
-      @include mq {
-
       }
     }
   }
