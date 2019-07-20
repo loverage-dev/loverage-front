@@ -8,10 +8,10 @@
         <br>・冒頭で主題を提示しているか
         <br>・2択のどちらかで回答可能な内容になっているか
       </div>
-      <div class="m-dialog__supp">
+      <!-- <div class="m-dialog__supp">
         投稿後の画面のURLは控えておきましょう。
         <br>URLがわからなくなった場合は投稿内容で検索してみてください。
-      </div>
+      </div> -->
       <div class="m-dialog__btn-area">
         <a class="m-dialog__btn m-dialog__btn--dont change-pointer" @click="cancel">キャンセル</a>
         <a class="m-dialog__btn m-dialog__btn--do change-pointer" @click="post">投稿する</a>
