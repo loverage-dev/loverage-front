@@ -45,8 +45,8 @@ export default {
           this.$store.commit("setToasting", true);
           setTimeout(() => {
             this.$store.commit("setToasting", false);
-          }, 3000);
-        }, 800)
+          }, 2900);
+        }, 700)
       }
     },
 
@@ -57,8 +57,8 @@ export default {
           this.$store.commit("setToastingComment", true);
           setTimeout(() => {
             this.$store.commit("setToastingComment", false);
-          }, 3000);
-        }, 800)
+          }, 2900);
+        }, 700)
       }
     }
   }}
