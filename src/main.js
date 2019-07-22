@@ -82,8 +82,12 @@ Vue.filter('translate_to_jp_sex', function (value) {
       return value
   }
 });
-Vue.filter('format_date', function (value) {
+Vue.filter('format_datetime', function (value) {
   return moment(value).format('YYYY/MM/DD HH:mm')
+}
+);
+Vue.filter('format_date', function (value) {
+  return moment(value).format('YY/MM/DD')
 }
 );
 
