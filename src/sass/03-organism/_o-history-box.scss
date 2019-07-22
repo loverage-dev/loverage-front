@@ -26,6 +26,11 @@
         background-position: right 12px bottom 15px;
         background-repeat: no-repeat;
       }
+      span {
+        display: block;
+        padding: 6px 26px 10px 10px;
+        border-bottom: 1px solid $backgournd-gray;
+      }
 
       &:last-child {
         a {
@@ -34,6 +39,12 @@
       }
 
       .date {
+        display: block;
+        font-size: 11px;
+        color: $gray50;
+      }
+
+      .no-history {
         display: block;
         font-size: 11px;
         color: $gray50;
