@@ -102,41 +102,8 @@
           </svg>
         </button>
 
-        <div class="o-history-box">
-          <h6 class="o-history-box__heading">あなたの相談履歴（最新5件）</h6>
-          <ul class="o-history-box-list">
-            <li class="o-history-box-list__item">
-              <a href="#">
-                <time class="date">19/07/20</time>
-                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
-              </a>
-            </li>
-            <li class="o-history-box-list__item">
-              <a href="#">
-                <time class="date">19/07/20</time>
-                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
-              </a>
-            </li>
-            <li class="o-history-box-list__item">
-              <a href="#">
-                <time class="date">19/07/20</time>
-                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
-              </a>
-            </li>
-            <li class="o-history-box-list__item">
-              <a href="#">
-                <time class="date">19/07/20</time>
-                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
-              </a>
-            </li>
-            <li class="o-history-box-list__item">
-              <a href="#">
-                <time class="date">19/07/20</time>
-                <div class="title">最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。最近彼の様子がおかしいです。</div>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <!-- 履歴コンポーネント配置 -->
+        <HistoryBox />
       </div>
     </div>
   </header>
@@ -147,6 +114,7 @@ import IconLoverage from "../icon/icon-loverage.vue";
 import IconLoverageMini from "../icon/icon-loverage-mini.vue";
 import IconSearch from "../icon/icon-search.vue";
 import IconClose from "../icon/icon-close.vue";
+import HistoryBox from "../molecule/history-box.vue"
 
 export default {
   name: "GlobalHeader",
@@ -164,7 +132,8 @@ export default {
     IconLoverage,
     IconLoverageMini,
     IconSearch,
-    IconClose
+    IconClose,
+    HistoryBox
   },
   methods: {
     onSubmit: function(word) {
