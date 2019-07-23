@@ -13,8 +13,13 @@
         </p>
       </div>
       <div class="o-global-header__function">
-        <button class="personal-btn personal-btn--pc is-active">
+        <button
+          class="personal-btn personal-btn--pc touch-out-side"
+          v-bind:class="{ 'is-active': $store.getters.showHistory }"
+          @click="toggleHistory"
+        >
           <svg
+            class="touch-out-side"
             width="18px"
             height="21px"
             viewBox="0 0 18 21"
@@ -110,11 +115,12 @@
         </div>
 
         <button
-          class="personal-btn personal-btn--sp"
+          class="personal-btn personal-btn--sp touch-out-side"
           v-bind:class="{ 'is-active': $store.getters.showHistory }"
-          @click.stop="toggleHistory"
+          v-on:click.stop="toggleHistory"
         >
           <svg
+            class="touch-out-side"
             width="18px"
             height="21px"
             viewBox="0 0 18 21"
@@ -140,7 +146,9 @@
             </g>
           </svg>
         </button>
-        <HistoryBox v-if="$store.getters.showHistory" />
+        <div v-click-outside="vcoConfig">
+          <HistoryBox v-if="$store.getters.showHistory" />
+        </div>
       </div>
     </div>
   </header>
@@ -159,8 +167,14 @@ export default {
     return {
       pc_search_word: "",
       sp_search_word: "",
-      isSearch: false
-    };
+      isSearch: false,
+      vcoConfig: {
+        handler: this.onClickOutSide,
+        middleware: this.middleware,
+        events: ['dblclick', 'click', 'touchend'],
+        isActive: true
+      }
+    }
   },
   props: {
     // msg: String
@@ -173,6 +187,12 @@ export default {
     HistoryBox
   },
   methods: {
+    onClickOutSide () {
+      this.closeHistory();
+    },
+    middleware (event) {
+       return event.target.className.baseVal !== 'touch-out-side'
+    },
     onSubmit: function(word) {
       let w = word.trim();
       if (w.startsWith("#")) {
@@ -206,6 +226,9 @@ export default {
       this.$store.state.showHistory
         ? this.$store.commit("setShowHistory", false)
         : this.$store.commit("setShowHistory", true);
+    },
+    closeHistory: function() {
+      this.$store.commit("setShowHistory", false);
     }
   },
   mounted: function() {}

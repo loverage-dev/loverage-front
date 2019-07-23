@@ -1,5 +1,5 @@
 <template>
-  <div class="o-history-box" v-click-outside="closeHistory">
+  <div class="o-history-box">
     <h6 class="o-history-box__heading">あなたの相談履歴（最新5件）</h6>
     <ul class="o-history-box-list">
       <li
@@ -22,14 +22,9 @@
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
-
 export default {
   name: "HistoryBox",
   props: {},
-  directives: {
-    clickOutside: vClickOutside.directive
-  },
   data() {
     return {
       myHistoryPosts: []
@@ -48,15 +43,15 @@ export default {
         this.myHistoryPosts = JSON.parse(localStorage.getItem("history-post"));
       }
     },
-    closeHistory: function() {
-      this.$store.commit("setShowHistory", false);
-    },
-    toArticle: function(id) {      
-      this.closeHistory()
+    toArticle: function(id) {
       this.$router.push({
         name: 'article',
         params: { id: id }
       });
+      this.closeHistory();
+    },
+    closeHistory: function() {
+      this.$store.commit("setShowHistory", false);
     }
   }
 };

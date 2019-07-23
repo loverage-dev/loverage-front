@@ -7,8 +7,10 @@ import store from "./store";
 import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
 import gv from './mixins/grobalValiables'
+import vClickOutside from 'v-click-outside'
 // import './registerServiceWorker'
 
+Vue.use(vClickOutside)
 Vue.mixin(gv)    // mixinに登録
 
 // -----  jQuery -------------
