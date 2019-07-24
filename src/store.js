@@ -13,6 +13,7 @@ export default new Vuex.Store({
     toastingComment: false,
     showToast: false,
     showToastComment: false,
+    showHistory: false,
     post_input: {
       isChanged: false,
       age: "e_20s",
@@ -71,6 +72,9 @@ export default new Vuex.Store({
     },
     setShowToastComment(state, payload) {
       state.showToastComment = payload;
+    },
+    setShowHistory(state, payload) {
+      state.showHistory = payload;
     },
     setTopFeatureSpecial(state, payload){
       state.top_feature_special = payload;
@@ -217,6 +221,7 @@ export default new Vuex.Store({
     toasting(state) { return state.toasting },
     toastingComment(state) { return state.toastingComment },
     loading(state) { return state.loading },
+    showHistory(state) { return state.showHistory },
     error_content(state) { return state.hasError_content },
     error_content_msg(state) { return state.msgError_content },
     error_options(state) { return state.hasError_options },
