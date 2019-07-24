@@ -7,8 +7,10 @@ import store from "./store";
 import VueHead from 'vue-head'
 import VueAnalytics from 'vue-analytics'
 import gv from './mixins/grobalValiables'
+import vClickOutside from 'v-click-outside'
 // import './registerServiceWorker'
 
+Vue.use(vClickOutside)
 Vue.mixin(gv)    // mixinに登録
 
 // -----  jQuery -------------
@@ -77,13 +79,17 @@ Vue.filter('translate_to_jp_sex', function (value) {
     case "f":
       return "女性"
     case "o":
-      return "どちらでもない"
+      return "その他"
     default:
       return value
   }
 });
-Vue.filter('format_date', function (value) {
+Vue.filter('format_datetime', function (value) {
   return moment(value).format('YYYY/MM/DD HH:mm')
+}
+);
+Vue.filter('format_date', function (value) {
+  return moment(value).format('YY/MM/DD')
 }
 );
 
