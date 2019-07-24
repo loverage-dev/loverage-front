@@ -220,7 +220,7 @@
                 <option value=""></option>
                 <option value="f">女性</option>
                 <option value="m">男性</option>
-                <option value="o">どちらでもない</option>
+                <option value="o">その他</option>
               </select>
             </div>
             <div class="selectbox-wrapper selectbox-wrapper--green age">

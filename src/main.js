@@ -77,7 +77,7 @@ Vue.filter('translate_to_jp_sex', function (value) {
     case "f":
       return "女性"
     case "o":
-      return "どちらでもない"
+      return "その他"
     default:
       return value
   }
