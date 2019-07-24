@@ -6,7 +6,6 @@
   border-radius: 6px;
   background-color: $gray10;
   box-shadow: 0 1px 12px 0 rgba(0,0,0,0.14);
-  overflow: scroll;
 
   &__heading {
     padding: 10px;
@@ -26,7 +25,9 @@
         background-image: url('#{$img-path}icon_arrow--blue.svg');
         background-position: right 12px bottom 15px;
         background-repeat: no-repeat;
+        cursor: pointer;
       }
+      
       span {
         display: block;
         padding: 6px 26px 10px 10px;
