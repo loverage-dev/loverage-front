@@ -246,8 +246,10 @@
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -290,8 +292,10 @@
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -353,8 +357,10 @@
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -389,8 +395,10 @@
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
