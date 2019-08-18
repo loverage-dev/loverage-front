@@ -3,7 +3,7 @@
     <div class="m-sub-kv__image">
       <div class="m-sub-kv__image-inner">
         <router-link :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}">
-          <img src="@/images/thumbnail/dummy-sub-kv.jpg" alt>
+          <img src="@/images/thumbnail/dummy-sub-kv.png" alt>
         </router-link>
       </div>
     </div>
