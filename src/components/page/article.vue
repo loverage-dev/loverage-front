@@ -246,8 +246,10 @@
               <div class="o-answering-form__question o-answering-form__question--step3-2 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <div class="o-answering-form__label">
                   <div
@@ -290,8 +292,10 @@
               <div class="o-answering-form__question o-answering-form__question--step3-1 is-active">
                 <h4 class="o-answering-form__heading">あなたの年代を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -353,8 +357,10 @@
               <div class="o-answering-form__question o-answering-form__question--step2 is-active">
                 <h4 class="o-answering-form__heading">あなたの性別を教えてください。</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li class="o-answering-form-btn-list__item" v-on:click="answer_sex('f', $event)">
@@ -389,8 +395,10 @@
               <div class="o-answering-form__question o-answering-form__question--step1 is-active">
                 <h4 class="o-answering-form__heading">あなたはどう思いますか？</h4>
                 <p class="o-answering-form__desc">
-                  質問に答えると、みんなの回答の見たり
+                  質問に答えることで、
+                  <br class="u-sp-d">みんなの回答を見たり、
                   <br>コメントを投稿することができます。
+                  <br class="u-sp-d">（会員登録不要）
                 </p>
                 <ul class="o-answering-form-btn-list">
                   <li
@@ -584,7 +592,7 @@
           <div style="text-align:center" v-if="commentsCount === 0">投稿されたコメントはありません。</div>
           <ul class="o-chat-list" v-if="commentsCount !== 0">
             <li class="m-chat-item" v-bind:class="[(c.selected_opt == 'opt1') ? selectedOpt1Class : selectedOpt2Class]" v-for="c in commentsShown" v-bind:key="c.origin_id">
-              <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="c.icon_id"></span></div>
+              <div class="a-avatar--s"><span class="a-avatar--s__inner" v-html="getIconAccordingToSex(c.user_sex)"></span></div>
               <div class="a-balloon">
                 <div class="a-balloon__heading"><span class="a-balloon__heading-label">回答</span>{{ (c.selected_opt == 'opt1')? article.post.opt1: article.post.opt2 }}</div>
                 <p class="a-balloon--text">{{ c.content }}
@@ -1208,7 +1216,7 @@ export default {
       this.comment.age = history.age;
       this.comment.sex = history.sex;
       this.comment.selected_opt = history.selected_opt;
-      this.comment.icon_id = this.getIcon();
+      this.comment.icon_id = this.getIcon(); //現在は動物アイコンを表示しないがいつでも戻せるようにフロントから設定だけはしておく
     },
     opt1_amount: function() {
       let amount = 0;
@@ -1404,6 +1412,18 @@ export default {
         age: "",
         sex: "",
         selected_opt: ""
+      }
+    },
+    getIconAccordingToSex: function(sex){
+      switch (sex){
+        case 'f':
+          return "&#x1f469;&#x1f3fb;"
+        case 'm':
+          return "&#x1f9d1;&#x1f3fb;"
+        case 'o':
+          return "&#x1f603;"
+        default:
+          return "&#x1f603;"
       }
     },
     getIcon: function(){
