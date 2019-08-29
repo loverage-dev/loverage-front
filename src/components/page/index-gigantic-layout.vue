@@ -3,7 +3,13 @@
     <div class="m-kv__image">
       <div class="m-kv__image-inner">
         <router-link :to="{ name: 'article', params: { id: $store.state.top_feature_special.id }}">
-          <img src="@/images/thumbnail/dummy-kv.jpg" alt>
+          <img v-if="getDayOfWeek() == 'mon'" src="@/images/thumbnail/kv1.jpg" alt>
+          <img v-if="getDayOfWeek() == 'tue'" src="@/images/thumbnail/kv2.jpg" alt>
+          <img v-if="getDayOfWeek() == 'wed'" src="@/images/thumbnail/kv3.jpg" alt>
+          <img v-if="getDayOfWeek() == 'thu'" src="@/images/thumbnail/kv4.jpg" alt>
+          <img v-if="getDayOfWeek() == 'fri'" src="@/images/thumbnail/kv5.jpg" alt>
+          <img v-if="getDayOfWeek() == 'sat'" src="@/images/thumbnail/kv6.jpg" alt>
+          <img v-if="getDayOfWeek() == 'sun'" src="@/images/thumbnail/kv7.jpg" alt>
         </router-link>
       </div>
     </div>
@@ -149,6 +155,12 @@ export default {
   props: {},
   components: {
     IconSex
+  },
+  methods: {
+    getDayOfWeek: function(){
+      let week=['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()]
+      return  week
+    }
   }
 };
 </script>
