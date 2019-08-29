@@ -3,7 +3,13 @@
     <div class="m-sub-kv__image">
       <div class="m-sub-kv__image-inner">
         <router-link :to="{ name: 'article', params: { id: $store.state.featured_sp.id }}">
-          <img src="@/images/thumbnail/dummy-sub-kv.png" alt>
+          <img v-if="getDayOfWeek() == 'mon'" src="@/images/thumbnail/sub-kv1.jpg" alt>
+          <img v-if="getDayOfWeek() == 'tue'" src="@/images/thumbnail/sub-kv2.jpg" alt>
+          <img v-if="getDayOfWeek() == 'wed'" src="@/images/thumbnail/sub-kv3.jpg" alt>
+          <img v-if="getDayOfWeek() == 'thu'" src="@/images/thumbnail/sub-kv4.jpg" alt>
+          <img v-if="getDayOfWeek() == 'fri'" src="@/images/thumbnail/sub-kv5.jpg" alt>
+          <img v-if="getDayOfWeek() == 'sat'" src="@/images/thumbnail/sub-kv6.jpg" alt>
+          <img v-if="getDayOfWeek() == 'sun'" src="@/images/thumbnail/sub-kv7.jpg" alt>
         </router-link>
       </div>
     </div>
@@ -139,7 +145,13 @@ import IconSex from "../icon/icon-sex.vue";
 export default {
   name: "PageIndexGiganticLayoutSP",
   props: {},
-  components: {IconSex}
+  components: {IconSex},
+  methods: {
+    getDayOfWeek: function(){
+      let week=['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()]
+      return  week
+    }
+  }
 };
 </script>
 
