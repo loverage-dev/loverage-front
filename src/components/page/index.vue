@@ -42,18 +42,18 @@ export default {
     this.$store.commit("setLoading", true);
     axios.get(`${ this.API_URL }/api/v1/overview`)
       .then(response => {
-        this.$store.commit("setTopFeatureSpecial", response.data.top_featured.articles[0])
-        this.$store.commit("setTopFeatureNormal", response.data.top_featured.articles.slice(1))
+        this.$store.commit("setTopFeatureSpecial", response.data.key_visual)
+        this.$store.commit("setTopFeatureNormal", response.data.others_1.articles)
         this.$store.commit("setWomensTopic", response.data.big_futured_for_f)
         this.$store.commit("setMensTopic", response.data.big_futured_for_m)
-        this.$store.commit("setRankingView", response.data.rankings_view.articles);
-        this.$store.commit("setLatest", response.data.latest.articles);
-        this.$store.commit("setFeatured", response.data.featured.articles);
-        this.$store.commit("setFeaturedSP", response.data.featured.articles[0])
+        this.$store.commit("setRankingView", response.data.rankings_view.articles)
+        this.$store.commit("setLatest", response.data.latest.articles)
+        this.$store.commit("setFeatured", response.data.featured.articles)
+        this.$store.commit("setFeaturedSP", response.data.sub_visual)
         this.$store.commit("setHotTopic", response.data.hot_topic.articles)
         this.$store.commit("setEditorsPick", response.data.editors_picks.articles)
-        this.$store.commit("setOthers1", response.data.others_1.articles)
-        this.$store.commit("setOthers2", response.data.others_2.articles)
+        this.$store.commit("setOthers1", response.data.others_2.articles)
+        this.$store.commit("setOthers2", response.data.others_3.articles)
       })
       .finally(()=>{
           this.$store.commit("setLoading", false)
