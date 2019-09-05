@@ -11,7 +11,8 @@
     @include mq(medium) {
       @include clearfix;
       float: right;
-      width: 484px;
+      width: 475px;
+      margin-left: 20px;
 
       & + .o-card-list--row {
         clear: both;
