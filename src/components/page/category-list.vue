@@ -1,10 +1,530 @@
 <template>
   <div class="t-contents" v-if="!$store.getters.loading">
-    <PageTitle pageTitle="カテゴリー一覧" pageDescription="投稿者のカテゴリーから相談を探す"/>
+    <PageTitle pageTitle="カテゴリー一覧" pageDescription="カテゴリーから相談を探す"/>
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
-          <h2 class="a-heading">性別 × 年代</h2>
+          <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >出会い
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >片思い
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >友達・同僚
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >デート
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >告白
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >彼氏・彼女
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >元カレ・元カノ
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >結婚
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >結婚生活
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >別れ
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >浮気・不倫
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >失恋
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+            >SEX・性
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          <li class="p-category-list-btn-list__item">
+            <a
+              class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
+            >その他
+              <div class="arrow">
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg
+                  width="17px"
+                  height="11px"
+                  viewBox="0 0 17 11"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+                  <title></title>
+                  <desc>Created with Sketch.</desc>
+                  <defs></defs>
+                  <g id="SP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      class="variable-fill"
+                      id="トップ"
+                      transform="translate(-288.000000, -3400.000000)"
+                      fill="#FFA9C8"
+                    >
+                      <g id="Group-10" transform="translate(85.000000, 3375.000000)">
+                        <path
+                          d="M214.917969,35.8320312 C214.70703,35.6210927 214.70703,35.4101573 214.917969,35.1992188 L218.451172,31.296875 L203.421875,31.296875 C203.140624,31.296875 203,31.1562514 203,30.875 C203,30.5937486 203.140624,30.453125 203.421875,30.453125 L218.451172,30.453125 L214.917969,26.5507812 C214.70703,26.3398427 214.70703,26.1289073 214.917969,25.9179688 C215.128907,25.7070302 215.339843,25.7070302 215.550781,25.9179688 C218.328139,28.9765778 219.734375,30.5234373 219.769531,30.5585938 C219.839844,30.6289066 219.875,30.7343743 219.875,30.875 C219.875,31.0156257 219.839844,31.1210934 219.769531,31.1914062 L215.550781,35.8320312 C215.480468,35.9023441 215.375001,35.9375 215.234375,35.9375 C215.093749,35.9375 214.988282,35.9023441 214.917969,35.8320312 Z"
+                          id=""
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </li>
+          </ul>
+          <h2 class="a-heading">投稿者の性別 × 年代</h2>
           <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
             <li class="p-category-list-btn-list__item">
               <router-link
@@ -919,7 +1439,7 @@
               </router-link>
             </li>
           </ul>
-          <h2 class="a-heading">性別</h2>
+          <h2 class="a-heading">投稿者の性別</h2>
           <ul class="p-category-list-btn-list p-category-list-btn-list--3columns">
             <li class="p-category-list-btn-list__item">
               <router-link
@@ -1036,7 +1556,7 @@
               </router-link>
             </li>
           </ul>
-          <h2 class="a-heading">年代</h2>
+          <h2 class="a-heading">投稿者の年代</h2>
           <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
             <li class="p-category-list-btn-list__item">
               <router-link
