@@ -42,68 +42,99 @@
           <p class="message_error">{{ $store.getters.error_content_msg }}</p>
         </div>
         <div class="m-question-post-form__block">
-          <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
-          <input
-            class="a-input option1"
-            type="text"
-            name="option1"
-            placeholder="選択肢1"
-            autocomplete="on"
-            v-bind:value="$store.getters.inputValues.opt1"
-            v-on:input="updateInputValue($event, 'opt1')"
-            v-bind:class="{ has_error: $store.getters.error_options}"
-          >
-          <input
-            class="a-input option2"
-            type="text"
-            name="option2"
-            placeholder="選択肢2"
-            autocomplete="on"
-            v-bind:value="$store.getters.inputValues.opt2"
-            v-on:input="updateInputValue($event, 'opt2')"
-            v-bind:class="{ has_error: $store.getters.error_options}"
-          >
-          <p class="message_error">{{ $store.getters.error_options_msg }}</p>
-          <div class="m-question-post-form__heading">あなたの性別・年代</div>
-          <div class="selectbox-wrapper gender">
-            <select
-              class="a-selectbox"
-              name="gender"
-              v-bind:value="$store.getters.inputValues.sex"
-              v-on:input="updateInputValue($event, 'sex')"
-              v-bind:class="{ has_error: $store.getters.error_sex}"
-              style="max-height:42.33px;min-height:42.33px;"
-              >
-              <option value=""></option>
-              <option value="f">女性</option>
-              <option value="m">男性</option>
-              <option value="o">その他</option>
-            </select>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
+            <input
+              class="a-input option1"
+              type="text"
+              name="option1"
+              placeholder="選択肢1"
+              autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt1"
+              v-on:input="updateInputValue($event, 'opt1')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
+            >
+            <input
+              class="a-input option2"
+              type="text"
+              name="option2"
+              placeholder="選択肢2"
+              autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt2"
+              v-on:input="updateInputValue($event, 'opt2')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
+            >
+            <p class="message_error">{{ $store.getters.error_options_msg }}</p>
           </div>
-          <div class="selectbox-wrapper selectbox-wrapper--green age">
-            <select
-              class="a-selectbox"
-              name="age"
-              v-bind:value="$store.getters.inputValues.age"
-              v-on:input="updateInputValue($event, 'age')"
-              v-bind:class="{ has_error: $store.getters.error_age}"
-              style="max-height:42.33px;min-height:42.33px;"
-              >
-              <option value="e_10s">10代前半</option>
-              <option value="l_10s">10代後半</option>
-              <option value="e_20s">20代前半</option>
-              <option value="l_20s">20代後半</option>
-              <option value="e_30s">30代前半</option>
-              <option value="l_30s">30代後半</option>
-              <option value="e_40s">40代前半</option>
-              <option value="l_40s">40代後半</option>
-              <option value="e_50s">50代前半</option>
-              <option value="l_50s">50代後半</option>
-              <option value="e_60s">60代前半</option>
-              <option value="l_60s">60代後半</option>
-            </select>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">あなたの性別・年代</div>
+            <div class="selectbox-wrapper gender">
+              <select
+                class="a-selectbox"
+                name="gender"
+                v-bind:value="$store.getters.inputValues.sex"
+                v-on:input="updateInputValue($event, 'sex')"
+                v-bind:class="{ has_error: $store.getters.error_sex}"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value=""></option>
+                <option value="f">女性</option>
+                <option value="m">男性</option>
+                <option value="o">その他</option>
+              </select>
+            </div>
+            <div class="selectbox-wrapper selectbox-wrapper--green age">
+              <select
+                class="a-selectbox"
+                name="age"
+                v-bind:value="$store.getters.inputValues.age"
+                v-on:input="updateInputValue($event, 'age')"
+                v-bind:class="{ has_error: $store.getters.error_age}"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value="e_10s">10代前半</option>
+                <option value="l_10s">10代後半</option>
+                <option value="e_20s">20代前半</option>
+                <option value="l_20s">20代後半</option>
+                <option value="e_30s">30代前半</option>
+                <option value="l_30s">30代後半</option>
+                <option value="e_40s">40代前半</option>
+                <option value="l_40s">40代後半</option>
+                <option value="e_50s">50代前半</option>
+                <option value="l_50s">50代後半</option>
+                <option value="e_60s">60代前半</option>
+                <option value="l_60s">60代後半</option>
+              </select>
+            </div>
+            <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
           </div>
-          <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">相談のカテゴリー</div>
+            <div class="selectbox-wrapper">
+              <select
+                class="a-selectbox"
+                name="category"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value="">選択してください</option>
+                <option value="deai">出会い</option>
+                <option value="kataomoi">片思い</option>
+                <option value="tomodatidouryou">友達・同僚</option>
+                <option value="date">デート</option>
+                <option value="kokuhaku">告白</option>
+                <option value="kareshikanojo">彼氏・彼女</option>
+                <option value="motokaremotokano">元カレ・元カノ</option>
+                <option value="kekkon">結婚</option>
+                <option value="kekkonseikatsu">結婚生活</option>
+                <option value="wakare">別れ</option>
+                <option value="uwakifurin">浮気・不倫</option>
+                <option value="shitsuren">失恋</option>
+                <option value="sex">SEX・性</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+            <p class="message_error"></p>
+          </div>
           <p class="m-question-post-form__terms">
             <router-link to="/terms">利用規約</router-link>に同意して
           </p>
