@@ -1,6 +1,9 @@
 <template>
   <div class="o-pagetitle o-pagetitle-article">
     <div class="o-pagetitle__inner">
+      <div class="o-pagetitle__category">
+        <a class="a-label a-label--category">motokaremotokano</a>
+      </div>
       <h1 class="o-pagetitle__title">{{article.post.title}}</h1>
       <div class="m-card-info">
         <IconSex
