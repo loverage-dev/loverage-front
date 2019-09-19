@@ -67,6 +67,33 @@
             <p class="message_error">{{ $store.getters.error_options_msg }}</p>
           </div>
           <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">相談のカテゴリー</div>
+            <div class="selectbox-wrapper">
+              <select
+                class="a-selectbox"
+                name="category"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value="">選択してください</option>
+                <option value="deai">出会い</option>
+                <option value="kataomoi">片思い</option>
+                <option value="tomodatidouryou">友達・同僚</option>
+                <option value="date">デート</option>
+                <option value="kokuhaku">告白</option>
+                <option value="kareshikanojo">彼氏・彼女</option>
+                <option value="motokaremotokano">元カレ・元カノ</option>
+                <option value="kekkon">結婚</option>
+                <option value="kekkonseikatsu">結婚生活</option>
+                <option value="wakare">別れ</option>
+                <option value="uwakifurin">浮気・不倫</option>
+                <option value="shitsuren">失恋</option>
+                <option value="sex">SEX・性</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+            <p class="message_error"></p>
+          </div>
+          <div class="m-question-post-form__box">
             <div class="m-question-post-form__heading">あなたの性別・年代</div>
             <div class="selectbox-wrapper gender">
               <select
@@ -107,33 +134,6 @@
               </select>
             </div>
             <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
-          </div>
-          <div class="m-question-post-form__box">
-            <div class="m-question-post-form__heading">相談のカテゴリー</div>
-            <div class="selectbox-wrapper">
-              <select
-                class="a-selectbox"
-                name="category"
-                style="max-height:42.33px;min-height:42.33px;"
-                >
-                <option value="">選択してください</option>
-                <option value="deai">出会い</option>
-                <option value="kataomoi">片思い</option>
-                <option value="tomodatidouryou">友達・同僚</option>
-                <option value="date">デート</option>
-                <option value="kokuhaku">告白</option>
-                <option value="kareshikanojo">彼氏・彼女</option>
-                <option value="motokaremotokano">元カレ・元カノ</option>
-                <option value="kekkon">結婚</option>
-                <option value="kekkonseikatsu">結婚生活</option>
-                <option value="wakare">別れ</option>
-                <option value="uwakifurin">浮気・不倫</option>
-                <option value="shitsuren">失恋</option>
-                <option value="sex">SEX・性</option>
-                <option value="other">その他</option>
-              </select>
-            </div>
-            <p class="message_error"></p>
           </div>
           <p class="m-question-post-form__terms">
             <router-link to="/terms">利用規約</router-link>に同意して
