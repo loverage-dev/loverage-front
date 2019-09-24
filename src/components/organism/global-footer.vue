@@ -118,6 +118,11 @@
               個人情報保護方針
             </router-link>
           </li>
+          <li class="item item8">
+            <a href="https://forms.gle/SyRjk8Yv9VeatFCL7" target="_blank">
+              お問い合わせ
+            </a>
+          </li>
         </ul>
       </nav>
       <div class="o-global-footer__sns">
