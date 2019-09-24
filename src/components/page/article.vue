@@ -201,7 +201,7 @@
             </li>
           </ul>
         </div>-->
-        <p class="a-paragraph">{{ article.post.content }}</p>
+        <p class="a-paragraph" v-html="article.post.content"></p>
         <div class="p-article-sentences__image" v-if="article.post.img_base64 !== ''">
           <IconEyeCatching
             :age="article.post.user_age"
