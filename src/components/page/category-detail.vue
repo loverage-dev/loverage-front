@@ -739,6 +739,12 @@ export default {
           this.title = `タグ "#${this.$route.query.tag}"`;
           this.canGrep = true;
         }
+        if (this.$route.query.category) {
+          if (url.slice(-1) != "?") url += "&";
+          url += "category=" + this.$route.query.category;
+          this.title = `カテゴリー "${this.$route.query.category}"`;
+          this.canGrep = true;
+        }
         this.title += " の検索結果";
 
         this.$store.commit("setLoading", true);
