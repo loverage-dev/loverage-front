@@ -6,9 +6,11 @@
         <div class="t-contents__inner t-2column__main">
           <ul class="p-category-list-btn-list p-category-list-btn-list--2columns">
           <li class="p-category-list-btn-list__item">
-            <a
-              class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
-            >出会い
+            <router-link
+                v-bind:to="{ name: 'category-detail', query: {  category: '出会い' }}"
+                class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
+              >
+            出会い
               <div class="arrow">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
@@ -40,12 +42,13 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '片想い' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
-            >片思い
+            >片想い
               <div class="arrow">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
                 <svg
@@ -77,10 +80,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '友達・同僚' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >友達・同僚
               <div class="arrow">
@@ -114,10 +118,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: 'デート' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >デート
               <div class="arrow">
@@ -151,10 +156,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '告白' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >告白
               <div class="arrow">
@@ -188,10 +194,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '彼氏・彼女' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >彼氏・彼女
               <div class="arrow">
@@ -225,10 +232,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '元カレ・元カノ' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >元カレ・元カノ
               <div class="arrow">
@@ -262,10 +270,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '結婚' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >結婚
               <div class="arrow">
@@ -299,10 +308,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '結婚生活' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >結婚生活
               <div class="arrow">
@@ -336,10 +346,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '別れ' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >別れ
               <div class="arrow">
@@ -373,10 +384,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '浮気・不倫' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >浮気・不倫
               <div class="arrow">
@@ -410,10 +422,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: '失恋' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >失恋
               <div class="arrow">
@@ -447,10 +460,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: 'SEX・性' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >SEX・性
               <div class="arrow">
@@ -484,10 +498,11 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           <li class="p-category-list-btn-list__item">
-            <a
+            <router-link
+              v-bind:to="{ name: 'category-detail', query: {  category: 'その他' }}"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--green-arrow"
             >その他
               <div class="arrow">
@@ -521,7 +536,7 @@
                   </g>
                 </svg>
               </div>
-            </a>
+            </router-link>
           </li>
           </ul>
           <h2 class="a-heading">投稿者の性別 × 年代</h2>
