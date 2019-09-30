@@ -22,8 +22,10 @@ export default new Vuex.Store({
       opt1: "",
       opt2: "",
       tag_list: "",
-      img_base64: ""
+      img_base64: "",
+      category_id: ""
     },
+    categories: null,
     hasError_content: false,
     msgError_content: "",
     hasError_options: false,
@@ -118,6 +120,9 @@ export default new Vuex.Store({
     setOthers2(state, payload){
       state.others_2 = payload;
     },
+    setCategories(state, payload){
+      state.categories = payload;
+    },
     setPostData(state){
       let jsonObj = new Object();
       if (state.post_input.age != "") jsonObj.age = state.post_input.age;
@@ -126,6 +131,7 @@ export default new Vuex.Store({
       if (state.post_input.opt1 != "") jsonObj.opt1 = state.post_input.opt1;
       if (state.post_input.opt2 != "") jsonObj.opt2 = state.post_input.opt2;
       if (state.post_input.img_base64 != "") jsonObj.img_base64 = state.post_input.img_base64;
+      if (state.post_input.category_id != "") jsonObj.category_id = state.post_input.category_id;
       let tags = this.state.post_input.tag_list.split(" ");
       let arrTag = [];
       tags.forEach(tag => {
@@ -146,6 +152,7 @@ export default new Vuex.Store({
       state.post_input.opt2 = ""
       state.post_input.tag_list = ""
       state.post_input.img_base64 = ""
+      state.post_input.category_id = ""
       state.post_input.isChanged = false
     },
     changeInputState(state, payload){
@@ -229,7 +236,8 @@ export default new Vuex.Store({
     error_sex(state) { return state.hasError_sex },
     error_age(state) { return state.hasError_age },
     error_sex_age_msg(state) { return state.msgError_sex_age },
-    canPost(state){ return state.canPost }
+    canPost(state){ return state.canPost },
+    categories(state){ return state.categories }
   },
   actions: {
     doUpdateInputValue({commit}, payload) {

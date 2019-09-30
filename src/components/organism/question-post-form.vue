@@ -72,23 +72,17 @@
               <select
                 class="a-selectbox"
                 name="category"
+                v-bind:value="$store.getters.inputValues.category_id"
+                v-on:input="updateInputValue($event, 'category_id')"
                 style="max-height:42.33px;min-height:42.33px;"
                 >
                 <option value="">選択してください</option>
-                <option value="deai">出会い</option>
-                <option value="kataomoi">片思い</option>
-                <option value="tomodatidouryou">友達・同僚</option>
-                <option value="date">デート</option>
-                <option value="kokuhaku">告白</option>
-                <option value="kareshikanojo">彼氏・彼女</option>
-                <option value="motokaremotokano">元カレ・元カノ</option>
-                <option value="kekkon">結婚</option>
-                <option value="kekkonseikatsu">結婚生活</option>
-                <option value="wakare">別れ</option>
-                <option value="uwakifurin">浮気・不倫</option>
-                <option value="shitsuren">失恋</option>
-                <option value="sex">SEX・性</option>
-                <option value="other">その他</option>
+                <option 
+                  v-for="category in $store.getters.categories"
+                  v-bind:key="category.id" 
+                  v-bind:value="category.id">
+                  {{ category.name }}
+                </option>
               </select>
             </div>
             <p class="message_error"></p>
@@ -151,6 +145,7 @@
 
 <script>
 import ResizableImageInput from "../molecule/resizable-image-input.vue";
+import axios from "axios";
 
 export default {
   name: "QuestionPostForm",
@@ -158,9 +153,19 @@ export default {
   components: {
     ResizableImageInput
   },
+  created: function(){
+    this.getCategoryList()
+  },
   methods: {
     async uploadProfileImage ({ base64 }) {
       this.$store.state.post_input.img_base64 = base64
+    },
+    getCategoryList(){
+      if(this.$store.state.categories != null) return;
+      axios.get(`${ this.API_URL }/api/v1/category_list`)
+      .then(response =>{
+        this.$store.commit("setCategories", response.data.categories)
+      })
     },
     drawImageArgs (image) {
       const maxSize = 330
@@ -200,7 +205,8 @@ export default {
         this.$store.state.post_input.content === "" &&
         this.$store.state.post_input.opt1 === "" &&
         this.$store.state.post_input.opt2 === "" &&
-        this.$store.state.post_input.tag_list === ""
+        this.$store.state.post_input.tag_list === "" &&
+        this.$store.state.post_input.category_id === ""
       ){
         this.$store.dispatch('doUpdateInputValue', { key: 'isChanged', value: false })
       }else{
