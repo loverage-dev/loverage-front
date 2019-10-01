@@ -191,6 +191,7 @@
                   style="max-height:42.33px;min-height:42.33px;"
                   v-bind:value="$store.getters.inputValues.category_id"
                   v-on:input="updateInputValue($event, 'category_id')"
+                  v-bind:class="{ has_error: $store.getters.error_category_id}"
                 >
                 <option value="">選択してください</option>
                 <option 
@@ -200,6 +201,7 @@
                   {{ category.name }}
                 </option>
                 </select>
+                <p class="message_error">{{ $store.getters.error_category_id_msg }}</p>
               </div>
               <p class="message_error"></p>
             </div>

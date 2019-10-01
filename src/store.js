@@ -28,6 +28,8 @@ export default new Vuex.Store({
     categories: null,
     hasError_content: false,
     msgError_content: "",
+    hasError_category_id: false,
+    msgError_category_id: "",
     hasError_options: false,
     msgError_options: "",
     hasError_sex: false,
@@ -165,10 +167,18 @@ export default new Vuex.Store({
       // 内容チェック
       if(state.post_input.content == ""){
         state.hasError_content = true;
-        state.msgError_content = "画像ファイルの添付以外は入力が必須です。"
+        state.msgError_content = "質問内容は入力が必須です。  "
       }else{
         state.hasError_content = false;
         state.msgError_content = ""
+      }
+      // カテゴリーチェック
+      if(state.post_input.category_id == ""){
+        state.hasError_category_id = true;
+        state.msgError_category_id = "カテゴリーは選択が必須です。"
+      }else{
+        state.hasError_category_id = false;
+        state.msgError_category_id = ""
       }
       // アリナシチェック
       if(state.post_input.opt1 != "" && state.post_input.opt2 != "" && state.post_input.opt1 == state.post_input.opt2){
@@ -200,17 +210,29 @@ export default new Vuex.Store({
     chkCanPost(state){
       if(state.post_input.content == ""){
         state.canPost = false;
-      }else if(state.post_input.opt1 != "" && state.post_input.opt2 != "" && state.post_input.opt1 == state.post_input.opt2){
-        state.canPost = false;
-      }else if (state.post_input.sex == "" && state.post_input.age != "") {
-        state.canPost = false;
-      } else if (state.post_input.sex != "" && state.post_input.age == "") {
-        state.canPost = false;
-      } else if ( state.post_input.sex == "" && state.post_input.age == "") {
-        state.canPost = false;
-      } else{
-        state.canPost = true;
+        return;
       }
+      if(state.post_input.category_id == ""){
+        state.canPost = false;
+        return;
+      }
+      if(state.post_input.opt1 != "" && state.post_input.opt2 != "" && state.post_input.opt1 == state.post_input.opt2){
+        state.canPost = false;
+        return;
+      }
+      if (state.post_input.sex == "" && state.post_input.age != "") {
+        state.canPost = false;
+        return;
+      } 
+      if (state.post_input.sex != "" && state.post_input.age == "") {
+        state.canPost = false;
+        return
+      } 
+      if ( state.post_input.sex == "" && state.post_input.age == "") {
+        state.canPost = false;
+        return
+      }
+      state.canPost = true;
     },
     resetErrors(state){
       state.hasError_content = false;
@@ -231,6 +253,8 @@ export default new Vuex.Store({
     showHistory(state) { return state.showHistory },
     error_content(state) { return state.hasError_content },
     error_content_msg(state) { return state.msgError_content },
+    error_category_id(state) { return state.hasError_category_id },
+    error_category_id_msg(state) { return state.msgError_category_id },
     error_options(state) { return state.hasError_options },
     error_options_msg(state) { return state.msgError_options },
     error_sex(state) { return state.hasError_sex },
