@@ -1,0 +1,21 @@
+.o-category-list {
+  @include inner;
+  margin-bottom: 40px;
+
+  @include mq(medium) {
+    padding-top: 60px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+
+  .m-list-heading {
+    margin-bottom: 18px;
+  }
+
+  .a-btn--medium {
+    &::after {
+      display: none;
+    }
+  }
+}
