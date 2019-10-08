@@ -34,8 +34,13 @@
   &--man {
     background-color: $man-color;
   }
- 
+
   &--no-jender {
     background-color: $no-jender-color;
+  }
+
+  &--category {
+    color: $base-background-color;
+    background-color: rgba(247, 127, 153, .75);
   }
 }

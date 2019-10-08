@@ -8,6 +8,10 @@
     font-weight: bold;
   }
 
+  &__box {
+    @include clearfix;
+  }
+
   .option1 {
     margin-bottom: 8px;
   }

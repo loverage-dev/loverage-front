@@ -32,6 +32,22 @@
     @include clearfix;
   }
 
+  &__category {
+    padding-left: 28px;
+    margin-bottom: 2px;
+    background-repeat: no-repeat;
+    background-image: url('#{$img-path}icon_category.svg');
+    background-position: top left;
+
+    @include mq(medium) {
+      margin-bottom: 12px;
+    }
+
+    .a-label {
+      vertical-align: top;
+    }
+  }
+
   &__title {
     color: $base-background-color;
     font-size: 20px;

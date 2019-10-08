@@ -1,6 +1,13 @@
 <template>
   <div class="o-pagetitle o-pagetitle-article">
     <div class="o-pagetitle__inner">
+      <div class="o-pagetitle__category" v-if="article.post.category != null">  
+        <router-link
+          class="a-label a-label--category"
+          v-bind:to="{ name: 'category-detail', query: {  category: article.post.category }}">
+          {{ article.post.category }}
+        </router-link>
+      </div>
       <h1 class="o-pagetitle__title">{{article.post.title}}</h1>
       <div class="m-card-info">
         <IconSex
