@@ -42,68 +42,95 @@
           <p class="message_error">{{ $store.getters.error_content_msg }}</p>
         </div>
         <div class="m-question-post-form__block">
-          <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
-          <input
-            class="a-input option1"
-            type="text"
-            name="option1"
-            placeholder="選択肢1"
-            autocomplete="on"
-            v-bind:value="$store.getters.inputValues.opt1"
-            v-on:input="updateInputValue($event, 'opt1')"
-            v-bind:class="{ has_error: $store.getters.error_options}"
-          >
-          <input
-            class="a-input option2"
-            type="text"
-            name="option2"
-            placeholder="選択肢2"
-            autocomplete="on"
-            v-bind:value="$store.getters.inputValues.opt2"
-            v-on:input="updateInputValue($event, 'opt2')"
-            v-bind:class="{ has_error: $store.getters.error_options}"
-          >
-          <p class="message_error">{{ $store.getters.error_options_msg }}</p>
-          <div class="m-question-post-form__heading">あなたの性別・年代</div>
-          <div class="selectbox-wrapper gender">
-            <select
-              class="a-selectbox"
-              name="gender"
-              v-bind:value="$store.getters.inputValues.sex"
-              v-on:input="updateInputValue($event, 'sex')"
-              v-bind:class="{ has_error: $store.getters.error_sex}"
-              style="max-height:42.33px;min-height:42.33px;"
-              >
-              <option value=""></option>
-              <option value="f">女性</option>
-              <option value="m">男性</option>
-              <option value="o">その他</option>
-            </select>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">回答の2択（未入力の場合はアリ/ナシになります。）</div>
+            <input
+              class="a-input option1"
+              type="text"
+              name="option1"
+              placeholder="選択肢1"
+              autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt1"
+              v-on:input="updateInputValue($event, 'opt1')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
+            >
+            <input
+              class="a-input option2"
+              type="text"
+              name="option2"
+              placeholder="選択肢2"
+              autocomplete="on"
+              v-bind:value="$store.getters.inputValues.opt2"
+              v-on:input="updateInputValue($event, 'opt2')"
+              v-bind:class="{ has_error: $store.getters.error_options}"
+            >
+            <p class="message_error">{{ $store.getters.error_options_msg }}</p>
           </div>
-          <div class="selectbox-wrapper selectbox-wrapper--green age">
-            <select
-              class="a-selectbox"
-              name="age"
-              v-bind:value="$store.getters.inputValues.age"
-              v-on:input="updateInputValue($event, 'age')"
-              v-bind:class="{ has_error: $store.getters.error_age}"
-              style="max-height:42.33px;min-height:42.33px;"
-              >
-              <option value="e_10s">10代前半</option>
-              <option value="l_10s">10代後半</option>
-              <option value="e_20s">20代前半</option>
-              <option value="l_20s">20代後半</option>
-              <option value="e_30s">30代前半</option>
-              <option value="l_30s">30代後半</option>
-              <option value="e_40s">40代前半</option>
-              <option value="l_40s">40代後半</option>
-              <option value="e_50s">50代前半</option>
-              <option value="l_50s">50代後半</option>
-              <option value="e_60s">60代前半</option>
-              <option value="l_60s">60代後半</option>
-            </select>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">相談のカテゴリー</div>
+            <div class="selectbox-wrapper">
+              <select
+                class="a-selectbox"
+                name="category"
+                v-bind:value="$store.getters.inputValues.category_id"
+                v-on:input="updateInputValue($event, 'category_id')"
+                style="max-height:42.33px;min-height:42.33px;"
+                v-bind:class="{ has_error: $store.getters.error_category_id}"
+                >
+                <option value="">選択してください</option>
+                <option 
+                  v-for="category in $store.getters.categories"
+                  v-bind:key="category.id" 
+                  v-bind:value="category.id">
+                  {{ category.name }}
+                </option>
+              </select>
+              <p class="message_error">{{ $store.getters.error_category_id_msg }}</p>
+            </div>
+            <p class="message_error"></p>
           </div>
-          <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
+          <div class="m-question-post-form__box">
+            <div class="m-question-post-form__heading">あなたの性別・年代</div>
+            <div class="selectbox-wrapper gender">
+              <select
+                class="a-selectbox"
+                name="gender"
+                v-bind:value="$store.getters.inputValues.sex"
+                v-on:input="updateInputValue($event, 'sex')"
+                v-bind:class="{ has_error: $store.getters.error_sex}"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value=""></option>
+                <option value="f">女性</option>
+                <option value="m">男性</option>
+                <option value="o">その他</option>
+              </select>
+            </div>
+            <div class="selectbox-wrapper selectbox-wrapper--green age">
+              <select
+                class="a-selectbox"
+                name="age"
+                v-bind:value="$store.getters.inputValues.age"
+                v-on:input="updateInputValue($event, 'age')"
+                v-bind:class="{ has_error: $store.getters.error_age}"
+                style="max-height:42.33px;min-height:42.33px;"
+                >
+                <option value="e_10s">10代前半</option>
+                <option value="l_10s">10代後半</option>
+                <option value="e_20s">20代前半</option>
+                <option value="l_20s">20代後半</option>
+                <option value="e_30s">30代前半</option>
+                <option value="l_30s">30代後半</option>
+                <option value="e_40s">40代前半</option>
+                <option value="l_40s">40代後半</option>
+                <option value="e_50s">50代前半</option>
+                <option value="l_50s">50代後半</option>
+                <option value="e_60s">60代前半</option>
+                <option value="l_60s">60代後半</option>
+              </select>
+            </div>
+            <p class="message_error">{{ $store.getters.error_sex_age_msg }}</p>
+          </div>
           <p class="m-question-post-form__terms">
             <router-link to="/terms">利用規約</router-link>に同意して
           </p>
@@ -120,6 +147,7 @@
 
 <script>
 import ResizableImageInput from "../molecule/resizable-image-input.vue";
+import axios from "axios";
 
 export default {
   name: "QuestionPostForm",
@@ -127,9 +155,19 @@ export default {
   components: {
     ResizableImageInput
   },
+  created: function(){
+    this.getCategoryList()
+  },
   methods: {
     async uploadProfileImage ({ base64 }) {
       this.$store.state.post_input.img_base64 = base64
+    },
+    getCategoryList(){
+      if(this.$store.state.categories != null) return;
+      axios.get(`${ this.API_URL }/api/v1/category_list`)
+      .then(response =>{
+        this.$store.commit("setCategories", response.data.categories)
+      })
     },
     drawImageArgs (image) {
       const maxSize = 330
@@ -169,7 +207,8 @@ export default {
         this.$store.state.post_input.content === "" &&
         this.$store.state.post_input.opt1 === "" &&
         this.$store.state.post_input.opt2 === "" &&
-        this.$store.state.post_input.tag_list === ""
+        this.$store.state.post_input.tag_list === "" &&
+        this.$store.state.post_input.category_id === ""
       ){
         this.$store.dispatch('doUpdateInputValue', { key: 'isChanged', value: false })
       }else{

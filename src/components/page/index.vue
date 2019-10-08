@@ -42,6 +42,7 @@ export default {
     this.$store.commit("setLoading", true);
     axios.get(`${ this.API_URL }/api/v1/overview`)
       .then(response => {
+        this.getCategoryList();
         this.$store.commit("setTopFeatureSpecial", response.data.key_visual)
         this.$store.commit("setTopFeatureNormal", response.data.others_1.articles)
         this.$store.commit("setWomensTopic", response.data.big_futured_for_f)
@@ -63,6 +64,15 @@ export default {
   mounted: function(){
     global.$("body").addClass("p-index")
     this.$emit('updateHead');
+  },
+  methods: {
+    getCategoryList(){
+      if(this.$store.state.categories != null) return;
+      axios.get(`${ this.API_URL }/api/v1/category_list`)
+      .then(response =>{
+        this.$store.commit("setCategories", response.data.categories)
+      })
+    }
   },
   destroyed: function(){
     global.$("body").removeClass("p-index")
