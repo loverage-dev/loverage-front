@@ -4,6 +4,7 @@
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
+          <p class="a-description">ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。ここにはカテゴリーの説明文が入ります。</p>
           <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
             <div v-if="canGrep == true && articles.length !== 0">
