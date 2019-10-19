@@ -219,6 +219,7 @@
 
     @include mq {
       @include clearfix;
+      position: relative;
       display: block;
       float: left;
       padding-top: 2px;

@@ -88,6 +88,20 @@
               </ul>
             </div>
           </form>
+          <div class="m-category-suggestion u-sp-d">
+            <div class="m-category-suggestion__heading">カテゴリーから探す</div>
+            <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
+            <ul class="m-category-suggestion__list">
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+            </ul>
+          </div>
         </div>
 
         <div class="o-global-header__pc-search-area">
@@ -112,6 +126,20 @@
               </li>
             </ul>
           </form>
+          <div class="m-category-suggestion u-tablet-d">
+            <div class="m-category-suggestion__heading">カテゴリーから探す</div>
+            <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
+            <ul class="m-category-suggestion__list">
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+            </ul>
+          </div>
         </div>
 
         <button
