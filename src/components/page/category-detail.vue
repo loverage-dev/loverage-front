@@ -314,7 +314,7 @@
               </li>
             </ul>
             <router-link
-              to="/ranking-view"
+              to="/ranking"
               class="a-btn a-btn--medium a-btn--right-arrow a-btn--pink-arrow"
             >SEE MORE
               <div class="arrow">
