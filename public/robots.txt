@@ -1,4 +1,21 @@
 User-agent: *
-Disallow:
+Disallow:/terms
+Disallow:/privacy-policy
+Disallow:/category-detail
+Disallow:/category-detail?keyword=*
+Arrow:/category-detail?keyword=出会い
+Arrow:/category-detail?keyword=片想い
+Arrow:/category-detail?keyword=友達・同僚
+Arrow:/category-detail?keyword=デート
+Arrow:/category-detail?keyword=告白
+Arrow:/category-detail?keyword=彼氏・彼女
+Arrow:/category-detail?keyword=元カレ・元カノ
+Arrow:/category-detail?keyword=結婚
+Arrow:/category-detail?keyword=結婚生活
+Arrow:/category-detail?keyword=別れ
+Arrow:/category-detail?keyword=浮気・失恋
+Arrow:/category-detail?keyword=失恋
+Arrow:/category-detail?keyword=SEX・性
+Arrow:/category-detail?keyword=その他
 
 Sitemap: https://www.loverage.jp/sitemap.xml
