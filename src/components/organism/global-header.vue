@@ -232,7 +232,7 @@ export default {
       if(this.isShowSuggest){
         setTimeout(()=>{
           this.isShowSuggest = false
-        },150)
+        },170)
       }else{
         this.isShowSuggest = true
       }
