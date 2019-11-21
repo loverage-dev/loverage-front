@@ -92,14 +92,10 @@
             <div class="m-category-suggestion__heading">カテゴリーから探す</div>
             <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
             <ul class="m-category-suggestion__list">
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li class="m-category-suggestion__list-item" v-for="category in $store.getters.categories"
+                v-bind:key="category.id">
+                  <a href="#" class="a-label a-label--category">{{ category.name }}</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -109,7 +105,12 @@
             <IconSearch width="15px" height="15px" color="#343434" />
           </div>
           <form class="form" v-on:submit.prevent="onSubmit(pc_search_word)">
-            <input class="input" type="text" placeholder="みんなの相談から検索" v-model="pc_search_word" />
+            <input 
+              class="input" 
+              type="text" 
+              placeholder="みんなの相談から検索" 
+              v-model="pc_search_word"
+              @focus="toggleSuggest()" @blur="toggleSuggest()" />
             <input class="submit change-pointer" type="submit" value="検索" />
             <ul class="suggestion">
               <li class="suggestion__item">
@@ -126,18 +127,16 @@
               </li>
             </ul>
           </form>
-          <div class="m-category-suggestion u-tablet-d">
+          <div class="m-category-suggestion u-tablet-d" v-if="isShowSuggest">
             <div class="m-category-suggestion__heading">カテゴリーから探す</div>
             <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
             <ul class="m-category-suggestion__list">
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
-              <li class="m-category-suggestion__list-item"><a href="#" class="a-label a-label--category">元カレ・元カノ</a></li>
+              <li 
+                class="m-category-suggestion__list-item"
+                v-for="category in $store.getters.categories"
+                v-bind:key="category.id">
+                  <a href="#" class="a-label a-label--category">{{ category.name }}</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -193,6 +192,7 @@ export default {
   name: "GlobalHeader",
   data: function() {
     return {
+      isShowSuggest: false,
       pc_search_word: "",
       sp_search_word: "",
       isSearch: false,
@@ -215,6 +215,13 @@ export default {
     HistoryBox
   },
   methods: {
+    toggleSuggest(){
+      if(this.isShowSuggest){
+        this.isShowSuggest = false
+      }else{
+        this.isShowSuggest = true
+      }
+    },
     onClickOutSide () {
       this.closeHistory();
     },
