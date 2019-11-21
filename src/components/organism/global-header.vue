@@ -90,11 +90,18 @@
           </form>
           <div class="m-category-suggestion u-sp-d">
             <div class="m-category-suggestion__heading">カテゴリーから探す</div>
-            <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
+            <a class="m-category-suggestion__seeall" @click="toCategoryList()">
+              一覧へ
+            </a>
             <ul class="m-category-suggestion__list">
               <li class="m-category-suggestion__list-item" v-for="category in $store.getters.categories"
-                v-bind:key="category.id">
-                  <a href="#" class="a-label a-label--category">{{ category.name }}</a>
+                v-bind:key="category.id"
+                @click="toggleSearchArea">
+                  <router-link
+                    class="a-label a-label--category"
+                    v-bind:to="{ name: 'category-detail', query: {  category: category.name }}">
+                    {{ category.name }}
+                  </router-link>
               </li>
             </ul>
           </div>
@@ -129,13 +136,19 @@
           </form>
           <div class="m-category-suggestion u-tablet-d" v-if="isShowSuggest">
             <div class="m-category-suggestion__heading">カテゴリーから探す</div>
-            <a href="#" class="m-category-suggestion__seeall">一覧へ</a>
+            <router-link to="/category-list" class="m-category-suggestion__seeall">
+              一覧へ
+            </router-link>
             <ul class="m-category-suggestion__list">
               <li 
                 class="m-category-suggestion__list-item"
                 v-for="category in $store.getters.categories"
                 v-bind:key="category.id">
-                  <a href="#" class="a-label a-label--category">{{ category.name }}</a>
+                  <router-link
+                    class="a-label a-label--category"
+                    v-bind:to="{ name: 'category-detail', query: {  category: category.name }}">
+                    {{ category.name }}
+                  </router-link>
               </li>
             </ul>
           </div>
@@ -217,7 +230,9 @@ export default {
   methods: {
     toggleSuggest(){
       if(this.isShowSuggest){
-        this.isShowSuggest = false
+        setTimeout(()=>{
+          this.isShowSuggest = false
+        },150)
       }else{
         this.isShowSuggest = true
       }
@@ -227,6 +242,12 @@ export default {
     },
     middleware (event) {
        return event.target.className.baseVal !== 'touch-out-side'
+    },
+    toCategoryList(){
+      this.toggleSearchArea()
+      this.$router.push({
+          name: "category-list"
+        });
     },
     onSubmit: function(word) {
       let w = word.trim();
