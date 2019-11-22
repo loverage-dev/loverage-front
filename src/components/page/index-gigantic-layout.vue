@@ -49,11 +49,15 @@
           href
         >{{ $store.state.top_feature_special.content }}</router-link>
         <div class="m-card-info">
-          <IconSex
-          :to="{ name: 'category-detail', query: {  sex:  $store.state.top_feature_special.user_sex, age:  $store.state.top_feature_special.user_age  }}"
+          <IconCategory
+            :to="{ name: 'category-detail', query: {  category:  $store.state.top_feature_special.category }}"
+            :category="$store.state.top_feature_special.category"
+          />
+          <!-- <IconSex
+            :to="{ name: 'category-detail', query: {  sex:  $store.state.top_feature_special.user_sex, age:  $store.state.top_feature_special.user_age  }}"
             :user_age="$store.state.top_feature_special.user_age"
             :sex="$store.state.top_feature_special.user_sex"
-          />
+          /> -->
           <div class="a-counter">
             <!-- <?xml version="1.0" encoding="UTF-8"?> -->
             <svg
@@ -150,11 +154,14 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconCategory from "../icon/icon-category.vue";
+
 export default {
   name: "PageIndexGiganticLayout",
   props: {},
   components: {
-    IconSex
+    IconSex,
+    IconCategory
   },
   methods: {
     getDayOfWeek: function(){

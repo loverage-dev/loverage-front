@@ -2089,10 +2089,14 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <IconSex
+                      <!-- <IconSex
                         :to="{ name: 'article', params: { id: article.id }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
+                      /> -->
+                      <IconCategory
+                        :to="{ name: 'category-detail', query: {  category:  article.category }}"
+                        :category="article.category"
                       />
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -2219,10 +2223,14 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <IconSex
+                      <!-- <IconSex
                         :to="{ name: 'article', params: { id: article.id }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
+                      /> -->
+                      <IconCategory
+                        :to="{ name: 'category-detail', query: {  category: article.category }}"
+                        :category="article.category"
                       />
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -2349,10 +2357,14 @@
                       <h2 class="m-card__title">{{ article.content }}</h2>
                     </router-link>
                     <div class="m-card-info">
-                      <IconSex
+                      <!-- <IconSex
                         :to="{ name: 'article', params: { id: article.id }}"
                         :user_age="article.user_age"
                         :sex="article.user_sex"
+                      /> -->
+                      <IconCategory
+                        :to="{ name: 'category-detail', query: {  category:  article.category }}"
+                        :category="article.category"
                       />
                       <div class="a-counter a-counter--withouttitle">
                         <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -2405,6 +2417,7 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconCategory from "../icon/icon-category.vue";
 import IconEyeCatching from "../icon/icon-eye-catching.vue";
 import PageTitle from "../organism/page-title.vue";
 import axios from "axios";
@@ -2415,7 +2428,8 @@ export default {
   components: {
     PageTitle,
     IconSex,
-    IconEyeCatching
+    IconEyeCatching,
+    IconCategory
   },
   created: function() {
     if(!this.$store.state.latest && !this.$store.state.hot_topic && !this.$store.state.ranking_view){
