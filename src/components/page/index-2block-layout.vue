@@ -50,10 +50,14 @@
                 <h2 class="m-card__title">{{$store.state.womens_topic.content}}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.womens_topic.user_sex, age:  $store.state.womens_topic.user_age  }}"
                   :user_age="$store.state.womens_topic.user_age"
                   :sex="$store.state.womens_topic.user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.womens_topic.category }}"
+                  :category="$store.state.womens_topic.category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -188,10 +192,14 @@
                 <h2 class="m-card__title">{{ $store.state.mens_topic.content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.mens_topic.user_sex, age:  $store.state.mens_topic.user_age  }}"
                   :user_age="$store.state.mens_topic.user_age"
                   :sex="$store.state.mens_topic.user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.mens_topic.category }}"
+                  :category="$store.state.mens_topic.category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -286,13 +294,15 @@
 <script>
 import IconSex from "../icon/icon-sex.vue";
 import IconEyeCatching from "../icon/icon-eye-catching.vue";
+import IconCategory from "../icon/icon-category.vue";
 
 export default {
   name: "PageIndex2Block",
   props: {},
   components: {
     IconSex,
-    IconEyeCatching
+    IconEyeCatching,
+    IconCategory
   },
   methods: {
       getRandomNo: function(){

@@ -48,10 +48,14 @@
               <h2 class="m-card__title">{{ $store.state.featured[0].content }}</h2>
             </router-link>
             <div class="m-card-info">
-              <IconSex
+              <!-- <IconSex
                 :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[0].user_sex, age:  $store.state.featured[0].user_age  }}"
                 :user_age="$store.state.featured[0].user_age"
                 :sex="$store.state.featured[0].user_sex"
+              /> -->
+              <IconCategory
+                :to="{ name: 'category-detail', query: {  category:  $store.state.featured[0].category }}"
+                :category="$store.state.featured[0].category"
               />
               <div class="a-counter a-counter--withouttitle">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -159,10 +163,14 @@
                 <h2 class="m-card__title">{{ $store.state.featured[1].content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[1].user_sex, age:  $store.state.featured[1].user_age  }}"
                   :user_age="$store.state.featured[1].user_age"
                   :sex="$store.state.featured[1].user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.featured[1].category }}"
+                  :category="$store.state.featured[1].category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -268,10 +276,14 @@
                 <h2 class="m-card__title">{{ $store.state.featured[2].content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[2].user_sex, age:  $store.state.featured[2].user_age  }}"
                   :user_age="$store.state.featured[2].user_age"
                   :sex="$store.state.featured[2].user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.featured[2].category }}"
+                  :category="$store.state.featured[2].category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -378,10 +390,14 @@
                 <h2 class="m-card__title">{{ $store.state.featured[3].content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[3].user_sex, age:  $store.state.featured[3].user_age  }}"
                   :user_age="$store.state.featured[3].user_age"
                   :sex="$store.state.featured[3].user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.featured[3].category }}"
+                  :category="$store.state.featured[3].category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -486,10 +502,14 @@
                 <h2 class="m-card__title">{{ $store.state.featured[4].content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex:  $store.state.featured[4].user_sex, age:  $store.state.featured[4].user_age  }}"
                   :user_age="$store.state.featured[4].user_age"
                   :sex="$store.state.featured[4].user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  $store.state.featured[4].category }}"
+                  :category="$store.state.featured[4].category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!-- <?xml version="1.0" encoding="UTF-8"?> -->
@@ -585,6 +605,7 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconCategory from "../icon/icon-category.vue";
 import IconEyeCatching from "../icon/icon-eye-catching.vue";
 
 export default {
@@ -592,7 +613,8 @@ export default {
   props: {},
   components: {
     IconSex,
-    IconEyeCatching
+    IconEyeCatching,
+    IconCategory
   },
   methods: {
       getRandomNo: function(){
