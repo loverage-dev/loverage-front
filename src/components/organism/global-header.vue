@@ -88,6 +88,23 @@
               </ul>
             </div>
           </form>
+          <div class="m-category-suggestion u-sp-d">
+            <div class="m-category-suggestion__heading">カテゴリーから探す</div>
+            <a class="m-category-suggestion__seeall" @click="toCategoryList()">
+              一覧へ
+            </a>
+            <ul class="m-category-suggestion__list">
+              <li class="m-category-suggestion__list-item" v-for="category in $store.getters.categories"
+                v-bind:key="category.id"
+                @click="toggleSearchArea">
+                  <router-link
+                    class="a-label a-label--category"
+                    v-bind:to="{ name: 'category-detail', query: {  category: category.name }}">
+                    {{ category.name }}
+                  </router-link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="o-global-header__pc-search-area">
@@ -95,7 +112,12 @@
             <IconSearch width="15px" height="15px" color="#343434" />
           </div>
           <form class="form" v-on:submit.prevent="onSubmit(pc_search_word)">
-            <input class="input" type="text" placeholder="みんなの相談から検索" v-model="pc_search_word" />
+            <input 
+              class="input" 
+              type="text" 
+              placeholder="みんなの相談から検索" 
+              v-model="pc_search_word"
+              @focus="toggleSuggest()" @blur="toggleSuggest()" />
             <input class="submit change-pointer" type="submit" value="検索" />
             <ul class="suggestion">
               <li class="suggestion__item">
@@ -112,6 +134,24 @@
               </li>
             </ul>
           </form>
+          <div class="m-category-suggestion u-tablet-d" v-if="isShowSuggest">
+            <div class="m-category-suggestion__heading">カテゴリーから探す</div>
+            <router-link to="/category-list" class="m-category-suggestion__seeall">
+              一覧へ
+            </router-link>
+            <ul class="m-category-suggestion__list">
+              <li 
+                class="m-category-suggestion__list-item"
+                v-for="category in $store.getters.categories"
+                v-bind:key="category.id">
+                  <router-link
+                    class="a-label a-label--category"
+                    v-bind:to="{ name: 'category-detail', query: {  category: category.name }}">
+                    {{ category.name }}
+                  </router-link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <button
@@ -165,6 +205,7 @@ export default {
   name: "GlobalHeader",
   data: function() {
     return {
+      isShowSuggest: false,
       pc_search_word: "",
       sp_search_word: "",
       isSearch: false,
@@ -187,11 +228,26 @@ export default {
     HistoryBox
   },
   methods: {
+    toggleSuggest(){
+      if(this.isShowSuggest){
+        setTimeout(()=>{
+          this.isShowSuggest = false
+        },170)
+      }else{
+        this.isShowSuggest = true
+      }
+    },
     onClickOutSide () {
       this.closeHistory();
     },
     middleware (event) {
        return event.target.className.baseVal !== 'touch-out-side'
+    },
+    toCategoryList(){
+      this.toggleSearchArea()
+      this.$router.push({
+          name: "category-list"
+        });
     },
     onSubmit: function(word) {
       let w = word.trim();
