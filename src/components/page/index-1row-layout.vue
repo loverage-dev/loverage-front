@@ -20,10 +20,14 @@
                 <h2 class="m-card__title">{{ article.content }}</h2>
               </router-link>
               <div class="m-card-info">
-                <IconSex
+                <!-- <IconSex
                   :to="{ name: 'category-detail', query: {  sex: article.user_sex, age: article.user_age  }}"
                   :user_age="article.user_age"
                   :sex="article.user_sex"
+                /> -->
+                <IconCategory
+                  :to="{ name: 'category-detail', query: {  category:  article.category }}"
+                  :category="article.category"
                 />
                 <div class="a-counter a-counter--withouttitle">
                   <!--?xml version="1.0" encoding="UTF-8"?-->
@@ -69,13 +73,15 @@
 
 <script>
 import IconSex from "../icon/icon-sex.vue";
+import IconCategory from "../icon/icon-category.vue";
 import IconEyeCatching from "../icon/icon-eye-catching.vue";
 export default {
   name: "PageIndex1RowLayout",
   props: {},
   components: {
     IconSex,
-    IconEyeCatching
+    IconEyeCatching,
+    IconCategory
   },
   methods: {
       getRandomNo: function(){
