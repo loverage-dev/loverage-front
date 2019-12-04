@@ -4,6 +4,7 @@
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
+          <p class="a-description" v-if="showCategoryDescription">{{ categoryDescription }}</p>
           <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
             <div v-if="canGrep == true && articles.length !== 0">
@@ -655,7 +656,9 @@ export default {
       pageNum: 1,
       articlesGrepped: null,
       grepAgeValue: "",
-      grepSexValue: ""
+      grepSexValue: "",
+      showCategoryDescription: false,
+      categoryDescription: "",
     };
   },
   computed: {
@@ -682,6 +685,7 @@ export default {
     IconCategory
   },
   created: function() {
+    this.setCategoryDiscription()
     this.grepAgeValue = "";
     this.grepSexValue = "";
     this.fetchArticles();
@@ -694,6 +698,17 @@ export default {
     global.$("body").removeClass("p-category-detail");
   },
   methods: {
+    setCategoryDiscription: function(){
+      if(this.$route.query.category){
+        let category = this.$store.state.categories.filter(c =>{
+          return c.name == this.$route.query.category;
+        })
+        this.categoryDescription = category[0].description
+        this.showCategoryDescription = true
+      }else{
+        this.showCategoryDescription = false
+      }
+    },
     onGrep: function() {
       let result = null;
 
