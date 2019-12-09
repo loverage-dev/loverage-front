@@ -643,6 +643,7 @@ export default {
   watch: {
     $route: function(to, from) {
       this.fetchArticles();
+      this.setCategory();
     }
   },
   data: function() {
@@ -685,9 +686,9 @@ export default {
     IconCategory
   },
   created: function() {
-    this.setCategoryDiscription()
     this.grepAgeValue = "";
     this.grepSexValue = "";
+    this.setCategory();
     this.fetchArticles();
   },
   mounted: function() {
@@ -698,6 +699,19 @@ export default {
     global.$("body").removeClass("p-category-detail");
   },
   methods: {
+    setCategory: function(){
+      if(this.$store.state.categories == null){
+        axios.get(`${ this.API_URL }/api/v1/category_list`)
+        .then(response =>{
+          this.$store.commit("setCategories", response.data.categories)
+        })
+        .finally(()=>{
+        this.setCategoryDiscription()
+        })
+      }else{
+        this.setCategoryDiscription()
+      }
+    },
     setCategoryDiscription: function(){
       if(this.$route.query.category){
         let category = this.$store.state.categories.filter(c =>{
