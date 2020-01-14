@@ -3,19 +3,19 @@ Disallow:/terms
 Disallow:/privacy-policy
 Disallow:/category-detail
 Disallow:/category-detail?keyword=*
-Arrow:/category-detail?keyword=出会い
-Arrow:/category-detail?keyword=片想い
-Arrow:/category-detail?keyword=友達・同僚
-Arrow:/category-detail?keyword=デート
-Arrow:/category-detail?keyword=告白
-Arrow:/category-detail?keyword=彼氏・彼女
-Arrow:/category-detail?keyword=元カレ・元カノ
-Arrow:/category-detail?keyword=結婚
-Arrow:/category-detail?keyword=結婚生活
-Arrow:/category-detail?keyword=別れ
-Arrow:/category-detail?keyword=浮気・失恋
-Arrow:/category-detail?keyword=失恋
-Arrow:/category-detail?keyword=SEX・性
-Arrow:/category-detail?keyword=その他
+Arrow:/category-detail?keyword=%E5%87%BA%E4%BC%9A%E3%81%84
+Arrow:/category-detail?keyword=%E7%89%87%E6%83%B3%E3%81%84
+Arrow:/category-detail?keyword=%E5%8F%8B%E9%81%94%E3%83%BB%E5%90%8C%E5%83%9A
+Arrow:/category-detail?keyword=%E3%83%87%E3%83%BC%E3%83%88
+Arrow:/category-detail?keyword=%E5%91%8A%E7%99%BD
+Arrow:/category-detail?keyword=%E5%BD%BC%E6%B0%8F%E3%83%BB%E5%BD%BC%E5%A5%B3
+Arrow:/category-detail?keyword=%E5%85%83%E3%82%AB%E3%83%AC%E3%83%BB%E5%85%83%E3%82%AB%E3%83%8E
+Arrow:/category-detail?keyword=%E7%B5%90%E5%A9%9A
+Arrow:/category-detail?keyword=%E7%B5%90%E5%A9%9A%E7%94%9F%E6%B4%BB
+Arrow:/category-detail?keyword=%E5%88%A5%E3%82%8C
+Arrow:/category-detail?keyword=%E6%B5%AE%E6%B0%97%E3%83%BB%E5%A4%B1%E6%81%8B
+Arrow:/category-detail?keyword=%E5%A4%B1%E6%81%8B
+Arrow:/category-detail?keyword=SEX%E3%83%BB%E6%80%A7
+Arrow:/category-detail?keyword=%E3%81%9D%E3%81%AE%E4%BB%96
 
 Sitemap: https://www.loverage.jp/sitemap.xml

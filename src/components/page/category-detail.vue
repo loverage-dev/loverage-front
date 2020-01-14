@@ -4,6 +4,7 @@
     <div class="t-2column">
       <div class="t-2column__inner">
         <div class="t-contents__inner t-2column__main">
+          <p class="a-description" v-if="showCategoryDescription">{{ categoryDescription }}</p>
           <h2 class="a-heading">検索結果 {{ articlesCount }}件</h2>
           <form action class="m-question-post-form">
             <div v-if="canGrep == true && articles.length !== 0">
@@ -642,6 +643,7 @@ export default {
   watch: {
     $route: function(to, from) {
       this.fetchArticles();
+      this.setCategory();
     }
   },
   data: function() {
@@ -655,7 +657,9 @@ export default {
       pageNum: 1,
       articlesGrepped: null,
       grepAgeValue: "",
-      grepSexValue: ""
+      grepSexValue: "",
+      showCategoryDescription: false,
+      categoryDescription: "",
     };
   },
   computed: {
@@ -684,6 +688,7 @@ export default {
   created: function() {
     this.grepAgeValue = "";
     this.grepSexValue = "";
+    this.setCategory();
     this.fetchArticles();
   },
   mounted: function() {
@@ -694,6 +699,32 @@ export default {
     global.$("body").removeClass("p-category-detail");
   },
   methods: {
+    setCategory: function(){
+      if(this.$store.state.categories == null){
+        axios.get(`${ this.API_URL }/api/v1/category_list`)
+        .then(response =>{
+          this.$store.commit("setCategories", response.data.categories)
+        })
+        .finally(()=>{
+        this.setCategoryDiscription()
+        })
+      }else{
+        this.setCategoryDiscription()
+      }
+    },
+    setCategoryDiscription: function(){
+      if(this.$route.query.category){
+        let category = this.$store.state.categories.filter(c =>{
+          return c.name == this.$route.query.category;
+        })
+        this.categoryDescription = category[0].description
+        if(this.categoryDescription.trim().length != 0){
+          this.showCategoryDescription = true
+        }
+      }else{
+        this.showCategoryDescription = false
+      }
+    },
     onGrep: function() {
       let result = null;
 
@@ -856,9 +887,9 @@ export default {
     },
     meta: function(){
      return [
-        { name: 'description', content: '' },
+        { name: 'description', content: this.categoryDescription },
         { property: 'og:title', content: '検索結果|Loverage' },
-        { property: 'og:description', content: '' },
+        { property: 'og:description', content: this.categoryDescription },
         { property: 'og:type', content: 'website' }
       ]
     }

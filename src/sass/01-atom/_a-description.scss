@@ -1,0 +1,9 @@
+.a-description {
+  padding: 8px 12px;
+  font-size: 12px;
+  background-color: $gray10;
+
+  @include mq(medium) {
+    font-size: 14px;
+  }
+}

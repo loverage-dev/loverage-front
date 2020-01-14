@@ -58,7 +58,12 @@ export default {
             });
             this.$store.commit("resetPostData");
             this.$store.commit("resetErrors");
-            this.$store.commit("setShowToast", true);  
+            this.$store.commit("setShowToast", true);
+            if(process.env.NODE_ENV === 'production'){
+              axios.post("https://hooks.slack.com/services/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",{
+                text: `${response.data.title} ${response.data.id}|記事はこちら>`
+              })
+            }
           }
         })
         // eslint-disable-next-line
