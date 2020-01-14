@@ -60,9 +60,7 @@ export default {
             this.$store.commit("resetErrors");
             this.$store.commit("setShowToast", true);
             if(process.env.NODE_ENV === 'production'){
-              axios.post("https://hooks.slack.com/services/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",{
-                text: `${response.data.title} ${response.data.id}|記事はこちら>`
-              })
+              this.submitSlack(`${response.data.title} <https://www.loverage.jp/article/${response.data.id}|記事はこちら>`)
             }
           }
         })
@@ -90,6 +88,17 @@ export default {
       }
       let saveDataString = JSON.stringify(this.myHistoryPosts);
       localStorage.setItem("history-post", saveDataString);
+    },
+    submitSlack:function(text) {
+      const url = "https://hooks.slack.com/services/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";
+      const data = {
+        text: text
+      };
+
+      const xml = new XMLHttpRequest();
+      xml.open("POST", url, false);
+      xml.setRequestHeader("content-type", "application/x-www-form-urlencoded;charset=UTF-8");
+      xml.send(`payload=${JSON.stringify(data)}`)
     }
   }
 };
