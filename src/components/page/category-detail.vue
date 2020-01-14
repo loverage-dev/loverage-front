@@ -718,7 +718,9 @@ export default {
           return c.name == this.$route.query.category;
         })
         this.categoryDescription = category[0].description
-        this.showCategoryDescription = true
+        if(this.categoryDescription.trim().length != 0){
+          this.showCategoryDescription = true
+        }
       }else{
         this.showCategoryDescription = false
       }
@@ -885,9 +887,9 @@ export default {
     },
     meta: function(){
      return [
-        { name: 'description', content: '' },
+        { name: 'description', content: this.categoryDescription },
         { property: 'og:title', content: '検索結果|Loverage' },
-        { property: 'og:description', content: '' },
+        { property: 'og:description', content: this.categoryDescription },
         { property: 'og:type', content: 'website' }
       ]
     }
