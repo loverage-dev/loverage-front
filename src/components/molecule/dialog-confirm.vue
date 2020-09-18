@@ -90,7 +90,7 @@ export default {
       localStorage.setItem("history-post", saveDataString);
     },
     submitSlack:function(text) {
-      const url = "https://hooks.slack.com/services/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";
+      const url = "https://hooks.slack.com/services/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";
       const data = {
         text: text
       };
