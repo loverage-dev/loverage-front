@@ -9,23 +9,6 @@ const port = process.env.PORT || 8080;
 // express()のインスタンス
 const app = express();
 
-// リダイレクト設定
-// HTTP/WWWありでGETリクエストが来た場合，リダイレクトする設定
-app.use(/.*/, function (req, res, next) {
-  if (!req.hostname.startsWith('www.')) {
-    // wwwなしの場合，www.をつけてからリダイレクト
-    res.redirect(`https://www.${req.hostname}${req.url}`)
-  }
-  else if (req.headers['x-forwarded-proto'] != 'https') {
-    // HTTPの場合，リダイレクト
-    res.redirect(`https://${req.hostname}${req.url}`)
-  }
-  else {
-    // 後続のハンドラを実行
-    next()
-  }
-})
-
 app.use(compression({
   threshold: 0,
   level: 9,
